@@ -5,7 +5,7 @@
     var upperLimit = 1000; 
         
     // Our scroll link element
-    var scrollElem = $('#totop');
+    var scrollElem = $('#scroll2top');
     
     // Scroll to top speed
     var scrollSpeed = 500;
@@ -26,4 +26,4 @@
         $('html, body').animate({scrollTop:0}, scrollSpeed); return false; 
     });
 
-})(jQuery);
+})(jQuery); 
