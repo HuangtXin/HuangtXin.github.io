@@ -82,6 +82,9 @@ h6 {
 h1 {
   font-size: 1.8em;
 }
+h1 {
+  font-color: rgba(0,0,0,0.6);
+}
 h2 {
   font-size: 1.5em;
 }
