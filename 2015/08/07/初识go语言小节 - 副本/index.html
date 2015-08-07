@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>初识go语言小节 | 鑫的博客</title>
+  <meta name="author" content="HuangXin">
+  
+  <meta name="description" content="整体感受学了几天的GO语言，感觉Go的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(interface)和结构">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="初识go语言小节"/>
+  <meta property="og:site_name" content="鑫的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="canonical" href="http://yoursite.com/2015/08/07/初识go语言小节 - 副本/index.html" />
+  <link rel="alternate" href="/atom.xml" title="鑫的博客" type="application/atom+xml">
+  
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45991394-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="blog-header">
+  <h1><a href="/">鑫的博客</a></h1>
+  <h2><a href="/">好吧，我承认我才是这世上最聪明的男人！</a></h2>
+</div>
+<nav id="main-nav" class="blog-nav">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    
+      <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-08-07T09:07:46.236Z"><a href="/2015/08/07/初识go语言小节 - 副本/">2015-08-07</a></time>
+      
+      
+  
+    <h1 class="title">初识go语言小节</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="整体感受">整体感受</h2><p>学了几天的GO语言，感觉Go的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(interface)和结构体(struct)，特别是接口(interface)在整个GO语言的体系中的作用非常重要。</p>
+<h2 id="Go语言的几点特征">Go语言的几点特征</h2><ol>
+<li>像java一样有内存回收机制，不需要考虑对堆中分配的内存进行delete</li>
+<li><p>结构体struct（功能等同于其他语言的类class）没有构造函数，默认初始化为零值，可以用复合声明初始化<br> 复合声明如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File&#123;fd: fd, name: name&#125;  //返回对象</span><br><span class="line">&amp;File&#123;fd,name&#125;  //返回指针，从堆上分配</span><br></pre></td></tr></table></figure>
+<p> 某些包里可能会有NewXXX(field1,field2)实现构造函数的功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func NewXXX(field1,field2) *XXX&#123;</span><br><span class="line">	<span class="built_in">return</span> &amp;XXX&#123;field1,field2&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>struct可以有匿名字段，拥有该字段的方法（类似于继承）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> A struct&#123;</span><br><span class="line">	.....</span><br><span class="line">&#125;</span><br><span class="line">func (a *A)<span class="function"><span class="title">Add</span></span>()&#123;....&#125;  //A类的Add方法</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span> B struct&#123;</span><br><span class="line">	A                  //匿名字段</span><br><span class="line">	somevalue int</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">var b B</span><br><span class="line">b.A.Add()               //拥有A类的Add方法</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>interface只是方法的组合，任何类型只要包含某interface中所有的方法，该类型就实现了此interface，不需要显示地去定义（类比于java，则需要implements）</p>
+</li>
+<li><p>Go中使用平行赋值，没有逗号表达式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//i++,j++   </span><br><span class="line">//i=<span class="number">2</span>,j=<span class="number">7</span>   这些都是不允许的</span><br><span class="line"></span><br><span class="line">i, j = i+<span class="number">1</span>, j+<span class="number">1</span></span><br><span class="line">i ,j = j, i  //互相交换，也是允许的</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Go的字符串是UTF-8编码的，string转成[]rune([]rune(str))，每个字符对应一个数值（rune就是int32），即rune数组个数等于string的字符数</p>
+</li>
+<li><p>range 是个迭代器，当被调用的时候，从它循环的内容中返回一个键值对。基于不同的内容，range 返回不同的东西。当对slice 或者array 做循环时，range 返回序号作为键，这个序号对应的内容作为值。对map则返回键和值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">arr := [...]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line"><span class="keyword">for</span> i , j := range arr&#123;</span><br><span class="line">	//每次迭代 i从<span class="number">0</span>到<span class="number">4</span>（序号） j从<span class="number">1</span>到<span class="number">5</span>（值）</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _, j := range arr&#123;</span><br><span class="line">	//‘_’表示丢弃赋给它的值，GO语言中不允许定义的变量未使用，所以_有时用得到</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Switch更加灵活。表达式不必是常量或整数，执行的过程从上至下，直到找到匹<br>配项，而如果switch 没有表达式，它会匹配true 。<br> 实现if-else if-else</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func unhex(c byte) byte &#123;</span><br><span class="line">	switch &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="string">'0'</span> &lt;= c &amp;&amp; c &lt;= <span class="string">'9'</span>:</span><br><span class="line">		<span class="built_in">return</span> c - <span class="string">'0'</span></span><br><span class="line">	<span class="keyword">case</span> <span class="string">'a'</span> &lt;= c &amp;&amp; c &lt;= <span class="string">'f'</span>:</span><br><span class="line">		<span class="built_in">return</span> c - <span class="string">'a'</span> + <span class="number">10</span></span><br><span class="line">	<span class="keyword">case</span> <span class="string">'A'</span> &lt;= c &amp;&amp; c &lt;= <span class="string">'F'</span>:</span><br><span class="line">		<span class="built_in">return</span> c - <span class="string">'A'</span> + <span class="number">10</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 多值匹配</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">switch c &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">' '</span>, <span class="string">'?'</span>, <span class="string">'&amp;'</span>, <span class="string">'='</span>, <span class="string">'#'</span>, <span class="string">'+'</span>:  </span><br><span class="line">	<span class="built_in">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  Go里面switch默认相当于每个case最后带有break，匹配成功后不会自动向下执行其他case，而是跳出整个switch, 但是可以使用fallthrough强制执行后面的case代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">switch &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="literal">true</span>: </span><br><span class="line">	....</span><br><span class="line">	fallthrough</span><br><span class="line"><span class="keyword">case</span> <span class="literal">false</span>: </span><br><span class="line">	...         //不管符不符合，执行上一个fallthrough之后，都会强制执行这段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p><em>未完待续…</em></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"winterland"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
+
+</div></div>
+      <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="https://github.com/huangtXin/" title="我的GitHub">我的GitHub</a></li>
+</ul>
+</div>
+
+</aside>
+    
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="aligncenter">
+  
+  &copy; 2015 HuangXin
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<div id="scroll2top">
+<img src="/scroll2top/arrow.png"/>
+</div>
+<script src="/scroll2top/scroll2top.min.js"></script>
+<div id="winterland">
+  <canvas></canvas>
+</div>
+<script src="/js/winterland.min.js"></script>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script src="https://www.zybuluo.com/static/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</script>
+  <!-- Baidu Button BEGIN -->
+    <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=1&amp;mini=1&amp;pos=left&amp;uid=6871901" ></script>
+    <script type="text/javascript" id="bdshell_js"></script>
+    <script type="text/javascript" src="/js/bds_animate.min.js"></script>
+    <script type="text/javascript">
+    var bds_config={"bdTop":0};
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+    </script>
+ <!-- Baidu Button END -->
+
+</body>
+</html>
