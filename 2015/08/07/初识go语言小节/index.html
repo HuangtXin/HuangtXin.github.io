@@ -84,7 +84,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-08-07T09:05:53.204Z"><a href="/2015/08/07/初识go语言小节/">2015-08-07</a></time>
+        <time datetime="2015-08-07T09:07:46.236Z"><a href="/2015/08/07/初识go语言小节/">2015-08-07</a></time>
       
       
   
@@ -107,11 +107,11 @@
 </li>
 <li><p>interface只是方法的组合，任何类型只要包含某interface中所有的方法，该类型就实现了此interface，不需要显示地去定义（类比于java，则需要implements）</p>
 </li>
-<li>Go中使用平行赋值，没有逗号表达式。</li>
-</ol>
+<li><p>Go中使用平行赋值，没有逗号表达式。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//i++,j++   </span><br><span class="line">//i=<span class="number">2</span>,j=<span class="number">7</span>   这些都是不允许的</span><br><span class="line"></span><br><span class="line">i, j = i+<span class="number">1</span>, j+<span class="number">1</span></span><br><span class="line">i ,j = j, i  //互相交换，也是允许的</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Go的字符串是UTF-8编码的，string转成[]rune([]rune(str))，每个字符对应一个数值（rune就是int32），即rune数组个数等于string的字符数</li>
+</li>
+<li><p>Go的字符串是UTF-8编码的，string转成[]rune([]rune(str))，每个字符对应一个数值（rune就是int32），即rune数组个数等于string的字符数</p>
+</li>
 <li><p>range 是个迭代器，当被调用的时候，从它循环的内容中返回一个键值对。基于不同的内容，range 返回不同的东西。当对slice 或者array 做循环时，range 返回序号作为键，这个序号对应的内容作为值。对map则返回键和值</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">arr := [...]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line"><span class="keyword">for</span> i , j := range arr&#123;</span><br><span class="line">	//每次迭代 i从<span class="number">0</span>到<span class="number">4</span>（序号） j从<span class="number">1</span>到<span class="number">5</span>（值）</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _, j := range arr&#123;</span><br><span class="line">	//‘_’表示丢弃赋给它的值，GO语言中不允许定义的变量未使用，所以_有时用得到</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -120,9 +120,9 @@
 <p> 多值匹配</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">switch c &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">' '</span>, <span class="string">'?'</span>, <span class="string">'&amp;'</span>, <span class="string">'='</span>, <span class="string">'#'</span>, <span class="string">'+'</span>:  </span><br><span class="line">	<span class="built_in">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  Go里面switch默认相当于每个case最后带有break，匹配成功后不会自动向下执行其他case，而是跳出整个switch, 但是可以使用fallthrough强制执行后面的case代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">switch &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="literal">true</span>: </span><br><span class="line">	....</span><br><span class="line">	fallthrough</span><br><span class="line"><span class="keyword">case</span> <span class="literal">false</span>: </span><br><span class="line">	...         //不管符不符合，执行上一个fallthrough之后，都会强制执行这段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">switch &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="literal">true</span>: </span><br><span class="line">	....</span><br><span class="line">	fallthrough</span><br><span class="line"><span class="keyword">case</span> <span class="literal">false</span>: </span><br><span class="line">	...         //不管符不符合，执行上一个fallthrough之后，都会强制执行这段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p><em>未完待续…</em></p>
 
