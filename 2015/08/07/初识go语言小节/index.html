@@ -6,7 +6,7 @@
   <title>初识go语言小节 | 鑫的博客</title>
   <meta name="author" content="HuangXin">
   
-  <meta name="description" content="整体感受学了几天的GO语言，感觉Go的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(interface)和结构">
+  <meta name="description" content="整体感受学了几天的GO语言，感觉Go的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(interface)和结构体(struct)，特别是接口(interface)在整个GO语言的体系中的作用非常重要。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -84,7 +84,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-08-07T09:07:46.236Z"><a href="/2015/08/07/初识go语言小节/">2015-08-07</a></time>
+        <time datetime="2015-08-07T09:14:42.703Z"><a href="/2015/08/07/初识go语言小节/">2015-08-07</a></time>
       
       
   
@@ -94,7 +94,7 @@
     </header>
     <div class="entry">
       
-        <h2 id="整体感受">整体感受</h2><p>学了几天的GO语言，感觉Go的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(interface)和结构体(struct)，特别是接口(interface)在整个GO语言的体系中的作用非常重要。</p>
+        <h2 id="整体感受">整体感受</h2><p>学了几天的GO语言，感觉Go的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(interface)和结构体(struct)，特别是接口(interface)在整个GO语言的体系中的作用非常重要。<br><a id="more"></a></p>
 <h2 id="Go语言的几点特征">Go语言的几点特征</h2><ol>
 <li>像java一样有内存回收机制，不需要考虑对堆中分配的内存进行delete</li>
 <li><p>结构体struct（功能等同于其他语言的类class）没有构造函数，默认初始化为零值，可以用复合声明初始化<br> 复合声明如下：</p>
