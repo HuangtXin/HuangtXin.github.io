@@ -54,11 +54,11 @@
 				<ul>
 					<ul>
 					 
-						<li><a href="/">Home</a></li>
+						<li><a href="/">首页</a></li>
 					
-						<li><a href="/archives">Archives</a></li>
+						<li><a href="/archives">归档</a></li>
 					
-						<li><a href="/about">About</a></li>
+						<li><a href="/about">关于</a></li>
 					
 					<li>
  					
@@ -96,19 +96,11 @@
     <div class="article-content">
         
         <h1 id="函数">函数</h1><h2 id="普通函数的定义">普通函数的定义</h2><p>func 函数名(参数) (返回值)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func <span class="keyword">do</span>(a int, b <span class="built_in">float</span>64) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="多值返回函数">多值返回函数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func <span class="keyword">do</span>(a , b int) (v1 int,v2 bool)&#123;</span><br><span class="line">	...</span><br><span class="line">	v1 = <span class="number">2</span></span><br><span class="line">	v2 = <span class="literal">true</span></span><br><span class="line">	<span class="built_in">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="成员方法">成员方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> A struct&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">func (a *A)SetValue(v int) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">func (a A)GetCount(v int) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="延迟代码(defer)">延迟代码(defer)</h2><p>示例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func ReadWrite() bool &#123;</span><br><span class="line">file.Open(<span class="string">"file"</span>)</span><br><span class="line">defer file.Close()            //file.colse加入defer列表(先进后出的队列)，在<span class="built_in">return</span>前执行</span><br><span class="line"></span><br><span class="line"><span class="built_in">return</span> ture           //defer列表的代码自动执行后<span class="built_in">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>defer修改返回参数<br>示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">defer <span class="function"><span class="title">func</span></span>() &#123;     //没有函数名 匿名函数</span><br><span class="line">/* ... */</span><br><span class="line">&#125;()    // () 在这里是必须的</span><br><span class="line"></span><br><span class="line">defer func()(a int) &#123;</span><br><span class="line">/* ... */</span><br><span class="line">&#125;(<span class="number">10</span>)  //给返回参数赋值<span class="number">10</span></span><br><span class="line"></span><br><span class="line">func f() (ret i n t ) &#123;   //ret 初始化为零</span><br><span class="line">defer <span class="function"><span class="title">func</span></span>() &#123;</span><br><span class="line">ret++   //ret 增加为<span class="number">1</span></span><br><span class="line">&#125;()</span><br><span class="line"><span class="built_in">return</span> <span class="number">0</span>  //返回的是<span class="number">1</span> 而不是<span class="number">0</span>！</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="变参">变参</h2><p><em>*不定量的int参数</em>8<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func myfunc(arg ... int ) &#123; </span><br><span class="line"><span class="keyword">for</span> i,j:=range arg&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果不指定变参的类型，默认是空的接口interface{},所有类型都实现了空接口，所以可以接收任意类型</p>
-<p><strong>变参传递给另一个变参函数</strong><br>func myfunc(arg … i n t ) {<br>myfunc2(arg…)  //按原样传递<br>myfunc2(arg[:2]…)  //传递部分<br>}</p>
-<h2 id="函数作为值">函数作为值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">a := <span class="function"><span class="title">func</span></span>() &#123;  //定义一个匿名函数，并且赋值给a</span><br><span class="line">println(<span class="string">"Hello"</span>)</span><br><span class="line">&#125;  //这里没有()</span><br><span class="line">a()  //调用函数</span><br><span class="line">fmt.Printf(<span class="string">"\%T\n"</span>, a)   //打印a 的类型，输出结果是func()。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>匿名函数作为map的值。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var xs = map[ int ]func() int &#123;</span><br><span class="line"><span class="number">1</span>: func() int &#123; <span class="built_in">return</span> <span class="number">10</span> &#125;,</span><br><span class="line"><span class="number">2</span>: func() int &#123; <span class="built_in">return</span> <span class="number">20</span> &#125;,</span><br><span class="line"><span class="number">3</span>: func() int &#123; <span class="built_in">return</span> <span class="number">30</span> &#125;,  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="回调">回调</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func printit(x int ) &#123; </span><br><span class="line">	fmt.Printf(<span class="string">"%v\n"</span>, x)  </span><br><span class="line">&#125;</span><br><span class="line">func callback(y int , f func( int )) &#123; </span><br><span class="line">	f(y) </span><br><span class="line">&#125;</span><br><span class="line">func <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">	callback(<span class="number">10</span>,printit)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
+          
+            <a href="/2015/08/07/跟我学习Go语言-2/#more">Read More</a>
           
        </p>
     </div>
@@ -163,14 +155,12 @@
     <div class="article-content">
         
         <h1 id="array、slice_和map">array、slice 和map</h1><h2 id="array">array</h2><p><strong>array变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr1 [<span class="number">10</span>] int</span><br><span class="line">arr2 := [<span class="number">3</span>]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125; </span><br><span class="line">arr3 :=[…]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>&#125; //自动统计个数</span><br><span class="line">a := [<span class="number">3</span>][<span class="number">2</span>]int &#123; [<span class="number">2</span>]int &#123;<span class="number">1</span>,<span class="number">2</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">3</span>,<span class="number">4</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">5</span>,<span class="number">6</span>&#125; &#125;//多维数组</span><br></pre></td></tr></table></figure></p>
-<p>有一点需要注意：当向函数内传递一个数组的时候，它会获得一个数组的副本，而不是数组的指针。也就是说，数组做参数是值传递，不是引用传递，在函数内修改数组的元素，不会对函数外造成影响</p>
-<h2 id="slice">slice</h2><p>slice 与array 接近，但是在新的元素加入的时候可以增加长度。slice 总是指向底层的一个array。slice 是一个指向array 的指针，这是其与array 不同的地方；slice 是引用类型，这意味着当赋值某个slice到另外一个变量，两个引用会指向同一个array。<br>如果一个函数需要一个 slice 参数，在函数内对 slice 元素的修改也会体现在函数外的slice，这和传递底层的array 指针类似。<br><strong>slice变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sl := make([]int , <span class="number">10</span>)  //创建了一个保存有<span class="number">10</span> 个元素的slice。</span><br><span class="line">s2 := arr2[<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">s3 := arr3[:]</span><br></pre></td></tr></table></figure></p>
-<h2 id="map">map</h2><p>许多语言都内建了类似的类型，例如Perl有哈希，Python有字典，而C++同样也<br>有map（作为库）。在Go中的map 类型可以认为是一个用字符串做索引的数<br>组（在其最简单的形式下）。</p>
-<p><strong>map定义</strong><br>    map[<from type="">]<to type=""><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">monthdays := map[string] int &#123;</span><br><span class="line"><span class="string">"Jan"</span>: <span class="number">31</span>, <span class="string">"Feb"</span>: <span class="number">28</span>, <span class="string">"Mar"</span>: <span class="number">31</span>,</span><br><span class="line"><span class="string">"Apr"</span>: <span class="number">30</span>, <span class="string">"May"</span>: <span class="number">31</span>, <span class="string">"Jun"</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">"Jul"</span>: <span class="number">31</span>, <span class="string">"Aug"</span>: <span class="number">31</span>, <span class="string">"Sep"</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">"Oct"</span>: <span class="number">31</span>, <span class="string">"Nov"</span>: <span class="number">30</span>, <span class="string">"Dec"</span>: <span class="number">31</span>,  //逗号是必须的</span><br><span class="line">&#125;</span><br><span class="line">//使用时，monthdays[<span class="string">"Jun"</span>]取值为<span class="number">30</span></span><br></pre></td></tr></table></figure></to></from></p>
-
+<p>有一点需要注意：当向函数内传递一个数组的时候，它会获得一个数组的副本，而不是数组的指针。也就是说，数组做参数是值传递，不是引用传递，在函数内修改数组的元素，不会对函数外造成影响<br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2015/08/07/跟我学习Go语言-1/#more">Read More</a>
           
        </p>
     </div>
@@ -291,6 +281,12 @@
   <p class="asidetitle">友情链接</p>
     <ul>
         
+          <li>
+            
+            	<a href="https://github.com/huangtxin" target="_blank" title="我的GitHub">我的GitHub</a>
+            
+          </li>
+        
     </ul>
 </div>
 
@@ -312,6 +308,11 @@
 	</div>
 	
 	
+	<section class="info">
+		<p> 年少轻狂，不知简简单单才是福 <br/>
+			</p>
+	</section>
+	 
 	<div class="social-font" class="clearfix">
 		
 		<a href="http://weibo.com/2411360485" target="_blank" class="icon-weibo" title="微博"></a>

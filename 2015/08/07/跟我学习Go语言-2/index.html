@@ -11,22 +11,16 @@
     
 
     
-    <meta name="description" content="函数普通函数的定义func 函数名(参数) (返回值)123func do(a int, b float64) bool&amp;#123;	...&amp;#125;
-多值返回函数123456func do(a , b int) (v1 int,v2 bool)&amp;#123;	...	v1 = 2	v2 = true	return&amp;#125;
-成员方法123456789type A struct&amp;#123;	..">
+    <meta name="description" content="函数普通函数的定义func 函数名(参数) (返回值)123func do(a int, b float64) bool&amp;#123;	...&amp;#125;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跟我学习Go语言(2)">
 <meta property="og:url" content="http://yoursite.com/2015/08/07/跟我学习Go语言-2/index.html">
 <meta property="og:site_name" content="鑫的博客">
-<meta property="og:description" content="函数普通函数的定义func 函数名(参数) (返回值)123func do(a int, b float64) bool&amp;#123;	...&amp;#125;
-多值返回函数123456func do(a , b int) (v1 int,v2 bool)&amp;#123;	...	v1 = 2	v2 = true	return&amp;#125;
-成员方法123456789type A struct&amp;#123;	..">
-<meta property="og:updated_time" content="2015-08-08T08:28:41.458Z">
+<meta property="og:description" content="函数普通函数的定义func 函数名(参数) (返回值)123func do(a int, b float64) bool&amp;#123;	...&amp;#125;">
+<meta property="og:updated_time" content="2015-08-08T08:48:47.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跟我学习Go语言(2)">
-<meta name="twitter:description" content="函数普通函数的定义func 函数名(参数) (返回值)123func do(a int, b float64) bool&amp;#123;	...&amp;#125;
-多值返回函数123456func do(a , b int) (v1 int,v2 bool)&amp;#123;	...	v1 = 2	v2 = true	return&amp;#125;
-成员方法123456789type A struct&amp;#123;	..">
+<meta name="twitter:description" content="函数普通函数的定义func 函数名(参数) (返回值)123func do(a int, b float64) bool&amp;#123;	...&amp;#125;">
 <link rel="publisher" href="106161458455416050000">
 
     
@@ -61,11 +55,11 @@
 				<ul>
 					<ul>
 					 
-						<li><a href="/">Home</a></li>
+						<li><a href="/">首页</a></li>
 					
-						<li><a href="/archives">Archives</a></li>
+						<li><a href="/archives">归档</a></li>
 					
-						<li><a href="/about">About</a></li>
+						<li><a href="/about">关于</a></li>
 					
 					<li>
  					
@@ -108,6 +102,7 @@
 		</div>
 		
 		<h1 id="函数">函数</h1><h2 id="普通函数的定义">普通函数的定义</h2><p>func 函数名(参数) (返回值)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func <span class="keyword">do</span>(a int, b <span class="built_in">float</span>64) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="多值返回函数">多值返回函数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func <span class="keyword">do</span>(a , b int) (v1 int,v2 bool)&#123;</span><br><span class="line">	...</span><br><span class="line">	v1 = <span class="number">2</span></span><br><span class="line">	v2 = <span class="literal">true</span></span><br><span class="line">	<span class="built_in">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="成员方法">成员方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> A struct&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">func (a *A)SetValue(v int) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">func (a A)GetCount(v int) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="延迟代码(defer)">延迟代码(defer)</h2><p>示例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func ReadWrite() bool &#123;</span><br><span class="line">file.Open(<span class="string">"file"</span>)</span><br><span class="line">defer file.Close()            //file.colse加入defer列表(先进后出的队列)，在<span class="built_in">return</span>前执行</span><br><span class="line"></span><br><span class="line"><span class="built_in">return</span> ture           //defer列表的代码自动执行后<span class="built_in">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -203,6 +198,12 @@
   <p class="asidetitle">友情链接</p>
     <ul>
         
+          <li>
+            
+            	<a href="https://github.com/huangtxin" target="_blank" title="我的GitHub">我的GitHub</a>
+            
+          </li>
+        
     </ul>
 </div>
 
@@ -224,6 +225,11 @@
 	</div>
 	
 	
+	<section class="info">
+		<p> 年少轻狂，不知简简单单才是福 <br/>
+			</p>
+	</section>
+	 
 	<div class="social-font" class="clearfix">
 		
 		<a href="http://weibo.com/2411360485" target="_blank" class="icon-weibo" title="微博"></a>
