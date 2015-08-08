@@ -1866,7 +1866,7 @@ section.comment {
 }
 footer {
   margin-top: 1em;
-  background: #1f1f1f;
+  background: #5a786e;
   padding: 0 2% 0.5em;
 }
 #footer {
@@ -2045,11 +2045,10 @@ footer {
   }
 }
 .copyright a {
-  color: #2ca6cb;
+  color: #fff;
 }
 .copyright a:hover {
-  color: #2ca6cb;
-  text-decoration: underline;
+  color: #fff;
 }
 .cc-license {
   width: 100%;
