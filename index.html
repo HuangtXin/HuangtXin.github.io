@@ -5,26 +5,40 @@
   <meta charset="UTF-8">
   
     <title>鑫的博客</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="HuangXin">
     
+
     
+    <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="鑫的博客">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="鑫的博客">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="鑫的博客">
+<meta name="twitter:description">
+<link rel="publisher" href="106161458455416050000">
+
     
+    <link rel="alternative" href="/atom.xml" title="鑫的博客" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
     
     
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
   <body>
     <header>
-      <div>
+      
+<div>
 		
 			<div id="imglogo">
 				<a href="/"><img src="/img/logo.png" alt="鑫的博客" title="鑫的博客"/></a>
@@ -38,16 +52,19 @@
 			</a></div>
 			<nav class="animated">
 				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
 					
-						<li><a href="/">首页</a></li>
+						<li><a href="/archives">Archives</a></li>
 					
-						<li><a href="/archives">归档</a></li>
+						<li><a href="/about">About</a></li>
 					
 					<li>
-					
+ 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -55,53 +72,197 @@
 				</ul>
 			</nav>			
 </div>
-
     </header>
     <div id="container">
       <div id="main">
 
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/08/07/跟我学习Go语言-2/" title="跟我学习Go语言(2)" itemprop="url">
-  
-    <h1 itemprop="name">跟我学习Go语言(2)</h1>
+   
     
-     
-           <p itemprop="description" >函数普通函数的定义func 函数名(参数) (返回值)123func do(a int, b float64) bool&amp;#123;	...&amp;#125;
-多值返回函数123456func do(a , b int) (v1 int,v2 bool)&amp;#123;	...	v1 = </p>
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/07/跟我学习Go语言-2/" title="跟我学习Go语言(2)" itemprop="url">跟我学习Go语言(2)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-07T13:20:33.000Z" itemprop="datePublished"> 发表于 2015-08-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
         
-    
-    <time datetime="2015-08-07T13:20:33.000Z" itemprop="datePublished">2015-08-07</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/08/07/跟我学习Go语言-1/" title="跟我学习Go语言(1)" itemprop="url">
-  
-    <h1 itemprop="name">跟我学习Go语言(1)</h1>
-    
-     
-           <p itemprop="description" >array、slice 和maparrayarray变量1234var arr1 [10] intarr2 := [3]int&amp;#123;1,2,3&amp;#125; arr3 :=[…]int&amp;#123;1,2,1,3&amp;#125; //自动统计个数a := [3][2]int &amp;#1</p>
+        <h1 id="函数">函数</h1><h2 id="普通函数的定义">普通函数的定义</h2><p>func 函数名(参数) (返回值)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func <span class="keyword">do</span>(a int, b <span class="built_in">float</span>64) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="多值返回函数">多值返回函数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func <span class="keyword">do</span>(a , b int) (v1 int,v2 bool)&#123;</span><br><span class="line">	...</span><br><span class="line">	v1 = <span class="number">2</span></span><br><span class="line">	v2 = <span class="literal">true</span></span><br><span class="line">	<span class="built_in">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="成员方法">成员方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> A struct&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">func (a *A)SetValue(v int) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">func (a A)GetCount(v int) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="延迟代码(defer)">延迟代码(defer)</h2><p>示例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func ReadWrite() bool &#123;</span><br><span class="line">file.Open(<span class="string">"file"</span>)</span><br><span class="line">defer file.Close()            //file.colse加入defer列表(先进后出的队列)，在<span class="built_in">return</span>前执行</span><br><span class="line"></span><br><span class="line"><span class="built_in">return</span> ture           //defer列表的代码自动执行后<span class="built_in">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>defer修改返回参数<br>示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">defer <span class="function"><span class="title">func</span></span>() &#123;     //没有函数名 匿名函数</span><br><span class="line">/* ... */</span><br><span class="line">&#125;()    // () 在这里是必须的</span><br><span class="line"></span><br><span class="line">defer func()(a int) &#123;</span><br><span class="line">/* ... */</span><br><span class="line">&#125;(<span class="number">10</span>)  //给返回参数赋值<span class="number">10</span></span><br><span class="line"></span><br><span class="line">func f() (ret i n t ) &#123;   //ret 初始化为零</span><br><span class="line">defer <span class="function"><span class="title">func</span></span>() &#123;</span><br><span class="line">ret++   //ret 增加为<span class="number">1</span></span><br><span class="line">&#125;()</span><br><span class="line"><span class="built_in">return</span> <span class="number">0</span>  //返回的是<span class="number">1</span> 而不是<span class="number">0</span>！</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="变参">变参</h2><p><em>*不定量的int参数</em>8<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func myfunc(arg ... int ) &#123; </span><br><span class="line"><span class="keyword">for</span> i,j:=range arg&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果不指定变参的类型，默认是空的接口interface{},所有类型都实现了空接口，所以可以接收任意类型</p>
+<p><strong>变参传递给另一个变参函数</strong><br>func myfunc(arg … i n t ) {<br>myfunc2(arg…)  //按原样传递<br>myfunc2(arg[:2]…)  //传递部分<br>}</p>
+<h2 id="函数作为值">函数作为值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">a := <span class="function"><span class="title">func</span></span>() &#123;  //定义一个匿名函数，并且赋值给a</span><br><span class="line">println(<span class="string">"Hello"</span>)</span><br><span class="line">&#125;  //这里没有()</span><br><span class="line">a()  //调用函数</span><br><span class="line">fmt.Printf(<span class="string">"\%T\n"</span>, a)   //打印a 的类型，输出结果是func()。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>匿名函数作为map的值。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var xs = map[ int ]func() int &#123;</span><br><span class="line"><span class="number">1</span>: func() int &#123; <span class="built_in">return</span> <span class="number">10</span> &#125;,</span><br><span class="line"><span class="number">2</span>: func() int &#123; <span class="built_in">return</span> <span class="number">20</span> &#125;,</span><br><span class="line"><span class="number">3</span>: func() int &#123; <span class="built_in">return</span> <span class="number">30</span> &#125;,  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="回调">回调</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func printit(x int ) &#123; </span><br><span class="line">	fmt.Printf(<span class="string">"%v\n"</span>, x)  </span><br><span class="line">&#125;</span><br><span class="line">func callback(y int , f func( int )) &#123; </span><br><span class="line">	f(y) </span><br><span class="line">&#125;</span><br><span class="line">func <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">	callback(<span class="number">10</span>,printit)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
-    
-    <time datetime="2015-08-07T03:22:21.000Z" itemprop="datePublished">2015-08-07</time>
-  </a>
-</section>
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
 
-  <section class="post" itemscope itemprop="blogPost">
+
+  <div class="article-tags">
   
-    <a href="/2015/08/06/初识go语言小节/" title="初识Go语言小节" itemprop="url">
+  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/07/跟我学习Go语言-2/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/07/跟我学习Go语言-2/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/07/跟我学习Go语言-1/" title="跟我学习Go语言(1)" itemprop="url">跟我学习Go语言(1)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-07T03:22:21.000Z" itemprop="datePublished"> 发表于 2015-08-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="array、slice_和map">array、slice 和map</h1><h2 id="array">array</h2><p><strong>array变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr1 [<span class="number">10</span>] int</span><br><span class="line">arr2 := [<span class="number">3</span>]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125; </span><br><span class="line">arr3 :=[…]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>&#125; //自动统计个数</span><br><span class="line">a := [<span class="number">3</span>][<span class="number">2</span>]int &#123; [<span class="number">2</span>]int &#123;<span class="number">1</span>,<span class="number">2</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">3</span>,<span class="number">4</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">5</span>,<span class="number">6</span>&#125; &#125;//多维数组</span><br></pre></td></tr></table></figure></p>
+<p>有一点需要注意：当向函数内传递一个数组的时候，它会获得一个数组的副本，而不是数组的指针。也就是说，数组做参数是值传递，不是引用传递，在函数内修改数组的元素，不会对函数外造成影响</p>
+<h2 id="slice">slice</h2><p>slice 与array 接近，但是在新的元素加入的时候可以增加长度。slice 总是指向底层的一个array。slice 是一个指向array 的指针，这是其与array 不同的地方；slice 是引用类型，这意味着当赋值某个slice到另外一个变量，两个引用会指向同一个array。<br>如果一个函数需要一个 slice 参数，在函数内对 slice 元素的修改也会体现在函数外的slice，这和传递底层的array 指针类似。<br><strong>slice变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sl := make([]int , <span class="number">10</span>)  //创建了一个保存有<span class="number">10</span> 个元素的slice。</span><br><span class="line">s2 := arr2[<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">s3 := arr3[:]</span><br></pre></td></tr></table></figure></p>
+<h2 id="map">map</h2><p>许多语言都内建了类似的类型，例如Perl有哈希，Python有字典，而C++同样也<br>有map（作为库）。在Go中的map 类型可以认为是一个用字符串做索引的数<br>组（在其最简单的形式下）。</p>
+<p><strong>map定义</strong><br>    map[<from type="">]<to type=""><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">monthdays := map[string] int &#123;</span><br><span class="line"><span class="string">"Jan"</span>: <span class="number">31</span>, <span class="string">"Feb"</span>: <span class="number">28</span>, <span class="string">"Mar"</span>: <span class="number">31</span>,</span><br><span class="line"><span class="string">"Apr"</span>: <span class="number">30</span>, <span class="string">"May"</span>: <span class="number">31</span>, <span class="string">"Jun"</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">"Jul"</span>: <span class="number">31</span>, <span class="string">"Aug"</span>: <span class="number">31</span>, <span class="string">"Sep"</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">"Oct"</span>: <span class="number">31</span>, <span class="string">"Nov"</span>: <span class="number">30</span>, <span class="string">"Dec"</span>: <span class="number">31</span>,  //逗号是必须的</span><br><span class="line">&#125;</span><br><span class="line">//使用时，monthdays[<span class="string">"Jun"</span>]取值为<span class="number">30</span></span><br></pre></td></tr></table></figure></to></from></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
   
-    <h1 itemprop="name">初识Go语言小节</h1>
+  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/07/跟我学习Go语言-1/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/07/跟我学习Go语言-1/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
     
-     
-       <p itemprop="description" >整体感受学了几天的GO语言，感觉GO的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(int</p>
-      
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
     
-    <time datetime="2015-08-06T13:42:21.000Z" itemprop="datePublished">2015-08-06</time>
-  </a>
-</section>
+      <a href="/2015/08/06/初识go语言小节/" title="初识Go语言小节" itemprop="url">初识Go语言小节</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-06T13:42:21.000Z" itemprop="datePublished"> 发表于 2015-08-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="整体感受">整体感受</h2><p>学了几天的GO语言，感觉GO的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(interface)和结构体(struct)，特别是接口(interface)在整个GO语言的体系中的作用非常重要。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/06/初识go语言小节/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/06/初识go语言小节/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/06/初识go语言小节/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
 
 
 </div>
@@ -118,14 +279,26 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/Go语言/" title="Go语言">Go语言<sup>3</sup></a></li>
+			
+				<li><a href="/tags/Go语言/" title="Go语言">Go语言<sup>3</sup></a></li>
+			
 		
 		</ul>
 </div>
 
 
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
   <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
@@ -133,26 +306,47 @@
     </div>
     <footer><div id="footer" >
 	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
 	
-	<div class="social-font clearfix">
+	
+	<div class="social-font" class="clearfix">
 		
-		<a href="http://weibo.com/2411360485" target="_blank" title="weibo"></a>
+		<a href="http://weibo.com/2411360485" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/huangtxin" target="_blank" class="icon-github" title="github"></a>
 		
 		
 		
-		<a href="https://github.com/https://github.com/huangtxin" target="_blank" title="github"></a>
 		
+		
+		
+		
+		
+		<a href="https://plus.google.com/106161458455416050000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
 		
 		
 	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+			
 		
-		<a href="http://yoursite.com" target="_blank" title="HuangXin">HuangXin</a>
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="HuangXin">HuangXin</a>
+		
 		
 		</p>
 </div>
 </footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){ 
   $('.navbar').click(function(){
@@ -170,18 +364,6 @@ $(document).ready(function(){
       a = $('#asidepart'),
       c = $('.closeaside'),
       o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-        
-    }
-  });
   c.click(function(){
     a.addClass('fadeOut').css('display', 'none');
     o.css('display', 'block').addClass('fadeIn');
@@ -195,7 +377,55 @@ $(document).ready(function(){
   $(window).scroll(function(){
     o.css("top",Math.max(80,260-$(this).scrollTop()));
   });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
 });
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"xin"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'xin';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
 </script>
 
 
@@ -203,6 +433,55 @@ $(document).ready(function(){
 
 
 
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
 
   </body>
  </html>
