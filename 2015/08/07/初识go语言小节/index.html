@@ -73,7 +73,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-08-07T13:42:21.000Z" itemprop="datePublished">2015-08-07</time>
-    更新日期:<time datetime="2015-08-07T13:43:04.728Z" itemprop="dateModified">2015-08-07</time>
+    更新日期:<time datetime="2015-08-08T07:37:17.029Z" itemprop="dateModified">2015-08-08</time>
     
   </p>
 </header>
@@ -113,6 +113,9 @@
 <p>  Go里面switch默认相当于每个case最后带有break，匹配成功后不会自动向下执行其他case，而是跳出整个switch, 但是可以使用fallthrough强制执行后面的case代码。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">switch &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="literal">true</span>: </span><br><span class="line">	....</span><br><span class="line">	fallthrough</span><br><span class="line"><span class="keyword">case</span> <span class="literal">false</span>: </span><br><span class="line">	...         //不管符不符合，执行上一个fallthrough之后，都会强制执行这段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>Go语言中大多数情况都可以省略分号<br>如果行末标记为：<br>+一个标识符<br>+一个整数、浮点数、虚数、字符或字符串文字<br>+关键字break、continue、fallthrough或return中的一个<br>+运算符和分隔符++、—、)、]或}中的一个<br>则分号将被自动插入到标记流中非空白行的末尾。</p>
+</li>
+<li>方法和成员变量命名以大小写确定是否可以导出, 为了方便理解，大写开头相当于public 小写开头相当于pravite</li>
 </ol>
 <hr>
 <p><em>未完待续…</em></p>
@@ -139,11 +142,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/08/08/跟我学习Go语言-1/" title="跟我学习Go语言(1)">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  跟我学习Go语言(1)</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2015/08/07/跟我学习Go语言-1/"  title="跟我学习Go语言(1)">
+<a href="/2015/08/07/跟我学习Go语言-2/"  title="跟我学习Go语言(2)">
  <strong>NEXT:</strong><br/> 
- <span>跟我学习Go语言(1)
+ <span>跟我学习Go语言(2)
 </span>
 </a>
 </div>
@@ -188,11 +199,6 @@
 </div>
     </div>
     <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
 	
 	
 	<div class="social-font clearfix">

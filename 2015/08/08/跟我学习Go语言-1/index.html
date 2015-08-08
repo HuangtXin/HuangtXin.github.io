@@ -9,7 +9,7 @@
     
     <meta name="author" content="HuangXin">
     
-    <meta name="description" content="array、slice 和maparrayslice+map+函数内存分配类型转换">
+    <meta name="description" content="array、slice 和maparrayarray变量1234var arr1 [10] intarr2 := [3]int&amp;#123;1,2,3&amp;#125; arr3 :=[…]int&amp;#123;1,2,1,3&amp;#125; //自动统计个数a := [3][2]int &amp;#123; [2]int">
     
     
     
@@ -65,15 +65,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/07/跟我学习Go语言-1/" title="跟我学习Go语言(1)" itemprop="url">跟我学习Go语言(1)</a>
+      <a href="/2015/08/08/跟我学习Go语言-1/" title="跟我学习Go语言(1)" itemprop="url">跟我学习Go语言(1)</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-08-07T13:26:28.415Z" itemprop="datePublished">2015-08-07</time>
-    更新日期:<time datetime="2015-08-07T13:26:28.415Z" itemprop="dateModified">2015-08-07</time>
+    <time datetime="2015-08-08T07:25:38.159Z" itemprop="datePublished">2015-08-08</time>
+    更新日期:<time datetime="2015-08-08T07:25:38.159Z" itemprop="dateModified">2015-08-08</time>
     
   </p>
 </header>
@@ -82,10 +82,15 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#array、slice_和map"><span class="toc-number">1.</span> <span class="toc-text">array、slice 和map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#array"><span class="toc-number">1.1.</span> <span class="toc-text">array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice"><span class="toc-number">1.2.</span> <span class="toc-text">slice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#+map+"><span class="toc-number">1.3.</span> <span class="toc-text">+map+</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数"><span class="toc-number">2.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#内存分配"><span class="toc-number">3.</span> <span class="toc-text">内存分配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类型转换"><span class="toc-number">4.</span> <span class="toc-text">类型转换</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#array、slice_和map"><span class="toc-number">1.</span> <span class="toc-text">array、slice 和map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#array"><span class="toc-number">1.1.</span> <span class="toc-text">array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice"><span class="toc-number">1.2.</span> <span class="toc-text">slice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">1.3.</span> <span class="toc-text">map</span></a></li></ol></li></ol>
 		</div>
 		
-		<h1 id="array、slice_和map">array、slice 和map</h1><h2 id="array">array</h2><h2 id="slice">slice</h2><h2 id="+map+">+map+</h2><h1 id="函数">函数</h1><h1 id="内存分配">内存分配</h1><h1 id="类型转换">类型转换</h1>  
+		<h1 id="array、slice_和map">array、slice 和map</h1><h2 id="array">array</h2><p><strong>array变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr1 [<span class="number">10</span>] int</span><br><span class="line">arr2 := [<span class="number">3</span>]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125; </span><br><span class="line">arr3 :=[…]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>&#125; //自动统计个数</span><br><span class="line">a := [<span class="number">3</span>][<span class="number">2</span>]int &#123; [<span class="number">2</span>]int &#123;<span class="number">1</span>,<span class="number">2</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">3</span>,<span class="number">4</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">5</span>,<span class="number">6</span>&#125; &#125;//多维数组</span><br></pre></td></tr></table></figure></p>
+<p>有一点需要注意：当向函数内传递一个数组的时候，它会获得一个数组的副本，而不是数组的指针。也就是说，数组做参数是值传递，不是引用传递，在函数内修改数组的元素，不会对函数外造成影响</p>
+<h2 id="slice">slice</h2><p>slice 与array 接近，但是在新的元素加入的时候可以增加长度。slice 总是指向底层的一个array。slice 是一个指向array 的指针，这是其与array 不同的地方；slice 是引用类型，这意味着当赋值某个slice到另外一个变量，两个引用会指向同一个array。<br>如果一个函数需要一个 slice 参数，在函数内对 slice 元素的修改也会体现在函数外的slice，这和传递底层的array 指针类似。<br><strong>slice变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sl := make([]int , <span class="number">10</span>)  //创建了一个保存有<span class="number">10</span> 个元素的slice。</span><br><span class="line">s2 := arr2[<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">s3 := arr3[:]</span><br></pre></td></tr></table></figure></p>
+<h2 id="map">map</h2><p>许多语言都内建了类似的类型，例如Perl有哈希，Python有字典，而C++同样也<br>有map（作为库）。在Go中的map 类型可以认为是一个用字符串做索引的数<br>组（在其最简单的形式下）。</p>
+<p><strong>map定义</strong><br>    map[<from type="">]<to type=""><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">monthdays := map[string] int &#123;</span><br><span class="line"><span class="string">"Jan"</span>: <span class="number">31</span>, <span class="string">"Feb"</span>: <span class="number">28</span>, <span class="string">"Mar"</span>: <span class="number">31</span>,</span><br><span class="line"><span class="string">"Apr"</span>: <span class="number">30</span>, <span class="string">"May"</span>: <span class="number">31</span>, <span class="string">"Jun"</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">"Jul"</span>: <span class="number">31</span>, <span class="string">"Aug"</span>: <span class="number">31</span>, <span class="string">"Sep"</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">"Oct"</span>: <span class="number">31</span>, <span class="string">"Nov"</span>: <span class="number">30</span>, <span class="string">"Dec"</span>: <span class="number">31</span>,  //逗号是必须的</span><br><span class="line">&#125;</span><br><span class="line">//使用时，monthdays[<span class="string">"Jun"</span>]取值为<span class="number">30</span></span><br></pre></td></tr></table></figure></to></from></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -99,7 +104,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2015/08/07/跟我学习Go语言-1/" data-title="跟我学习Go语言(1) | 鑫的博客" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/08/08/跟我学习Go语言-1/" data-title="跟我学习Go语言(1) | 鑫的博客" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -108,19 +113,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/08/07/初识Go语言小节/" title="初识Go语言小节">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  初识Go语言小节</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/08/07/跟我学习Go语言-2/"  title="跟我学习Go语言(2)">
+<a href="/2015/08/07/初识Go语言小节/"  title="初识Go语言小节">
  <strong>NEXT:</strong><br/> 
- <span>跟我学习Go语言(2)
+ <span>初识Go语言小节
 </span>
 </a>
 </div>
@@ -137,7 +134,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#array、slice_和map"><span class="toc-number">1.</span> <span class="toc-text">array、slice 和map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#array"><span class="toc-number">1.1.</span> <span class="toc-text">array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice"><span class="toc-number">1.2.</span> <span class="toc-text">slice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#+map+"><span class="toc-number">1.3.</span> <span class="toc-text">+map+</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数"><span class="toc-number">2.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#内存分配"><span class="toc-number">3.</span> <span class="toc-text">内存分配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类型转换"><span class="toc-number">4.</span> <span class="toc-text">类型转换</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#array、slice_和map"><span class="toc-number">1.</span> <span class="toc-text">array、slice 和map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#array"><span class="toc-number">1.1.</span> <span class="toc-text">array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice"><span class="toc-number">1.2.</span> <span class="toc-text">slice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">1.3.</span> <span class="toc-text">map</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
@@ -165,11 +162,6 @@
 </div>
     </div>
     <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
 	
 	
 	<div class="social-font clearfix">
