@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/08/13/跟我学习Go语言-5/index.html">
 <meta property="og:site_name" content="鑫的博客">
 <meta property="og:description" content="接口(interface)接口(interface)在Go语言有着至关重要的地位。如果说goroutine和channel 是支撑起Go语言的并发模型的基石，让Go语言在如今集群化与多核化的时代，成为一道极为亮丽的风景；那么接口(interface)是Go语言整个类型系统(type system)的基石，让Go语言在基础编程哲学的探索上，达到史无先例的高度。Go 语言的接口(interface)不">
-<meta property="og:updated_time" content="2015-08-13T14:28:29.252Z">
+<meta property="og:updated_time" content="2015-08-13T14:34:25.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跟我学习Go语言(5)">
 <meta name="twitter:description" content="接口(interface)接口(interface)在Go语言有着至关重要的地位。如果说goroutine和channel 是支撑起Go语言的并发模型的基石，让Go语言在如今集群化与多核化的时代，成为一道极为亮丽的风景；那么接口(interface)是Go语言整个类型系统(type system)的基石，让Go语言在基础编程哲学的探索上，达到史无先例的高度。Go 语言的接口(interface)不">
@@ -113,7 +113,7 @@
 <p>尽管File类并没有从这些接口继承，甚至可以不知道这些接口的存在，但是File类实现了这些接口，可以进行赋值：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var file1 IFile = new(File)</span><br><span class="line">var file2 IReader = new(File)</span><br><span class="line">var file3 IWriter = new(File)</span><br><span class="line">var file4 ICloser = new(File)</span><br></pre></td></tr></table></figure></p>
 <p>Go语言的非侵入式接口，看似只是做了很小的文法调整，但实则影响深远。</p>
 <ul>
-<li>其一，Go语言的标准库，再也不需要绘制类库的继承树图。你一定见过不少C++、Java、C# 类库的继承树图。这里给个<a href="http://docs.oracle.com/javase/1.4.2/docs/api/overview-tree.html" target="_blank" rel="external">Java继承树图</a>：<br><a href="http://docs.oracle.com/javase/1.4.2/docs/api/overview-tree.html" target="_blank" rel="external">http://docs.oracle.com/javase/1.4.2/docs/api/overview-tree.html</a><br>在Go中，类的继承树并无意义。你只需要知道这个类实现了哪些方法，每个方法是啥含义就足够了。</li>
+<li>其一，Go语言的标准库，再也不需要绘制类库的继承树图。你一定见过不少C++、Java、C# 类库的继承树图。这里给个<a href="http://docs.oracle.com/javase/7/docs/api/overview-tree.html" target="_blank" rel="external">Java继承树图</a>：<br><a href="http://docs.oracle.com/javase/7/docs/api/overview-tree.html" target="_blank" rel="external">http://docs.oracle.com/javase/7/docs/api/overview-tree.html</a><br>在Go中，类的继承树并无意义。你只需要知道这个类实现了哪些方法，每个方法是啥含义就足够了。</li>
 <li>其二，实现类的时候，只需要关心自己应该提供哪些方法。不用再纠结接口需要拆得多细才合理。接口是由使用方按需定义，而不用事前规划。</li>
 <li>其三，不用为了实现一个接口而import一个包，目的仅仅是引用其中的某个interface的定义，这是不被推荐的。因为多引用一个外部的package，就意味着更多的耦合。接口由使用方按自身需求来定义，使用方无需关心是否有其他模块定义过类似的接口。<h2 id="接口赋值">接口赋值</h2>接口(interface)的赋值在Go语言中分为如下2种情况讨论：</li>
 </ul>
