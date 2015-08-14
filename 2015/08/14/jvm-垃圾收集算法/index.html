@@ -4,23 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>跟我学习Go语言(1) | 鑫的博客</title>
+    <title>jvm-垃圾收集算法 | 鑫的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="HuangXin">
     
 
     
-    <meta name="description" content="array、slice 和maparrayarray变量1234var arr1 [10] intarr2 := [3]int&amp;#123;1,2,3&amp;#125; arr3 :=[…]int&amp;#123;1,2,1,3&amp;#125; //自动统计个数a := [3][2]int &amp;#123; [2]int &amp;#123;1,2&amp;#125;, [2]int &amp;#123;3,4&amp;#125;, [2]int &amp;">
+    <meta name="description" content="标记 - 清除算法垃圾回收算法的基础标记 - 清除算法是最基础的算法，如它的名字一样，算法分为标记和清除两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。
+标记过程（根搜索算法）这个算法的基本思想就是通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链（Reference Chain），当一个对象到GC Roots没有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跟我学习Go语言(1)">
-<meta property="og:url" content="http://yoursite.com/2015/08/07/跟我学习Go语言-1/index.html">
+<meta property="og:title" content="jvm-垃圾收集算法">
+<meta property="og:url" content="http://yoursite.com/2015/08/14/jvm-垃圾收集算法/index.html">
 <meta property="og:site_name" content="鑫的博客">
-<meta property="og:description" content="array、slice 和maparrayarray变量1234var arr1 [10] intarr2 := [3]int&amp;#123;1,2,3&amp;#125; arr3 :=[…]int&amp;#123;1,2,1,3&amp;#125; //自动统计个数a := [3][2]int &amp;#123; [2]int &amp;#123;1,2&amp;#125;, [2]int &amp;#123;3,4&amp;#125;, [2]int &amp;">
-<meta property="og:updated_time" content="2015-08-08T09:18:58.505Z">
+<meta property="og:description" content="标记 - 清除算法垃圾回收算法的基础标记 - 清除算法是最基础的算法，如它的名字一样，算法分为标记和清除两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。
+标记过程（根搜索算法）这个算法的基本思想就是通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链（Reference Chain），当一个对象到GC Roots没有">
+<meta property="og:updated_time" content="2015-08-14T14:58:19.438Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="跟我学习Go语言(1)">
-<meta name="twitter:description" content="array、slice 和maparrayarray变量1234var arr1 [10] intarr2 := [3]int&amp;#123;1,2,3&amp;#125; arr3 :=[…]int&amp;#123;1,2,1,3&amp;#125; //自动统计个数a := [3][2]int &amp;#123; [2]int &amp;#123;1,2&amp;#125;, [2]int &amp;#123;3,4&amp;#125;, [2]int &amp;">
+<meta name="twitter:title" content="jvm-垃圾收集算法">
+<meta name="twitter:description" content="标记 - 清除算法垃圾回收算法的基础标记 - 清除算法是最基础的算法，如它的名字一样，算法分为标记和清除两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。
+标记过程（根搜索算法）这个算法的基本思想就是通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链（Reference Chain），当一个对象到GC Roots没有">
 <link rel="publisher" href="106161458455416050000">
 
     
@@ -81,14 +84,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/07/跟我学习Go语言-1/" title="跟我学习Go语言(1)" itemprop="url">跟我学习Go语言(1)</a>
+      <a href="/2015/08/14/jvm-垃圾收集算法/" title="jvm-垃圾收集算法" itemprop="url">jvm-垃圾收集算法</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-07T03:22:21.000Z" itemprop="datePublished"> 发表于 2015-08-07</time>
+    <time datetime="2015-08-14T14:23:26.000Z" itemprop="datePublished"> 发表于 2015-08-14</time>
     
   </p>
 </header>
@@ -97,15 +100,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#array、slice_和map"><span class="toc-number">1.</span> <span class="toc-text">array、slice 和map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#array"><span class="toc-number">1.1.</span> <span class="toc-text">array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice"><span class="toc-number">1.2.</span> <span class="toc-text">slice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">1.3.</span> <span class="toc-text">map</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#标记_-_清除算法"><span class="toc-number">1.</span> <span class="toc-text">标记 - 清除算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标记过程（根搜索算法）"><span class="toc-number">1.1.</span> <span class="toc-text">标记过程（根搜索算法）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-number">1.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分代收集算法"><span class="toc-number">2.</span> <span class="toc-text">分代收集算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#复制算法"><span class="toc-number">3.</span> <span class="toc-text">复制算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点-1"><span class="toc-number">3.1.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进"><span class="toc-number">3.2.</span> <span class="toc-text">改进</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标记_-_整理算法"><span class="toc-number">4.</span> <span class="toc-text">标记 - 整理算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="array、slice_和map">array、slice 和map</h1><h2 id="array">array</h2><p><strong>array变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr1 [<span class="number">10</span>] int</span><br><span class="line">arr2 := [<span class="number">3</span>]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125; </span><br><span class="line">arr3 :=[…]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>&#125; //自动统计个数</span><br><span class="line">a := [<span class="number">3</span>][<span class="number">2</span>]int &#123; [<span class="number">2</span>]int &#123;<span class="number">1</span>,<span class="number">2</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">3</span>,<span class="number">4</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">5</span>,<span class="number">6</span>&#125; &#125;//多维数组</span><br></pre></td></tr></table></figure></p>
-<p>有一点需要注意：当向函数内传递一个数组的时候，它会获得一个数组的副本，而不是数组的指针。也就是说，数组做参数是值传递，不是引用传递，在函数内修改数组的元素，不会对函数外造成影响<br><a id="more"></a></p>
-<h2 id="slice">slice</h2><p>slice 与array 接近，但是在新的元素加入的时候可以增加长度。slice 总是指向底层的一个array。slice 是一个指向array 的指针，这是其与array 不同的地方；slice 是引用类型，这意味着当赋值某个slice到另外一个变量，两个引用会指向同一个array。<br>如果一个函数需要一个 slice 参数，在函数内对 slice 元素的修改也会体现在函数外的slice，这和传递底层的array 指针类似。<br><strong>slice变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sl := make([]int , <span class="number">10</span>)  //创建了一个保存有<span class="number">10</span> 个元素的slice。</span><br><span class="line">s2 := arr2[<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">s3 := arr3[:]</span><br></pre></td></tr></table></figure></p>
-<h2 id="map">map</h2><p>许多语言都内建了类似的类型，例如Perl有哈希，Python有字典，而C++同样也<br>有map（作为库）。在Go中的map 类型可以认为是一个用字符串做索引的数<br>组（在其最简单的形式下）。</p>
-<p><strong>map定义</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//map[&lt;from <span class="built_in">type</span>&gt;]&lt;to <span class="built_in">type</span>&gt;</span><br><span class="line">monthdays := map[string] int &#123;</span><br><span class="line"><span class="string">"Jan"</span>: <span class="number">31</span>, <span class="string">"Feb"</span>: <span class="number">28</span>, <span class="string">"Mar"</span>: <span class="number">31</span>,</span><br><span class="line"><span class="string">"Apr"</span>: <span class="number">30</span>, <span class="string">"May"</span>: <span class="number">31</span>, <span class="string">"Jun"</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">"Jul"</span>: <span class="number">31</span>, <span class="string">"Aug"</span>: <span class="number">31</span>, <span class="string">"Sep"</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">"Oct"</span>: <span class="number">31</span>, <span class="string">"Nov"</span>: <span class="number">30</span>, <span class="string">"Dec"</span>: <span class="number">31</span>,  //逗号是必须的</span><br><span class="line">&#125;</span><br><span class="line">//使用时，monthdays[<span class="string">"Jun"</span>]取值为<span class="number">30</span></span><br></pre></td></tr></table></figure></p>
+		<h1 id="标记_-_清除算法">标记 - 清除算法</h1><p><strong>垃圾回收算法的基础</strong><br>标记 - 清除算法是最基础的算法，如它的名字一样，算法分为标记和清除两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。</p>
+<h2 id="标记过程（根搜索算法）">标记过程（根搜索算法）</h2><p>这个算法的基本思想就是通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链（Reference Chain），当一个对象到GC Roots没有任何引用链相连（用图论的话来说就是从GC Roots到这个对象不可达）时，则证明此对象是不可用的。<br>在Java语言里，可作为GC Roots的对象包括下面几种：</p>
+<ul>
+<li>虚拟机栈（栈帧中的本地变量表）中引用的对象</li>
+<li>方法区中的类静态属性引用的对象</li>
+<li>方法区中的常量引用的对象</li>
+<li>本地方法栈中JNI（Native方法）的引用对象<h2 id="缺点">缺点</h2></li>
+</ul>
+<ol>
+<li>效率问题。标记和清除过程的效率都不高</li>
+<li>空间问题。标记清除之后会产生大量不连续的内存碎片，空间碎片太多可能导致，当程序在以后的程序运行过程中需要分配较大对象时无法找到足够的连续内存而不得不提前触发另一次垃圾收集动作。<h1 id="分代收集算法">分代收集算法</h1>分代收集算法并没有什么新的思想，只是根据对象的存活周期的不同将内存划分为几块。一般是把Java堆分为新生代和老年代。这样就可以根据各个年代的特点，采用适当的收集算法。新生代中，每次垃圾收集时，都有大批对象死去，只有少量存活，适合选用复制算法，因为复制成本小。而老年代因为对象存活率高，没有额外的空间担保，就要使用“标记-整理算法”。<h1 id="复制算法">复制算法</h1>复制算法是为了解决标记/清除算法的缺点，将可用的内存按容量划分为大小相等的两块，每次只使用其中的一块。当这一块内存用完了，就将还存活的算法复制到另一块内存，然后将使用过的那一块内存清理掉。这样每次清理一整块内存，也不用考虑有内存碎片的问题。<h2 id="缺点-1">缺点</h2>将可使用的内存缩小为原来的一半。<h2 id="改进">改进</h2><strong>复制算法适用于新生代回收</strong><br>IBM专门研究表明，新生代中的对象98%都存活不长。也就是绝大部分对象都会被回收，因此，每次只需要小部分内存保存live对象，不需要分出一半内存。<br>将内存分为一个大的Eden空间和两个小的Survivor空间。每次使用Eden和其中的一块Survivor。当回收时，将Eden和Survivor中的live对象复制到另一块Survivor空间上，最后清理掉Eden和刚才使用的Survivor空间。HotSpot虚拟机默认Eden:Survivor=8:1,这样可用内存空间占90%(80%+10%)。<br>当然，也可能有例外发生，如果一次回收中，新生代的大部分对象都存活（超过Survivor空间），则需要老年代的内存空间来支援，即live对象提前进入老年代。<br><strong>为什么需要两块Survivor空间</strong><br>理由：达到无碎片的目的。<br><em>注意，两个survivor是交替使用的，在任意一个时刻，必定有一个survivor为空，一个survivor中存放着对象（连续存放，无碎片）。</em><br>具体的回收过程，将Eden中Live对象放入当前不为空的Survivor（S1）中，将Eden中的非live对象回收。直到S1空间满掉，将Eden和S1中的live对象放入S2，将非live对象回收。这样就保证一个surivivor为空，另一个无碎片。<br>在执行一定次数的minor GC（新生代回收）后，通过Full GC将新生代的survivor中的对象移入老年代。<h1 id="标记_-_整理算法">标记 - 整理算法</h1><strong>标记 - 整理算法针对老年代回收</strong><br>标记过程同上，标记完成后，让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存，防止产生碎片。<h1 id="总结">总结</h1></li>
+</ol>
+<ul>
+<li>标记-清除可用于新生代收集和老年代收集</li>
+<li>复制算法是标记-清除改进版，一般只用于新生代收集</li>
+<li>标记-整理算法一般只用于老年代收集</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -114,7 +129,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  <span></span> <a href="/tags/jvm/">jvm</a>
   </div>
 
 </div>
@@ -123,7 +138,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/08/07/跟我学习Go语言-1/" data-title="跟我学习Go语言(1) | 鑫的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/08/14/jvm-垃圾收集算法/" data-title="jvm-垃圾收集算法 | 鑫的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -136,19 +151,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/08/07/跟我学习Go语言-2/" title="跟我学习Go语言(2)">
-  <strong>上一篇：</strong><br/>
-  <span>
-  跟我学习Go语言(2)</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/08/06/初识go语言小节/"  title="初识Go语言小节">
+<a href="/2015/08/13/jvm-垃圾收集器总结/"  title="jvm-垃圾收集器总结">
  <strong>下一篇：</strong><br/> 
- <span>初识Go语言小节
+ <span>jvm-垃圾收集器总结
 </span>
 </a>
 </div>
@@ -157,7 +164,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/07/跟我学习Go语言-1/" data-title="跟我学习Go语言(1)" data-url="http://yoursite.com/2015/08/07/跟我学习Go语言-1/"></div>
+	<div class="ds-thread" data-thread-key="2015/08/14/jvm-垃圾收集算法/" data-title="jvm-垃圾收集算法" data-url="http://yoursite.com/2015/08/14/jvm-垃圾收集算法/"></div>
 </section>
 
 
@@ -173,7 +180,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#array、slice_和map"><span class="toc-number">1.</span> <span class="toc-text">array、slice 和map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#array"><span class="toc-number">1.1.</span> <span class="toc-text">array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice"><span class="toc-number">1.2.</span> <span class="toc-text">slice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">1.3.</span> <span class="toc-text">map</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#标记_-_清除算法"><span class="toc-number">1.</span> <span class="toc-text">标记 - 清除算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标记过程（根搜索算法）"><span class="toc-number">1.1.</span> <span class="toc-text">标记过程（根搜索算法）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-number">1.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分代收集算法"><span class="toc-number">2.</span> <span class="toc-text">分代收集算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#复制算法"><span class="toc-number">3.</span> <span class="toc-text">复制算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点-1"><span class="toc-number">3.1.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进"><span class="toc-number">3.2.</span> <span class="toc-text">改进</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标记_-_整理算法"><span class="toc-number">4.</span> <span class="toc-text">标记 - 整理算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
