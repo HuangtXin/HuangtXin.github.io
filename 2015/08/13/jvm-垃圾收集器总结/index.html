@@ -21,7 +21,7 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 <meta property="og:description" content="SerialSerial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法
 ParNewParNew是Serial的多线程版本。仍要停顿
 Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器">
-<meta property="og:updated_time" content="2015-08-14T15:21:40.994Z">
+<meta property="og:updated_time" content="2015-08-14T15:25:24.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm-垃圾收集器总结">
 <meta name="twitter:description" content="SerialSerial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法
@@ -109,7 +109,7 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 		
 		<h1 id="Serial">Serial</h1><p>Serial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法</p>
 <h1 id="ParNew">ParNew</h1><p>ParNew是Serial的多线程版本。仍要停顿</p>
-<h1 id="Parallel_Scavenge">Parallel Scavenge</h1><p>Parallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器，只有这个收集器是针对系统吞吐量进行改进，适用于后台运算并且交互不多的程序。其他收集器则更关注改善收集时的停顿时间，适用于用户交互的程序。</p>
+<h1 id="Parallel_Scavenge">Parallel Scavenge</h1><p>Parallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器，只有这个收集器是针对系统吞吐量进行改进，适用于后台运算并且交互不多的程序。其他收集器则更关注改善收集时的停顿时间，适用于用户交互的程序。<br><a id="more"></a></p>
 <h1 id="Serial_Old">Serial Old</h1><p>Serial Old 是Serial的老年代版本，专门用于收集老年代，采用“标记整理算法”。</p>
 <h1 id="Parallel_Old">Parallel Old</h1><p>Parallel Old是Parallel Scavenge的老年代版本，使用多线程和“标记整理算法”。</p>
 <h1 id="CMS">CMS</h1><p>CMS收集器是一种以获取最短回收停顿时间为目标的收集器，给用用户带来较好的体验，可称之为并发低停顿收集器。基于标记-清除算法实现。可用于新、老代收集，一般用于老年代收集，然后搭配一个新生代收集器(可以是Serial和ParNew)<br><strong>缺点：</strong></p>
@@ -117,9 +117,11 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 <li>对CPU资源敏感（因为是并发）。在并发阶段，虽然不会导致用户线程停顿，但是会因为占用了一部分线程（即CPU资源）而导致用户应用程序变慢，总吞吐量降低。</li>
 <li>无法处理浮动垃圾。因为是边收集，边产生垃圾。</li>
 <li>标记-清除算法会产生空间碎片。需要额外碎片整理过程，停顿时间变长。<h1 id="G1">G1</h1>G1收集器是当前收集器技术发展最前沿的成果。基于标记-整理算法，可以精确控制停顿。基本不牺牲吞吐量的前提下完成低停顿的内存回收。这是由于它将新生代、老年代划分为多个区域，并维护一个每个区域收集的优先列表，保证了在有限的时间内可以获得最高的收集效率。<h1 id="总结">总结</h1>新生代收集器：Serial、ParNew、Parallel Scavenge<br>老年代收集器：CMS、Serial Old、Parallel Old<br>收集器适用场景：</li>
+</ol>
+<ul>
 <li>用户交互：ParNew、CMS</li>
 <li>高吞吐量：Parallel Scavenge<br>哪些收集器可配合使用：<br>Serial/Serial Old、Serial/CMS、ParNew/Serial Old、ParNew/CMS、Parallel Scavenge/Parallel Old、Parallel Scavenge/Serial Old、CMS/Serial Old</li>
-</ol>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
