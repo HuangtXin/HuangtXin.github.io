@@ -21,7 +21,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 <meta property="og:description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
 makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
 复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
-<meta property="og:updated_time" content="2015-08-16T07:01:04.864Z">
+<meta property="og:updated_time" content="2015-08-16T07:13:56.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跟我学习Go语言(3)">
 <meta name="twitter:description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
@@ -115,10 +115,81 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 <h2 id="用法">用法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> NameAge struct &#123;   //可以有匿名字段</span><br><span class="line">name string  //不导出</span><br><span class="line">age int  //不导出</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="定义方法">定义方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func (n1 *NameAge) func1(n2 int ) &#123; /* */ &#125;</span><br><span class="line">func (n1 NameAge) func2(n2 int ) &#123; /* */ &#125;</span><br></pre></td></tr></table></figure>
 <p>func1是&amp;NameAge上的方法，可以修改NameAge成员变量的值<br>func2是NameAge上的方法，不可以修改NameAge成员变量的值<br>Go语言里为了贯彻方便开发的原则，内部实现NameAge.func1(int)等价于(&amp;NameAge).func1(2)<br><em>注意：x.m()等价于(&amp;x).m()</em></p>
-<h1 id="转换">转换</h1><p><table><br>    <tr><br>        <td><br>        From<br>        </td><br>        <td><br>        b []byte<br>        </td><br>        <td><br>        i []int<br>        </td><br>        <td><br>        r []rune<br>        </td><br>        <td><br>        s string<br>        </td><br>        <td><br>        f float32<br>        </td><br>        <td><br>        i int<br>        </td><br>    </tr><br>    <tr><br>    <td><br>        To<br>    </td><br>    </tr><br>    <tr><br>        <td><br>        [] byte<br>        </td><br>        <td><br>            <em><br>        </em></td><br>        <td><br>        </td><br>        <td><br>        </td><br>        <td><br>        [] byte(s)<br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>    </tr><br>    <tr><br>        <td><br>        [] int<br>        </td><br>        <td><br>        </td><br>        <td>
-            <br>        </td><br>        <td><br>        </td><br>        <td><br>        [] int(s)<br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>    </tr><br>    <tr><br>        <td><br>        [] rune<br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>        <td><br>            <em><br>        </em></td><br>        <td><br>        [] rune(s)<br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>    </tr><br>    <tr><br>        <td><br>        string<br>        </td><br>        <td><br>            string(b)<br>        </td><br>        <td><br>            string(i)<br>        </td><br>        <td><br>            string(r)<br>        </td><br>        <td>
-            <br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>    </tr><br>    <tr><br>        <td><br>        int<br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>        <td><br>            <em><br>        </em></td><br>        <td><br>            float32(i)<br>        </td><br>    </tr><br>    <tr><br>        <td><br>        float32<br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>        <td><br>        </td><br>        <td><br>            int(f)<br>        </td><br>        <td>
-            <br>        </td><br>    </tr><br></table><br>string(97)得到结果为“a”，如果是想将97转换成“97”，就要使用strconv包里的Itoa方法。strconv.Itoa(97)。另外strconv包里还有其他的转换方法，下篇会有介绍。</p>
+<h1 id="转换">转换</h1><table>
+<thead>
+<tr>
+<th>From</th>
+<th>b []byte</th>
+<th>i []int</th>
+<th>r []rune</th>
+<th>s string</th>
+<th>f float32</th>
+<th>i int</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>To</td>
+</tr>
+<tr>
+<td>——————————————————————————————————————————————-</td>
+</tr>
+<tr>
+<td>[]byte</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[]byte(s)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[]int</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[]int(s)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>[]rune</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[]rune(s)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td>string(b)</td>
+<td>string(i)</td>
+<td>string(r)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>int</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>float32(i)</td>
+</tr>
+<tr>
+<td>float32</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>int(f)</td>
+</tr>
+</tbody>
+</table>
+<p>string(97)得到结果为“a”，如果是想将97转换成“97”，就要使用strconv包里的Itoa方法。strconv.Itoa(97)。另外strconv包里还有其他的转换方法，下篇会有介绍。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
