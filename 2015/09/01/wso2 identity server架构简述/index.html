@@ -4,29 +4,30 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>跟我学习Go语言(3) | 鑫的博客</title>
+    <title>wso2 identity server架构简述 | 鑫的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="HuangXin">
     
 
     
-    <meta name="description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
+    <meta name="description" content="WSO2 Identity Server为企业WEB应用提供复杂的身份管理及安全认证服务。以下是wso2的架构图。一开始看这个架构图可能会有些困惑，箭头很杂乱，不知所云。为了方便理解，可以把以下架构图分为两部分来看。一部分是身份认证流程，另一部分是用户和访问权限管理框架。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跟我学习Go语言(3)">
-<meta property="og:url" content="http://yoursite.com/2015/08/13/跟我学习Go语言-3/index.html">
+<meta property="og:title" content="wso2 identity server架构简述">
+<meta property="og:url" content="http://yoursite.com/2015/09/01/wso2 identity server架构简述/index.html">
 <meta property="og:site_name" content="鑫的博客">
-<meta property="og:description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
-<meta property="og:updated_time" content="2015-08-16T09:04:59.820Z">
+<meta property="og:description" content="WSO2 Identity Server为企业WEB应用提供复杂的身份管理及安全认证服务。以下是wso2的架构图。一开始看这个架构图可能会有些困惑，箭头很杂乱，不知所云。为了方便理解，可以把以下架构图分为两部分来看。一部分是身份认证流程，另一部分是用户和访问权限管理框架。">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-architecture.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/sp-configuration1.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/us-configuration1.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-authentication.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-user1.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-Outbound1.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-Outbound2.png">
+<meta property="og:updated_time" content="2015-09-01T12:50:44.106Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="跟我学习Go语言(3)">
-<meta name="twitter:description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
+<meta name="twitter:title" content="wso2 identity server架构简述">
+<meta name="twitter:description" content="WSO2 Identity Server为企业WEB应用提供复杂的身份管理及安全认证服务。以下是wso2的架构图。一开始看这个架构图可能会有些困惑，箭头很杂乱，不知所云。为了方便理解，可以把以下架构图分为两部分来看。一部分是身份认证流程，另一部分是用户和访问权限管理框架。">
 <link rel="publisher" href="106161458455416050000">
 
     
@@ -87,14 +88,14 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/13/跟我学习Go语言-3/" title="跟我学习Go语言(3)" itemprop="url">跟我学习Go语言(3)</a>
+      <a href="/2015/09/01/wso2 identity server架构简述/" title="wso2 identity server架构简述" itemprop="url">wso2 identity server架构简述</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-13T12:20:45.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    <time datetime="2015-08-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-09-01</time>
     
   </p>
 </header>
@@ -103,97 +104,16 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内存分配"><span class="toc-number">1.</span> <span class="toc-text">内存分配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-number">1.1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#make"><span class="toc-number">1.2.</span> <span class="toc-text">make</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复合声明"><span class="toc-number">1.3.</span> <span class="toc-text">复合声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#type"><span class="toc-number">2.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构体（struct）"><span class="toc-number">3.</span> <span class="toc-text">结构体（struct）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">3.1.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义方法"><span class="toc-number">3.2.</span> <span class="toc-text">定义方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#转换"><span class="toc-number">4.</span> <span class="toc-text">转换</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#身份认证流程"><span class="toc-number">1.</span> <span class="toc-text">身份认证流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用户和访问权限管理"><span class="toc-number">2.</span> <span class="toc-text">用户和访问权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户注册"><span class="toc-number">2.1.</span> <span class="toc-text">用户注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#向外部应用提供用户信息"><span class="toc-number">2.2.</span> <span class="toc-text">向外部应用提供用户信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将第三方登陆的账号加入user_store"><span class="toc-number">2.3.</span> <span class="toc-text">将第三方登陆的账号加入user store</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="内存分配">内存分配</h1><h2 id="new">new</h2><p>new(T)返回一个T的指针 指向一个零值T</p>
-<h2 id="make">make</h2><p>make(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！</p>
-<h2 id="复合声明">复合声明</h2><p>复合声明&amp;File{fd: fd, name: name}   从堆中分配。‘&amp;’得到堆上分配到的内存地址。<br><a id="more"></a></p>
-<h1 id="type">type</h1><p>用法：<br>type foo int<br>使foo与int一样 与c/c++中typedef一样（foo与int位置相反）</p>
-<h1 id="结构体（struct）">结构体（struct）</h1><p><em>注意：方法和成员变量命名以大小写确定是否可以导出（即大写开头为public 小写开头为pravite</em></p>
-<h2 id="用法">用法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> NameAge struct &#123;   //可以有匿名字段</span><br><span class="line">name string  //不导出</span><br><span class="line">age int  //不导出</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="定义方法">定义方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func (n1 *NameAge) func1(n2 int ) &#123; /* */ &#125;</span><br><span class="line">func (n1 NameAge) func2(n2 int ) &#123; /* */ &#125;</span><br></pre></td></tr></table></figure>
-<p>func1是&amp;NameAge上的方法，可以修改NameAge成员变量的值<br>func2是NameAge上的方法，不可以修改NameAge成员变量的值<br>Go语言里为了贯彻方便开发的原则，内部实现NameAge.func1(int)等价于(&amp;NameAge).func1(2)<br><em>注意：x.m()等价于(&amp;x).m()</em></p>
-<h1 id="转换">转换</h1><table>
-<thead>
-<tr>
-<th>From</th>
-<th>b []byte</th>
-<th>i []int</th>
-<th>r []rune</th>
-<th>s string</th>
-<th>f float32</th>
-<th>i int</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>To</strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]byte</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]byte(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]int</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]int(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]rune</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]rune(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>string</td>
-<td>string(b)</td>
-<td>string(i)</td>
-<td>string(r)</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>float32(i)</td>
-</tr>
-<tr>
-<td>float32</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>int(f)</td>
-</tr>
-</tbody>
-</table>
-<p>string(97)得到结果为“a”，如果是想将97转换成“97”，就要使用strconv包里的Itoa方法。strconv.Itoa(97)。另外strconv包里还有其他的转换方法，下篇会有介绍。</p>
+		<p>WSO2 Identity Server为企业WEB应用提供复杂的身份管理及安全认证服务。以下是wso2的架构图。一开始看这个架构图可能会有些困惑，箭头很杂乱，不知所云。为了方便理解，可以把以下架构图分为两部分来看。一部分是身份认证流程，另一部分是用户和访问权限管理框架。<br><a id="more"></a><br><img src="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-architecture.png" alt="wso2is 架构图"></p>
+<h1 id="身份认证流程">身份认证流程</h1><p>首先，Service Provicers是用来配置web应用的，也就是把你的wep app与wso2 is联系起来，当然你的应用要按照wso2 is规定的规范来实现登陆，登陆方式支持SAML SSO、OAuth/OpenID Connect、Passive STS、OpenID等。<br>当用户要访问Service Providers中的应用时，Service Providers将授权请求消息传送给Inbound Authentication。Inbound Authentication主要有两个组件Request Processor和Response Builder。Request Processor用来处理Service Provider的授权请求。例如，SAML Request Processor处理SAML的授权请求，然后处理成authentication framework可接受的请求。另外，authentication framework接受的请求是与协议无关的，也就是说，Request Processor会接受各种协议的请求类型，之后处理成统一的authentication framework可接受的请求格式。<br>authentication framework接受到请求之后的工作就是claim映射，claim是在service provider和Identity Provider中配置的。claim的官方描述是对身份信息的一种通用的定义。之后，authentication framework就是要将映射后的请求转交给Local Authentication或者是Federated Authentication,这就要看用户要登陆的这个Service Provider是如何配置的。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/sp-configuration1.png" alt="验证方式配置"><br>Local Authentication很容易理解，就是将请求与user store中的用户信息匹配，是wso2 is中直接支持的验证方式，而Federated Authentication并不是wso2 is中的所支持的验证，需要配置额外的应用来支持验证，具体做法就是自己配置一个identity provider,对identity provider就是在这个地方使用的…<br>多数情况下我们还是使用Local Authentication。Local Authentication支持两种验证，也都很好理解，一个是username/password方式，另一个则是iwa方式（iwa其实是就使用windows账户来登陆）。显然Local Authentication接下来就是要从user store中读取用户信息，在user store manager模块实现了三种访问方式LDAP、AD、JDBC，在添加每个user store的时候都可以选择这三种方式中的一种。例如，我使用MySql数据库，选用JDBC访问方式添加一个user store。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/us-configuration1.png" alt="jdbc配置"><br>Local Authentication验证完成之后会通知框架，框架检查若不需要其他验证（可以配置多次不的验证），则将控制权转交给Inbound Authentication中的Response Builder，由Response Builder给end-user一个回应。<br>至此，验证流程结束。涉及的组件有Service Provider、Inbound Authentication、authentication framework、Local Authentication/Federated Authentication、User Store Manager。其余的都可以看作用户和访问权限管理了。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-authentication.png" alt="授权流程"><br>接下来，分析一下架构图中其他箭头表示的作用。</p>
+<h1 id="用户和访问权限管理">用户和访问权限管理</h1><h2 id="用户注册">用户注册</h2><p>在service provider某应用上注册用户(end-users)，注册信息交由Inbound Provisioning处理，Inbound Provisioning支持SOAP和SCIM（都是用于网络中交换数据），然后，Inbound Provisioning连接User Store Manager进行存储。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-user1.png" alt="用户注册"></p>
+<h2 id="向外部应用提供用户信息">向外部应用提供用户信息</h2><p><img src="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-Outbound1.png" alt="向外部应用提供用户信息"><br>wso2 is支持向外部系统提供用户信息，例如，Google App Engine。需要配置一个identity provider，并与一个service provider联系起来，由该service provider提供服务。</p>
+<h2 id="将第三方登陆的账号加入user_store">将第三方登陆的账号加入user store</h2><p>当一个service provider由第三方账户登陆时，Authentication Framework的JIT(Just-In-Time)判断该账户是否存在user store中，如果没有，JIT就把此账户信息传递给provisioning framework，随后添加到user store中，存储到哪个user store，在Identity Provider的配置中可以选择。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/wso2is-Outbound2.png" alt="将第三方登陆的账号加入user store"></p>
+<p>详细介绍可参考<strong><a href="https://docs.wso2.com/display/IS500/WSO2+Identity+Server+Documentation" target="_blank" rel="external">官方文档</a></strong><br><em>个人觉得官方文档内容比较全面，但是讲述逻辑不够清晰，容易导致理解进入误区，搞清楚每个组件的功能之后，再来看整个架构就简单多了</em></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -201,13 +121,13 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
+  <a class="article-category-link" href="/categories/wso2is/">wso2is</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  <span></span> <a href="/tags/wso2is/">wso2is</a>
   </div>
 
 </div>
@@ -216,7 +136,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/08/13/跟我学习Go语言-3/" data-title="跟我学习Go语言(3) | 鑫的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/09/01/wso2 identity server架构简述/" data-title="wso2 identity server架构简述 | 鑫的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -229,19 +149,11 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/08/13/跟我学习Go语言-4/" title="跟我学习Go语言(4)">
-  <strong>上一篇：</strong><br/>
-  <span>
-  跟我学习Go语言(4)</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/08/07/跟我学习Go语言-2/"  title="跟我学习Go语言(2)">
+<a href="/2015/08/14/jvm-垃圾收集算法/"  title="jvm-垃圾收集算法">
  <strong>下一篇：</strong><br/> 
- <span>跟我学习Go语言(2)
+ <span>jvm-垃圾收集算法
 </span>
 </a>
 </div>
@@ -250,7 +162,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/13/跟我学习Go语言-3/" data-title="跟我学习Go语言(3)" data-url="http://yoursite.com/2015/08/13/跟我学习Go语言-3/"></div>
+	<div class="ds-thread" data-thread-key="2015/09/01/wso2 identity server架构简述/" data-title="wso2 identity server架构简述" data-url="http://yoursite.com/2015/09/01/wso2 identity server架构简述/"></div>
 </section>
 
 
@@ -266,7 +178,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内存分配"><span class="toc-number">1.</span> <span class="toc-text">内存分配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-number">1.1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#make"><span class="toc-number">1.2.</span> <span class="toc-text">make</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复合声明"><span class="toc-number">1.3.</span> <span class="toc-text">复合声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#type"><span class="toc-number">2.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构体（struct）"><span class="toc-number">3.</span> <span class="toc-text">结构体（struct）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">3.1.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义方法"><span class="toc-number">3.2.</span> <span class="toc-text">定义方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#转换"><span class="toc-number">4.</span> <span class="toc-text">转换</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#身份认证流程"><span class="toc-number">1.</span> <span class="toc-text">身份认证流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用户和访问权限管理"><span class="toc-number">2.</span> <span class="toc-text">用户和访问权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户注册"><span class="toc-number">2.1.</span> <span class="toc-text">用户注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#向外部应用提供用户信息"><span class="toc-number">2.2.</span> <span class="toc-text">向外部应用提供用户信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将第三方登陆的账号加入user_store"><span class="toc-number">2.3.</span> <span class="toc-text">将第三方登陆的账号加入user store</span></a></li></ol></li></ol>
  
   </div>
 
