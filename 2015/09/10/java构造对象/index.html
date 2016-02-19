@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>jvm-垃圾收集器总结 | 鑫的博客</title>
+    <title>java构造对象 | 鑫的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="HuangXin">
     
 
     
-    <meta name="description" content="SerialSerial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法
-ParNewParNew是Serial的多线程版本。仍要停顿
-Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器">
+    <meta name="description" content="使用静态工厂方法代替构造器静态工厂方法只是一个返回类的实例的静态方法。如下简单示例：123public static Boolean valueOf(boolean b)&amp;#123;  return b?Boolean.TRUE:Boolean.FALSE;&amp;#125;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jvm-垃圾收集器总结">
-<meta property="og:url" content="http://yoursite.com/2015/08/13/jvm-垃圾收集器总结/index.html">
+<meta property="og:title" content="java构造对象">
+<meta property="og:url" content="http://yoursite.com/2015/09/10/java构造对象/index.html">
 <meta property="og:site_name" content="鑫的博客">
-<meta property="og:description" content="SerialSerial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法
-ParNewParNew是Serial的多线程版本。仍要停顿
-Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器">
-<meta property="og:updated_time" content="2015-08-16T09:02:04.705Z">
+<meta property="og:description" content="使用静态工厂方法代替构造器静态工厂方法只是一个返回类的实例的静态方法。如下简单示例：123public static Boolean valueOf(boolean b)&amp;#123;  return b?Boolean.TRUE:Boolean.FALSE;&amp;#125;">
+<meta property="og:updated_time" content="2016-02-19T08:02:12.102Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jvm-垃圾收集器总结">
-<meta name="twitter:description" content="SerialSerial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法
-ParNewParNew是Serial的多线程版本。仍要停顿
-Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器">
+<meta name="twitter:title" content="java构造对象">
+<meta name="twitter:description" content="使用静态工厂方法代替构造器静态工厂方法只是一个返回类的实例的静态方法。如下简单示例：123public static Boolean valueOf(boolean b)&amp;#123;  return b?Boolean.TRUE:Boolean.FALSE;&amp;#125;">
 <link rel="publisher" href="106161458455416050000">
 
     
@@ -87,14 +81,14 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/13/jvm-垃圾收集器总结/" title="jvm-垃圾收集器总结" itemprop="url">jvm-垃圾收集器总结</a>
+      <a href="/2015/09/10/java构造对象/" title="java构造对象" itemprop="url">java构造对象</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-13T15:21:38.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    <time datetime="2015-09-09T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-09-10</time>
     
   </p>
 </header>
@@ -103,26 +97,40 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Serial"><span class="toc-number">1.</span> <span class="toc-text">Serial</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ParNew"><span class="toc-number">2.</span> <span class="toc-text">ParNew</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Parallel_Scavenge"><span class="toc-number">3.</span> <span class="toc-text">Parallel Scavenge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Serial_Old"><span class="toc-number">4.</span> <span class="toc-text">Serial Old</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Parallel_Old"><span class="toc-number">5.</span> <span class="toc-text">Parallel Old</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CMS"><span class="toc-number">6.</span> <span class="toc-text">CMS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#G1"><span class="toc-number">7.</span> <span class="toc-text">G1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用静态工厂方法代替构造器"><span class="toc-number">1.</span> <span class="toc-text">使用静态工厂方法代替构造器</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="Serial">Serial</h1><p>Serial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法</p>
-<h1 id="ParNew">ParNew</h1><p>ParNew是Serial的多线程版本。仍要停顿</p>
-<h1 id="Parallel_Scavenge">Parallel Scavenge</h1><p>Parallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器，只有这个收集器是针对系统吞吐量进行改进，适用于后台运算并且交互不多的程序。其他收集器则更关注改善收集时的停顿时间，适用于用户交互的程序。<br><a id="more"></a></p>
-<h1 id="Serial_Old">Serial Old</h1><p>Serial Old 是Serial的老年代版本，专门用于收集老年代，采用“标记整理算法”。</p>
-<h1 id="Parallel_Old">Parallel Old</h1><p>Parallel Old是Parallel Scavenge的老年代版本，使用多线程和“标记整理算法”。</p>
-<h1 id="CMS">CMS</h1><p>CMS收集器是一种以获取最短回收停顿时间为目标的收集器，给用用户带来较好的体验，可称之为并发低停顿收集器。基于标记-清除算法实现。可用于新、老代收集，一般用于老年代收集，然后搭配一个新生代收集器(可以是Serial和ParNew)<br><strong>缺点：</strong></p>
+		<h1 id="使用静态工厂方法代替构造器">使用静态工厂方法代替构造器</h1><p>静态工厂方法只是一个返回类的实例的静态方法。如下简单示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static Boolean valueOf(boolean b)&#123;</span><br><span class="line">  <span class="built_in">return</span> b?Boolean.TRUE:Boolean.FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><strong>静态工厂方法的优势</strong></p>
 <ol>
-<li>对CPU资源敏感（因为是并发）。在并发阶段，虽然不会导致用户线程停顿，但是会因为占用了一部分线程（即CPU资源）而导致用户应用程序变慢，总吞吐量降低。</li>
-<li>无法处理浮动垃圾。因为是边收集，边产生垃圾。</li>
-<li>标记-清除算法会产生空间碎片。需要额外碎片整理过程，停顿时间变长。</li>
+<li>静态工厂方法的名称更容易理解，更容易阅读。<br>比如，一个类有多个重载的构造器，使用或阅读的时候就会混淆，搞不清楚，而使用静态工厂方法则没有这种限制，可以根据不同的功能构造不用的对象。’BigInteger.probablePrime’就是一个用于产生的静态工厂方法。</li>
+<li>不必在每次调用它们的时候都创建一个新的对象。<br>静态工厂方法可以为重复的调用返回相同的对象，这样有助于类严格控制在某个时刻哪些实例应该存在，这种类被称作实例受控的类。实例受控可以确保类是一个单例或者是不能实例化，这样可以使用==操作符代替equals方法，提升性能。</li>
+<li><p>可以返回原返回类型的任何子类型的对象。<br>这样在选择返回对象的类时就具有更大的灵活性。java的集合框架就采用了这种实现，返回的子类都是非公有的，外部访问不到，对调用者来说并不知道是哪个子类的对象，隐藏了实现细节，减少了API的数量，提高了易用性。例如，EnumSet中，创建一个空的enum set</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;E extends Enum&lt;E&gt;&gt; EnumSet&lt;E&gt; noneOf(Class&lt;E&gt; elementType) &#123;</span><br><span class="line">       Enum[] universe = getUniverse(elementType);</span><br><span class="line">       <span class="keyword">if</span> (universe == null)</span><br><span class="line">           throw new ClassCastException(elementType + <span class="string">" not an enum"</span>);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (universe.length &lt;= <span class="number">64</span>)</span><br><span class="line">           <span class="built_in">return</span> new RegularEnumSet&lt;&gt;(elementType, universe);</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           <span class="built_in">return</span> new JumboEnumSet&lt;&gt;(elementType, universe);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>如果，枚举类型的元素个数不超过64个则返回RegalarEnumSet实例，否则返回JumboEnumSet实例。而RegalarEnumSet类的定义：<br><em>不是public的类</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class RegularEnumSet&lt;E extends Enum&lt;E&gt;&gt; extends EnumSet&lt;E&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在创建参数化类型实例的时候，静态工厂方法使代码变得更加简洁。<br>构造器：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,List&lt;String&gt;&gt; m = new HashMap&lt;String,List&lt;String&gt;&gt;();</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h1 id="G1">G1</h1><p>G1收集器是当前收集器技术发展最前沿的成果。基于标记-整理算法，可以精确控制停顿。基本不牺牲吞吐量的前提下完成低停顿的内存回收。这是由于它将新生代、老年代划分为多个区域，并维护一个每个区域收集的优先列表，保证了在有限的时间内可以获得最高的收集效率。</p>
-<h1 id="总结">总结</h1><p>新生代收集器：Serial、ParNew、Parallel Scavenge<br>老年代收集器：CMS、Serial Old、Parallel Old<br>收集器适用场景：</p>
+<p>静态工厂：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> public static &lt;k,v&gt; HashMap&lt;k,v&gt; <span class="function"><span class="title">newInstance</span></span>()&#123;</span><br><span class="line"> 	<span class="built_in">return</span> new HashMap&lt;k,v&gt;();</span><br><span class="line">&#125;</span><br><span class="line">Map&lt;S</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>静态工厂方法缺点</strong></p>
+<ol>
+<li>一个类如果没有public或protected的构造器，就不能被继承。</li>
+<li>静态工厂方法只是普通的静态方法，并没有特别标识，所以对于使用者来说，并不能确定哪个静态方法才是用来实例化的。<br>这方面可以通过javadoc工具识别特定的注释来生成详细的API文档。目前，还没有实现。那么记一些常用的静态工厂方法名可能会有用：</li>
+</ol>
 <ul>
-<li>用户交互：ParNew、CMS</li>
-<li>高吞吐量：Parallel Scavenge<br>哪些收集器可配合使用：<br>Serial/Serial Old、Serial/CMS、ParNew/Serial Old、ParNew/CMS、Parallel Scavenge/Parallel Old、Parallel Scavenge/Serial Old、CMS/Serial Old</li>
+<li>valueOf：实际上是类型转换的方法</li>
+<li>of: valueOf简略版</li>
+<li>getInstance</li>
+<li>newInstance：每次返回一个新建的实例</li>
+<li>get_Type_：与getInstance一样，_Type_表示返回实例的类型。</li>
+<li>new_Type_：对应netInstance，_Type_表示返回实例的类型。</li>
 </ul>
   
 	</div>
@@ -131,13 +139,13 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/jvm/">jvm</a>
+  <a class="article-category-link" href="/categories/java/">java</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/jvm/">jvm</a>
+  <span></span> <a href="/tags/java/">java</a>
   </div>
 
 </div>
@@ -146,7 +154,7 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/08/13/jvm-垃圾收集器总结/" data-title="jvm-垃圾收集器总结 | 鑫的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/09/10/java构造对象/" data-title="java构造对象 | 鑫的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -160,18 +168,18 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/08/14/jvm-垃圾收集算法/" title="jvm-垃圾收集算法">
+ <a href="/2015/10/03/docker安装/" title="">
   <strong>上一篇：</strong><br/>
   <span>
-  jvm-垃圾收集算法</span>
+  (no title)</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/08/13/跟我学习Go语言-5/"  title="跟我学习Go语言(5)">
+<a href="/2015/09/01/wso2 identity server架构简述/"  title="wso2 identity server架构简述">
  <strong>下一篇：</strong><br/> 
- <span>跟我学习Go语言(5)
+ <span>wso2 identity server架构简述
 </span>
 </a>
 </div>
@@ -180,7 +188,7 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/13/jvm-垃圾收集器总结/" data-title="jvm-垃圾收集器总结" data-url="http://yoursite.com/2015/08/13/jvm-垃圾收集器总结/"></div>
+	<div class="ds-thread" data-thread-key="2015/09/10/java构造对象/" data-title="java构造对象" data-url="http://yoursite.com/2015/09/10/java构造对象/"></div>
 </section>
 
 
@@ -196,7 +204,7 @@ Parallel ScavengeParallel Scavenge是一个新生代收集器，使用多线程�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Serial"><span class="toc-number">1.</span> <span class="toc-text">Serial</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ParNew"><span class="toc-number">2.</span> <span class="toc-text">ParNew</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Parallel_Scavenge"><span class="toc-number">3.</span> <span class="toc-text">Parallel Scavenge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Serial_Old"><span class="toc-number">4.</span> <span class="toc-text">Serial Old</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Parallel_Old"><span class="toc-number">5.</span> <span class="toc-text">Parallel Old</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CMS"><span class="toc-number">6.</span> <span class="toc-text">CMS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#G1"><span class="toc-number">7.</span> <span class="toc-text">G1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用静态工厂方法代替构造器"><span class="toc-number">1.</span> <span class="toc-text">使用静态工厂方法代替构造器</span></a></li></ol>
  
   </div>
 

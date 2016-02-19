@@ -82,6 +82,201 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/10/05/docker使用goagent代理/" title="docker使用GoAgent代理" itemprop="url">docker使用GoAgent代理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-10-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="关于docker_pull不给力">关于docker pull不给力</h1><p><em>Docker Hub经常被\</em>，我相信很多学习docker的道友们都遇到过这种麻烦。。。<em><br>可以使用免费代理XX-Net，启动之后默认代理端口是8087。<br><em>*在Linux下设置代理</em></em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8087</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8087</span></span><br></pre></td></tr></table></figure></p>
+<p>之后就可以正常使用docker pull。<br>如果使用VMware虚拟机，可以把虚拟机的网络设置为桥接模式。</p>
+<p><strong>不过，还是建议使用daocloud</strong></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/云计算/">云计算</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/docker/">docker</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/10/05/docker使用goagent代理/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/10/05/docker使用goagent代理/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/03/docker安装/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-10-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="docker安装">docker安装</h1><p><strong>安装Ubuntu维护的docker版本</strong><br>安装非常简单<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sudo</span> apt-get install docker.io</span><br><span class="line"><span class="variable">$source</span> /etc/bash_completion.d/docker.io</span><br></pre></td></tr></table></figure></p>
+<p><strong>缺点</strong></p>
+<h2 id="docker版本略旧">docker版本略旧</h2><p><strong>安装docker维护的版本</strong><br>之前一直用的安装脚本的url——<a href="https://get.docker.com/ubuntu已经弃用了" target="_blank" rel="external">https://get.docker.com/ubuntu已经弃用了</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl –sSL https://get.docker.com/ | sudo sh</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用非root用户</strong><br>执行docker命令需要root权限，如果使用非root用户需要添加一个docker的用户组，然后将用户添加到docker用户组中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sudo</span> groupadd docker</span><br><span class="line"><span class="variable">$sudo</span> gpasswd <span class="operator">-a</span> USER docker</span><br><span class="line"><span class="variable">$sudo</span> service docker restart</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/云计算/">云计算</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/docker/">docker</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/10/03/docker安装/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/10/03/docker安装/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/10/java构造对象/" title="java构造对象" itemprop="url">java构造对象</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-09T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-09-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="使用静态工厂方法代替构造器">使用静态工厂方法代替构造器</h1><p>静态工厂方法只是一个返回类的实例的静态方法。如下简单示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static Boolean valueOf(boolean b)&#123;</span><br><span class="line">  <span class="built_in">return</span> b?Boolean.TRUE:Boolean.FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/09/10/java构造对象/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/java/">java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/java/">java</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/09/10/java构造对象/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/09/10/java构造对象/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/01/wso2 identity server架构简述/" title="wso2 identity server架构简述" itemprop="url">wso2 identity server架构简述</a>
   </h1>
   <p class="article-author">By
@@ -211,203 +406,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/13/jvm-垃圾收集器总结/" title="jvm-垃圾收集器总结" itemprop="url">jvm-垃圾收集器总结</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-13T15:21:38.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="Serial">Serial</h1><p>Serial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法</p>
-<h1 id="ParNew">ParNew</h1><p>ParNew是Serial的多线程版本。仍要停顿</p>
-<h1 id="Parallel_Scavenge">Parallel Scavenge</h1><p>Parallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器，只有这个收集器是针对系统吞吐量进行改进，适用于后台运算并且交互不多的程序。其他收集器则更关注改善收集时的停顿时间，适用于用户交互的程序。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/13/jvm-垃圾收集器总结/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/jvm/">jvm</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/jvm/">jvm</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/13/jvm-垃圾收集器总结/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/jvm-垃圾收集器总结/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/13/跟我学习Go语言-5/" title="跟我学习Go语言(5)" itemprop="url">跟我学习Go语言(5)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-13T14:25:05.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="接口(interface)">接口(interface)</h1><p>接口(interface)在Go语言有着至关重要的地位。如果说goroutine和channel 是支撑起Go语言的并发模型的基石，让Go语言在如今集群化与多核化的时代，成为一道极为亮丽的风景；那么接口(interface)是Go语言整个类型系统(type system)的基石，让Go语言在基础编程哲学的探索上，达到史无先例的高度。<br>Go 语言的接口(interface)不单单只是接口。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/13/跟我学习Go语言-5/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/13/跟我学习Go语言-5/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/跟我学习Go语言-5/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/13/跟我学习Go语言-4/" title="跟我学习Go语言(4)" itemprop="url">跟我学习Go语言(4)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-13T12:44:45.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="strconv包">strconv包</h1><h2 id="ParseBool">ParseBool</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// ParseBool 将字符串转换为布尔值</span><br><span class="line">// 它接受真值：<span class="number">1</span>, t, T, TRUE, <span class="literal">true</span>, True</span><br><span class="line">// 它接受假值：<span class="number">0</span>, f, F, FALSE, <span class="literal">false</span>, False.</span><br><span class="line">// 其它任何值都返回一个错误</span><br><span class="line">func ParseBool(str string) (value bool, err error)</span><br><span class="line"></span><br><span class="line">func <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"1"</span>))    // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"t"</span>))    // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"T"</span>))    // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"true"</span>)) // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"True"</span>)) // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"TRUE"</span>)) // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"TRue"</span>))</span><br><span class="line">	// <span class="literal">false</span> strconv.ParseBool: parsing <span class="string">"TRue"</span>: invalid syntax</span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"0"</span>))     // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"f"</span>))     // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"F"</span>))     // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"false"</span>)) // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"False"</span>)) // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"FALSE"</span>)) // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"FALse"</span>))</span><br><span class="line">	// <span class="literal">false</span> strconv.ParseBool: parsing <span class="string">"FAlse"</span>: invalid syntax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/13/跟我学习Go语言-4/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/13/跟我学习Go语言-4/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/跟我学习Go语言-4/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -427,11 +428,19 @@
 		  
 		
 		  
+			<li><a href="/categories/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/jvm/" title="jvm">jvm<sup>2</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>2</sup></a></li>
 		  
 		
 		</ul>
@@ -448,11 +457,19 @@
 			
 		
 			
+				<li><a href="/tags/docker/" title="docker">docker<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/jvm/" title="jvm">jvm<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -517,7 +534,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="HuangXin">HuangXin</a>
 		
