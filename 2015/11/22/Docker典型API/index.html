@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>跟我学习Go语言(3) | 鑫的博客</title>
+    <title>Docker典型API | 鑫的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="HuangXin">
     
 
     
-    <meta name="description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
+    <meta name="description" content="Docker典型API在操作系统中部署好docker的相关环境之后，可以通过内置的docker的相关命令还对容器进行管理，也可以通过restful API在其他机器上对当前机器上的容器进行相关的管理。以下内容介绍一些基本的Docker API。docker run从镜像启动一个容器，当指明某个镜像 docker首先会在本机上的镜像文件中进行查找 如果没有找到就从docker Hub 中下载一个。具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跟我学习Go语言(3)">
-<meta property="og:url" content="http://yoursite.com/2015/08/13/跟我学习Go语言-3/index.html">
+<meta property="og:title" content="Docker典型API">
+<meta property="og:url" content="http://yoursite.com/2015/11/22/Docker典型API/index.html">
 <meta property="og:site_name" content="鑫的博客">
-<meta property="og:description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
-<meta property="og:updated_time" content="2015-08-16T09:04:59.820Z">
+<meta property="og:description" content="Docker典型API在操作系统中部署好docker的相关环境之后，可以通过内置的docker的相关命令还对容器进行管理，也可以通过restful API在其他机器上对当前机器上的容器进行相关的管理。以下内容介绍一些基本的Docker API。docker run从镜像启动一个容器，当指明某个镜像 docker首先会在本机上的镜像文件中进行查找 如果没有找到就从docker Hub 中下载一个。具">
+<meta property="og:updated_time" content="2016-02-22T17:26:50.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="跟我学习Go语言(3)">
-<meta name="twitter:description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
+<meta name="twitter:title" content="Docker典型API">
+<meta name="twitter:description" content="Docker典型API在操作系统中部署好docker的相关环境之后，可以通过内置的docker的相关命令还对容器进行管理，也可以通过restful API在其他机器上对当前机器上的容器进行相关的管理。以下内容介绍一些基本的Docker API。docker run从镜像启动一个容器，当指明某个镜像 docker首先会在本机上的镜像文件中进行查找 如果没有找到就从docker Hub 中下载一个。具">
 <link rel="publisher" href="106161458455416050000">
 
     
@@ -87,14 +81,14 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/13/跟我学习Go语言-3/" title="跟我学习Go语言(3)" itemprop="url">跟我学习Go语言(3)</a>
+      <a href="/2015/11/22/Docker典型API/" title="Docker典型API" itemprop="url">Docker典型API</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-13T12:20:45.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    <time datetime="2015-11-21T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-11-22</time>
     
   </p>
 </header>
@@ -103,97 +97,11 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内存分配"><span class="toc-number">1.</span> <span class="toc-text">内存分配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-number">1.1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#make"><span class="toc-number">1.2.</span> <span class="toc-text">make</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复合声明"><span class="toc-number">1.3.</span> <span class="toc-text">复合声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#type"><span class="toc-number">2.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构体（struct）"><span class="toc-number">3.</span> <span class="toc-text">结构体（struct）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">3.1.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义方法"><span class="toc-number">3.2.</span> <span class="toc-text">定义方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#转换"><span class="toc-number">4.</span> <span class="toc-text">转换</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker典型API"><span class="toc-number">1.</span> <span class="toc-text">Docker典型API</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="内存分配">内存分配</h1><h2 id="new">new</h2><p>new(T)返回一个T的指针 指向一个零值T</p>
-<h2 id="make">make</h2><p>make(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！</p>
-<h2 id="复合声明">复合声明</h2><p>复合声明&amp;File{fd: fd, name: name}   从堆中分配。‘&amp;’得到堆上分配到的内存地址。<br><a id="more"></a></p>
-<h1 id="type">type</h1><p>用法：<br>type foo int<br>使foo与int一样 与c/c++中typedef一样（foo与int位置相反）</p>
-<h1 id="结构体（struct）">结构体（struct）</h1><p><em>注意：方法和成员变量命名以大小写确定是否可以导出（即大写开头为public 小写开头为pravite</em></p>
-<h2 id="用法">用法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> NameAge struct &#123;   //可以有匿名字段</span><br><span class="line">name string  //不导出</span><br><span class="line">age int  //不导出</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="定义方法">定义方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func (n1 *NameAge) func1(n2 int ) &#123; /* */ &#125;</span><br><span class="line">func (n1 NameAge) func2(n2 int ) &#123; /* */ &#125;</span><br></pre></td></tr></table></figure>
-<p>func1是&amp;NameAge上的方法，可以修改NameAge成员变量的值<br>func2是NameAge上的方法，不可以修改NameAge成员变量的值<br>Go语言里为了贯彻方便开发的原则，内部实现NameAge.func1(int)等价于(&amp;NameAge).func1(2)<br><em>注意：x.m()等价于(&amp;x).m()</em></p>
-<h1 id="转换">转换</h1><table>
-<thead>
-<tr>
-<th>From</th>
-<th>b []byte</th>
-<th>i []int</th>
-<th>r []rune</th>
-<th>s string</th>
-<th>f float32</th>
-<th>i int</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>To</strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]byte</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]byte(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]int</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]int(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]rune</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]rune(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>string</td>
-<td>string(b)</td>
-<td>string(i)</td>
-<td>string(r)</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>float32(i)</td>
-</tr>
-<tr>
-<td>float32</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>int(f)</td>
-</tr>
-</tbody>
-</table>
-<p>string(97)得到结果为“a”，如果是想将97转换成“97”，就要使用strconv包里的Itoa方法。strconv.Itoa(97)。另外strconv包里还有其他的转换方法，下篇会有介绍。</p>
+		<h1 id="Docker典型API">Docker典型API</h1><p>在操作系统中部署好docker的相关环境之后，可以通过内置的docker的相关命令还对容器进行管理，也可以通过restful API在其他机器上对当前机器上的容器进行相关的管理。以下内容介绍一些基本的Docker API。<br><code>docker run</code>从镜像启动一个容器，当指明某个镜像 docker首先会在本机上的镜像文件中进行查找 如果没有找到就从docker Hub 中下载一个。具体的命令格式如下:<br><code>sudo docker run + 参数信息 + 镜像的名称 + 可以运行的指令</code><br><code>-i</code>保持对于容器的stdin为打开的状态，-t 为这个容器分配一个虚拟的终端，一般 -i 与 -t 参数都是结合在一起使用的，这样交互比较方便一点。<code>-d</code>让docker容器在后台中运行。-v挂载命令，可以把本机上的一个文件目录挂载到容器中，这样数据共享就会非常方便。<code>-name</code>指定由镜像所生成的container的名称。—rm这个参数表明当容器退出后自动删除容器。-p参数可以运行很多次来指定多个服务的映射关系。要是直接<code>-p :8080</code>的话，这样系统会找一个没有被占用的host端口来映射到容器的8080端口上面，在多个用户使用同样一个服务的情况下这样还是比较好一点的。<code>-P</code>表示的是将任何容器内部所需要的网络端口号映射到我们的host上，对于web应用肯定要加上这个参数。<br>docker pull 命令可以手动的来从docker hub上下载某些镜像,不用等到运行的时候再去下载，可以在docker hub中把相关的镜像的信息查询好之后，再使用docker pull命令进行下载，通常是 使用<code>docker pull 仓库名/镜像名</code>的方式来下载。<br><code>docker push</code>这个命令可以将已经构建好的容器推送到自己的仓库当中，这个命令可以push一个本地仓库或者是某一个镜像到远程的仓库中 push的过程中会自动提示进行登录。一般推送某个固定的镜像的话用<code>docker push user/repo:tag</code> 来进行，此过程中会提示进行用户登录的相关操作。<br>docker ps 命令可以列出当前 host 中所有的容器的信息，后面可以跟 -a 或者是 –l，-l表示仅仅显示出最近的一个容器的相关的信息，使用 –notrunc 命令可以查看出镜像的全部的信息。<br>docker images 列出当前host中所有的镜像 注意有时候一个repository中可能有多个镜像 这时候就用tag标签来进行区别 每次使用镜像的时候 最好还是指明比较好，比如ubuntu:12.04。docker images –tree参数 可以显示出所有镜像的树形结构关系，这个用于查看依赖的话效果比较好。<br>docker port可以查询容器的端口的相关的信息。<code>docker port + 容器的id + 容器的端口</code>，这个命令是用来查询容器的对应端口和主机的哪个端口是对应的映射关系，这个返回的是主机的对应端口。<br>docker build主要功能是通过dockerfile来创建新的镜像。<br><code>docker start/stop+ container id</code>启动/停止某个容器。<br>docker attach通过这个命令可以进入一个运行中的容器。比如一个容器，先start之后，再直接attach+容器id 就可以进入容器的内部，相当于直接进入了命令行，在里面进行操作。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -201,13 +109,13 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
+  <a class="article-category-link" href="/categories/云计算/">云计算</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  <span></span> <a href="/tags/docker/">docker</a><a href="/tags/容器云/">容器云</a>
   </div>
 
 </div>
@@ -216,7 +124,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/08/13/跟我学习Go语言-3/" data-title="跟我学习Go语言(3) | 鑫的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/11/22/Docker典型API/" data-title="Docker典型API | 鑫的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -230,18 +138,18 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/08/13/跟我学习Go语言-4/" title="跟我学习Go语言(4)">
+ <a href="/2015/11/23/SOA与Web Services/" title="SOA与Web Services">
   <strong>上一篇：</strong><br/>
   <span>
-  跟我学习Go语言(4)</span>
+  SOA与Web Services</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/08/07/跟我学习Go语言-2/"  title="跟我学习Go语言(2)">
+<a href="/2015/11/20/容器云技术/"  title="容器云技术">
  <strong>下一篇：</strong><br/> 
- <span>跟我学习Go语言(2)
+ <span>容器云技术
 </span>
 </a>
 </div>
@@ -250,7 +158,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/13/跟我学习Go语言-3/" data-title="跟我学习Go语言(3)" data-url="http://yoursite.com/2015/08/13/跟我学习Go语言-3/"></div>
+	<div class="ds-thread" data-thread-key="2015/11/22/Docker典型API/" data-title="Docker典型API" data-url="http://yoursite.com/2015/11/22/Docker典型API/"></div>
 </section>
 
 
@@ -266,7 +174,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内存分配"><span class="toc-number">1.</span> <span class="toc-text">内存分配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-number">1.1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#make"><span class="toc-number">1.2.</span> <span class="toc-text">make</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复合声明"><span class="toc-number">1.3.</span> <span class="toc-text">复合声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#type"><span class="toc-number">2.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构体（struct）"><span class="toc-number">3.</span> <span class="toc-text">结构体（struct）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">3.1.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义方法"><span class="toc-number">3.2.</span> <span class="toc-text">定义方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#转换"><span class="toc-number">4.</span> <span class="toc-text">转换</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker典型API"><span class="toc-number">1.</span> <span class="toc-text">Docker典型API</span></a></li></ol>
  
   </div>
 

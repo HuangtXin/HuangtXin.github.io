@@ -82,6 +82,266 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/13/jvm-垃圾收集器总结/" title="jvm-垃圾收集器总结" itemprop="url">jvm-垃圾收集器总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-13T15:21:38.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Serial">Serial</h1><p>Serial是最基本的收集器，历史悠久。是一个单线程收集器，而且它在进行垃圾回收的时候，必须暂停其他所有的工作线程，直到收集结束。这就意味着，每次进行垃圾收集都必须停掉用户正常工作的线程。使用复制算法</p>
+<h1 id="ParNew">ParNew</h1><p>ParNew是Serial的多线程版本。仍要停顿</p>
+<h1 id="Parallel_Scavenge">Parallel Scavenge</h1><p>Parallel Scavenge是一个新生代收集器，使用多线程和复制算法。相比其他收集器，只有这个收集器是针对系统吞吐量进行改进，适用于后台运算并且交互不多的程序。其他收集器则更关注改善收集时的停顿时间，适用于用户交互的程序。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/13/jvm-垃圾收集器总结/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/jvm/">jvm</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/jvm/">jvm</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/13/jvm-垃圾收集器总结/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/jvm-垃圾收集器总结/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/13/跟我学习Go语言-5/" title="跟我学习Go语言(5)" itemprop="url">跟我学习Go语言(5)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-13T14:25:05.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="接口(interface)">接口(interface)</h1><p>接口(interface)在Go语言有着至关重要的地位。如果说goroutine和channel 是支撑起Go语言的并发模型的基石，让Go语言在如今集群化与多核化的时代，成为一道极为亮丽的风景；那么接口(interface)是Go语言整个类型系统(type system)的基石，让Go语言在基础编程哲学的探索上，达到史无先例的高度。<br>Go 语言的接口(interface)不单单只是接口。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/13/跟我学习Go语言-5/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Go/">Go</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/13/跟我学习Go语言-5/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/跟我学习Go语言-5/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/13/跟我学习Go语言-4/" title="跟我学习Go语言(4)" itemprop="url">跟我学习Go语言(4)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-13T12:44:45.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="strconv包">strconv包</h1><h2 id="ParseBool">ParseBool</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// ParseBool 将字符串转换为布尔值</span><br><span class="line">// 它接受真值：<span class="number">1</span>, t, T, TRUE, <span class="literal">true</span>, True</span><br><span class="line">// 它接受假值：<span class="number">0</span>, f, F, FALSE, <span class="literal">false</span>, False.</span><br><span class="line">// 其它任何值都返回一个错误</span><br><span class="line">func ParseBool(str string) (value bool, err error)</span><br><span class="line"></span><br><span class="line">func <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"1"</span>))    // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"t"</span>))    // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"T"</span>))    // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"true"</span>)) // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"True"</span>)) // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"TRUE"</span>)) // <span class="literal">true</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"TRue"</span>))</span><br><span class="line">	// <span class="literal">false</span> strconv.ParseBool: parsing <span class="string">"TRue"</span>: invalid syntax</span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"0"</span>))     // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"f"</span>))     // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"F"</span>))     // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"false"</span>)) // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"False"</span>)) // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"FALSE"</span>)) // <span class="literal">false</span> </span><br><span class="line">	fmt.Println(strconv.ParseBool(<span class="string">"FALse"</span>))</span><br><span class="line">	// <span class="literal">false</span> strconv.ParseBool: parsing <span class="string">"FAlse"</span>: invalid syntax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/13/跟我学习Go语言-4/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Go/">Go</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/13/跟我学习Go语言-4/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/跟我学习Go语言-4/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/13/跟我学习Go语言-3/" title="跟我学习Go语言(3)" itemprop="url">跟我学习Go语言(3)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-13T12:20:45.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="内存分配">内存分配</h1><h2 id="new">new</h2><p>new(T)返回一个T的指针 指向一个零值T</p>
+<h2 id="make">make</h2><p>make(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！</p>
+<h2 id="复合声明">复合声明</h2><p>复合声明&amp;File{fd: fd, name: name}   从堆中分配。‘&amp;’得到堆上分配到的内存地址。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/13/跟我学习Go语言-3/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Go/">Go</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/13/跟我学习Go语言-3/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/跟我学习Go语言-3/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/07/跟我学习Go语言-2/" title="跟我学习Go语言(2)" itemprop="url">跟我学习Go语言(2)</a>
   </h1>
   <p class="article-author">By
@@ -140,138 +400,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/07/跟我学习Go语言-1/" title="跟我学习Go语言(1)" itemprop="url">跟我学习Go语言(1)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-07T03:22:21.000Z" itemprop="datePublished"> 发表于 2015-08-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="array、slice_和map">array、slice 和map</h1><h2 id="array">array</h2><p><strong>array变量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr1 [<span class="number">10</span>] int</span><br><span class="line">arr2 := [<span class="number">3</span>]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125; </span><br><span class="line">arr3 :=[…]int&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>&#125; //自动统计个数</span><br><span class="line">a := [<span class="number">3</span>][<span class="number">2</span>]int &#123; [<span class="number">2</span>]int &#123;<span class="number">1</span>,<span class="number">2</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">3</span>,<span class="number">4</span>&#125;, [<span class="number">2</span>]int &#123;<span class="number">5</span>,<span class="number">6</span>&#125; &#125;//多维数组</span><br></pre></td></tr></table></figure></p>
-<p>有一点需要注意：当向函数内传递一个数组的时候，它会获得一个数组的副本，而不是数组的指针。也就是说，数组做参数是值传递，不是引用传递，在函数内修改数组的元素，不会对函数外造成影响<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/07/跟我学习Go语言-1/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/07/跟我学习Go语言-1/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/07/跟我学习Go语言-1/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/06/初识go语言小节/" title="初识Go语言小节" itemprop="url">初识Go语言小节</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-06T13:42:21.000Z" itemprop="datePublished"> 发表于 2015-08-06</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="整体感受">整体感受</h2><p>学了几天的GO语言，感觉GO的设计目的是简捷、简用，GO不能算是一种面向对象的程序设计语言，例如，没有oop中的很多概念：继承、this指针、构造函数/析构函数等，但是对面向对象编程提供支持，可以定义抽象数据类型，允许定义成员方法等，这些特性表现在GO语言中的接口(interface)和结构体(struct)，特别是接口(interface)在整个GO语言的体系中的作用非常重要。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/06/初识go语言小节/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/06/初识go语言小节/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/06/初识go语言小节/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
   </nav>
 
 </div>
@@ -291,6 +422,10 @@
 		  
 		
 		  
+			<li><a href="/categories/j2ee/" title="j2ee">j2ee<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/java/" title="java">java<sup>1</sup></a></li>
 		  
 		
@@ -303,7 +438,7 @@
 		  
 		
 		  
-			<li><a href="/categories/云计算/" title="云计算">云计算<sup>2</sup></a></li>
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>5</sup></a></li>
 		  
 		
 		</ul>
@@ -320,11 +455,15 @@
 			
 		
 			
-				<li><a href="/tags/jvm/" title="jvm">jvm<sup>2</sup></a></li>
+				<li><a href="/tags/docker/" title="docker">docker<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/docker/" title="docker">docker<sup>2</sup></a></li>
+				<li><a href="/tags/容器云/" title="容器云">容器云<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jvm/" title="jvm">jvm<sup>2</sup></a></li>
 			
 		
 			
@@ -332,11 +471,23 @@
 			
 		
 			
+				<li><a href="/tags/jsp/" title="jsp">jsp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/taglib/" title="taglib">taglib<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/soa-web-services/" title="soa;web services">soa;web services<sup>1</sup></a></li>
+				<li><a href="/tags/soa/" title="soa">soa<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web-services/" title="web services">web services<sup>1</sup></a></li>
 			
 		
 		</ul>

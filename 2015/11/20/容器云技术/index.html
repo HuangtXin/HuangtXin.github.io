@@ -1,0 +1,570 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>容器云技术 | 鑫的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="HuangXin">
+    
+
+    
+    <meta name="description" content="容器云技术分析容器技术是一种轻量级的虚拟化解决方案，自Docker开源之后，容器技术受到了广泛的关注和讨论。容器技术与传统VM不同，传统VM是通过中间层将一台或多台独立的机器虚拟运行于物理硬件之上，而容器是直接运行在OS之上的内核空间 也被称为操作系统级别的虚拟化，由于依赖于操作系统，所以容器只能运行于相同与相似的内核的操作系统。docker使用的容器技术是依赖于Linux内核特性：namespa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="容器云技术">
+<meta property="og:url" content="http://yoursite.com/2015/11/20/容器云技术/index.html">
+<meta property="og:site_name" content="鑫的博客">
+<meta property="og:description" content="容器云技术分析容器技术是一种轻量级的虚拟化解决方案，自Docker开源之后，容器技术受到了广泛的关注和讨论。容器技术与传统VM不同，传统VM是通过中间层将一台或多台独立的机器虚拟运行于物理硬件之上，而容器是直接运行在OS之上的内核空间 也被称为操作系统级别的虚拟化，由于依赖于操作系统，所以容器只能运行于相同与相似的内核的操作系统。docker使用的容器技术是依赖于Linux内核特性：namespa">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/container.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/sys&contain.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/dockerImage.png&e=1456156351&token=PBJodyO3zmES4hsPb1HbrDBwgmOzxEPU4FfJhudB:HivL1UkyqBUHkbCEddJ342V3fFs">
+<meta property="og:updated_time" content="2016-02-22T17:26:53.569Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="容器云技术">
+<meta name="twitter:description" content="容器云技术分析容器技术是一种轻量级的虚拟化解决方案，自Docker开源之后，容器技术受到了广泛的关注和讨论。容器技术与传统VM不同，传统VM是通过中间层将一台或多台独立的机器虚拟运行于物理硬件之上，而容器是直接运行在OS之上的内核空间 也被称为操作系统级别的虚拟化，由于依赖于操作系统，所以容器只能运行于相同与相似的内核的操作系统。docker使用的容器技术是依赖于Linux内核特性：namespa">
+<link rel="publisher" href="106161458455416050000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="鑫的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="鑫的博客" title="鑫的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="鑫的博客">鑫的博客</a></h1>
+				<h2 class="blog-motto">好吧，我承认我才是这世上最聪明的男人！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/11/20/容器云技术/" title="容器云技术" itemprop="url">容器云技术</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-11-19T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-11-20</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#容器云技术分析"><span class="toc-number">1.</span> <span class="toc-text">容器云技术分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#容器VS_虚拟机"><span class="toc-number">1.1.</span> <span class="toc-text">容器VS 虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-number">1.2.</span> <span class="toc-text">Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker依赖Linux内核特性"><span class="toc-number">1.2.1.</span> <span class="toc-text">Docker依赖Linux内核特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker的特点"><span class="toc-number">1.2.2.</span> <span class="toc-text">Docker的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker的使用场景"><span class="toc-number">1.2.3.</span> <span class="toc-text">Docker的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker的基本管理功能"><span class="toc-number">1.2.4.</span> <span class="toc-text">Docker的基本管理功能</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="容器云技术分析">容器云技术分析</h1><p>容器技术是一种轻量级的虚拟化解决方案，自Docker开源之后，容器技术受到了广泛的关注和讨论。容器技术与传统VM不同，传统VM是通过中间层将一台或多台独立的机器虚拟运行于物理硬件之上，而容器是直接运行在OS之上的内核空间 也被称为操作系统级别的虚拟化，由于依赖于操作系统，所以容器只能运行于相同与相似的内核的操作系统。docker使用的容器技术是依赖于Linux内核特性：namespace和cgroups，所以docker上只能运行linux系统。</p>
+<h2 id="容器VS_虚拟机">容器VS 虚拟机</h2><p>在云技术方面，相对于传统的虚拟机，容器技术有着明显的优势，比如减少对磁盘空间的占用，如图1，使用虚拟机部署应用不但包含应用和其依赖的库，还需要包含完整的操作系统，原来可能只需要几十M的应用，却需要几个G的系统操作来支撑。而容器只需要包含应用及依赖的库，这样资源占用就大大减少。另外虚拟机需要模拟硬件的行为，对内存和CPU的消耗会更大，所以同样配置的服务器使用容器可以提供更多的服务，服务更多的用户，提高服务器的资源利用率。更重要的是，容器尤其适用于在PaaS云中管理并协调应用，因为在PaaS云技术中，可以把容器作为应用程序的打包机制，使管理应用更加方便，更加高效。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/container.png" alt="图1 容器与虚拟机"><br>云技术实现对大规模共享资源的弹性管理，需要依赖于虚拟化技术。虚拟机是整个基础设施架构的支撑，提供虚拟化的操作系统。容器与虚拟机类似，但容器是一种更加轻量级的虚拟化解决方案，占用更少的资源，响应速度也要比虚拟机快的多。<br>容器技术提供了操作系统级的进程隔离，类似于硬件的虚拟化技术，这也是为什么现在会有人提出容器技术将取代虚拟机技术的主要原因。当然，容器技术还是不同于今天的虚拟机技术，它是在操作系统内部来进行进程级的隔离。而虚拟机，基于Hypervisor的虚拟化，是基于硬件资源的虚拟化技术上进行隔离，位于操作系统下面，如图2描述。实际容器技术已经有多年的历史，比如FreeBSDJail和SolarisZones等。甚至谷歌也使用容器技术实现了一些功能，并且将这些代码贡献给了Linux社区，从而Linux内核已经有一些容器相关的组件。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/sys&amp;contain.png" alt="图2 系统虚拟化与容器虚拟化"><br>虚拟机和容器都属于虚拟化技术，但是它们应用的场景有些不同。容器是一种操作系统级的虚拟化，可以在PaaS中作为一个交付软件的工具。虚拟机是一种硬件级别上的虚拟化，可以对硬件资源进行分配和管理，应用于IaaS的硬件虚拟化技术。容器在某些特定的用例情景下可以作为虚拟机的替代方案，前提是硬件资源的分配已经在中间的云架构中完成了。更多时候，容器与虚拟机相结合能给用户提供更好的服务。<br>首先，容器技术为应用提供了很好的移植性，让应用可以轻松跨不同架构迁移。而运维的需求，包括性能、容量管理、安全和管理工具集成往往让应用部署到新环境非常困难。因此，仅仅解决应用的跨平台移植只是解决了迁移过程中的小问题。<br>其次，即使容器技术和虚拟机技术都能达到同样的安全隔离级别，基于Linux的容器技术仍然没有获得企业级验证。Linux容器只是将操作系统的子系统设计成可以跨应用工作，尝试在后来添加隔离特性。这同今天成熟的hypervisor不同，Hypervisor基于物理设备设计，从根上解决虚拟机隔离问题。这些Linux容器子系统需要很长时间才能达到虚拟机一样的成熟度。合规性也是一个挑战，任何企业系统都有合规性的要求。虚拟机技术经过了大量时间才获得企业界的认可，并通过一系列合规性的审核，从而占据了如今的市场。容器技术未来可能也会满足企业合规性要求，但这肯定需要数年的时间。<br>最后，与其将容器技术和虚拟机技术二中先一，不如将两种技术进行结合，因为容器技术可以运行在虚拟机里，享受虚拟机带来的所有优势，例如，获得业界认可的隔离能力和安全属性，同时也能获得虚拟化大量生态圈的支持。</p>
+<h2 id="Docker">Docker</h2><p>在介绍docker之前，首先考虑一个问题，既然容器技术有这么多优点，为什么直到docker的出现才关注容器技术呢？主要就是因为容器技术太复杂，依赖于linux的特性，不易安装 不易管理和实现自动化。那么docker使容器技术开始被企业界所关注，到底docker提供了哪些功能？<br>Docker，使用Go开发，可以将应用程序自动部署到容器的开源引擎。Docker在虚拟化的容器执行环境当中，增加了一个应用程序部署引擎，该引擎的目标就是提供一个轻量、快速的环境，能够运行开发者的程序，也方便将程序部署到测试环境然后再部署到生产环境。<br>Docker的主要优点归纳起来主要包括以下几个方面，Docker提供了一种可移植的配置标准化机制，允许你一致性地在不同的机器上运行同一个Container；而LXC本身可能因为不同机器的不同配置而无法方便地移植运行；以App为中心，为应用的部署做了很多优化，而LXC的帮助脚本主要是聚焦于如何机器启动地更快和耗更少的内存；Docker还为App提供了一种自动化构建机制（Dockerfile），包括打包，基础设施依赖管理和安装等等；Docker提供了一种类似git的Container版本化的机制，允许你对你创建过的容器进行版本管理，依靠这种机制，你还可以下载别人创建的Container，甚至像git那样进行合并；Docker Container可重用可共享，依赖于版本化机制，你很容易重用其他用户已经上传好的Container（叫Image），作为基础版本进行扩展；Docker提供了很多的工具链，形成了一个生态系统；这些工具的目标是自动化、个性化和集成化，包括对PAAS平台的支持等；</p>
+<h3 id="Docker依赖Linux内核特性">Docker依赖Linux内核特性</h3><p>Docker依赖于Linux的两个内核特性，Namespaces命名空间和Control groups(cgroups)控制组，理解这两个概念，有助于理解docker容器资源管理和分配。<br>Namespaces，在编程语言中也有用到这个概念，实现的是代码的隔离。在操作系统中，Namespaces提供系统资源的隔离，包括进程、网络、文件系统。docker提供5种namespaces命名空间:</p>
+<ol>
+<li>PID (Process ID)， 进程隔离。</li>
+<li>NET (Network)， 管理网络接口。</li>
+<li>IPC (Inter Process Communication)， 管理跨进程通信的访问。</li>
+<li>MNT (Mount)， 管理挂载点。</li>
+<li>UTS (Unix Timessharing System)， 隔离内核和版本标识。<br>Control groups，控件组。cgroups是linux提供的可以限制、记录、隔离进程组所使用的物理资源的机制。最初是由google工程师提出，而后，2007年在linux kernel2.6.24中整合进来。cgroups就是为了轻量级虚拟化（也就是现在的容器技术）而产生的，没有cgroups就没有容器技术。<br>cgroups功能包括资源限制、优先级设定、资源计量、资源控制，为docker提供文件系统的隔离 进程隔离 网络隔离 资源隔离和分组。资源限制，比如memory子系统可以为进程组设定内存使用的上限，如果超出进程组使用的内存达到了限额，再申请内存就会发生out of memory的消息；优先级设定，可以设定哪些进程组使用更大的cpu 磁盘io的资源；资源计量，可以计算进程组使用的多少资源；资源控制，可以将进程组挂起和执行。<h3 id="Docker的特点">Docker的特点</h3>提供简单轻量的建模方式。Docker非常容易上手，用户只需要几分钟就可以将自己的程序docker化。大多数docker容器只需要不到1秒就可以运行起来。由于去除了管理程序的开销，docker容器拥有非常高的性能，同一台宿主机中也可以运行更多的容器，使用户可以尽可能地使用系统资源。<br>职责的逻辑分离。使用docker，开发人员只需要关心容器中运行的应用程序，而运维人员只需要关心如何管理容器。docker设计的目的就是加强应用程序的测试环境与生产部署环境的一致性。<br>快速高效的开发生命周期。docker的目标之一是缩短代码从开发、测试到部署、上线运行的周期，让应用具备可移植性，在容器中开发，以容器的形式交付和分发，这样开发、测试、生产都使用同样的运行环境，也就避免了额外的调试和部署的开销，可以有效缩短产品的运行周期。<br>鼓励使用面向服务的架构。docker推荐单个容器只运行一个应用程序或者进程，这样就形成一个分布式的应用程序模型，在这种模型下，应用程序或服务都可以表示为一系列内部互联的容器，从而使分布式部署应用程序、扩展或调试应用程序都变得非常简单，这就像开发中常用的设计思想，高内聚、低耦合，单一任务。这样就能避免在同一服务器部署不同服务时，可能带来的不同服务之间的影响。这样在应用运行过程中出现问题，也比较容易定位问题的所在。<h3 id="Docker的使用场景">Docker的使用场景</h3>首先，使用Docker容器开发、测试、部署服务。因为docker本身非常轻量化，所以本地开发人员可以构建、分享容器，然后提交到测试环境，最终进入生产环境。使用Docker创建隔离的运行环境。在很多企业应用中同一服务的不同版本可能服务于不同用户。另外，使用docker非常容易创建不同的生产环境来运行不同的服务。<br>其次，由于轻量化，很容易在本地搭建测试环境，用来测试应用程序在不同系统下的兼容性。甚至是搭建集群的测试环境。对于学生也很容易利用docker搭建学习开发的环境。其他一些应用场景包括构建多用户的平台即服务(PaaS)基础设施，提供软件即服务(SaaS)应用程序。高性能、超大规模的宿主机部署。<h3 id="Docker的基本管理功能">Docker的基本管理功能</h3>Docker的核心底层技术是LXC（Linux Container），Docker在其上面进行了进一步的封装。 docker主要有三个组件：docker image 、docker registries、docker container。<br><strong>Docker images</strong><br>Docker images 就是一个只读的模板。比如：一个 image 可以包含一个 ubuntu 的操作系统，里面安装了apache 或者你需要的应用程序。images 可以用来创建 docker containers，docker 提供了一个很简单的机制来创建 images 或者更新现有的 images，甚至可以直接从其他人那里下载一个已经做好的 images来生成实例。那么Docker image镜像在docker中有什么作用？<br>Docker image镜像是容器的基石。容器基于镜像启动和运行，镜像就像是容器的源代码，保存了用于启动容器的各种条件。<br>镜像是一个层叠的只读文件系统。最底层是引导文件系统（bootfs），这很像典型的linux引导文件系统，docker用户基本永远不会和引导文件系统有交互，实际上当一个容器启动后，它将会被移入内存中，bootfs则会被卸载。第二层是rootfs，位于bootfs之上，rootfs可以是一种或多种操作系统(Ubuntu或centos)，在传统的linux引导过程中，rootfs会先以只读的模式加载，当引导结束并完成了完整性检查后，它才会被切换为读写模式，但是在docker里rootfs永远只会是只读模式，并且docker利用联合加载技术，又会在rootfs之上加载更多的只读文件系统。联合加载技术是指一次同时加载多个文件系统，但是在外面看来，只能看到一个文件系统，联合加载会将各层文件系统叠加到一起，这样最终文件系统会包含所有的底层文件和目录，在docker中，这样的文件系统就称为镜像。<br>如图3，一个镜像可以放在另一个镜像的顶部，位于下面的镜像称为父镜像。最底部的镜像称为基础镜像，也就是rootfs。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/dockerImage.png&amp;e=1456156351&amp;token=PBJodyO3zmES4hsPb1HbrDBwgmOzxEPU4FfJhudB:HivL1UkyqBUHkbCEddJ342V3fFs" alt="图3 docker镜像"><br><strong>docker registries</strong><br>Docker registries 也叫 docker 仓库，它有公有仓库和私有仓库两种形式，他们都可以用来上传和下载images。公有的仓库也叫 Docker Hub。它提供了一个巨大的 image 库可以让用户下载，你也可以在自己的局域网内建一个自己的私有仓库。<br><strong>docker containers</strong><br>Docker containers 就是 docker 容器，容器是从 image 镜像创建、启动的。它可以被启动、开始、停止、删除。每个容器都是相互隔离的、安全的平台。容器是docker的执行来源，容器中可以运行用户的一个或多个进程，如果说镜像是应用生命周期中的构建和打包阶段，容器就是启动和执行阶段。<br>当一个容器启动时，docker会在镜像的最顶层加载一个可写层，docker中运行的程序就是在这一层执行的，当docker第一次启动一个容器时，初始的可写层是空的，当文件系统发生变化时，这些变化都会影响到这一层。比如修改一个文件，先将该文件从只读层复制到读写层，该文件的只读版本依然存在，但是已经被读写层中的该文件副本所隐藏，这就是Docker另一个重要的技术——写时复制。</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/云计算/">云计算</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/docker/">docker</a><a href="/tags/容器云/">容器云</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/11/20/容器云技术/" data-title="容器云技术 | 鑫的博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/11/22/Docker典型API/" title="Docker典型API">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Docker典型API</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/10/05/docker使用goagent代理/"  title="docker使用GoAgent代理">
+ <strong>下一篇：</strong><br/> 
+ <span>docker使用GoAgent代理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/11/20/容器云技术/" data-title="容器云技术" data-url="http://yoursite.com/2015/11/20/容器云技术/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#容器云技术分析"><span class="toc-number">1.</span> <span class="toc-text">容器云技术分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#容器VS_虚拟机"><span class="toc-number">1.1.</span> <span class="toc-text">容器VS 虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-number">1.2.</span> <span class="toc-text">Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker依赖Linux内核特性"><span class="toc-number">1.2.1.</span> <span class="toc-text">Docker依赖Linux内核特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker的特点"><span class="toc-number">1.2.2.</span> <span class="toc-text">Docker的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker的使用场景"><span class="toc-number">1.2.3.</span> <span class="toc-text">Docker的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker的基本管理功能"><span class="toc-number">1.2.4.</span> <span class="toc-text">Docker的基本管理功能</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Go/" title="Go">Go<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/j2ee/" title="j2ee">j2ee<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jvm/" title="jvm">jvm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Go语言/" title="Go语言">Go语言<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/容器云/" title="容器云">容器云<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jvm/" title="jvm">jvm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jsp/" title="jsp">jsp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/taglib/" title="taglib">taglib<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/soa/" title="soa">soa<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web-services/" title="web services">web services<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/huangtxin" target="_blank" title="我的GitHub">我的GitHub</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 年少轻狂，不知简简单单才是福 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2411360485" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/hsinko" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/106161458455416050000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="HuangXin">HuangXin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"xin"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'xin';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F5480422c3b8ea490cbfc63c58c903bae' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

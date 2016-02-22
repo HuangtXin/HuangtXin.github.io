@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>跟我学习Go语言(3) | 鑫的博客</title>
+    <title>鑫的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="HuangXin">
     
 
     
-    <meta name="description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
+    <meta name="description" content="taglib工作原理在struts2中很重要的功能：数据封装、数据回显。数据封装的实现很好理解，即通过在过滤器预先读取请求参数的值，并利用反射机制封装到一个对象,即Model，所以需要implements接口并实现setModel方法,或者是封装到action的属性中，然后调用action的execute方法。本文的重点是记录我对数据回显的理解。struts2数据回显实现让我对taglib的原理产">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跟我学习Go语言(3)">
-<meta property="og:url" content="http://yoursite.com/2015/08/13/跟我学习Go语言-3/index.html">
+<meta property="og:title" content="鑫的博客">
+<meta property="og:url" content="http://yoursite.com/2015/09/01/jsp-tablib工作原理/index.html">
 <meta property="og:site_name" content="鑫的博客">
-<meta property="og:description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
-<meta property="og:updated_time" content="2015-08-16T09:04:59.820Z">
+<meta property="og:description" content="taglib工作原理在struts2中很重要的功能：数据封装、数据回显。数据封装的实现很好理解，即通过在过滤器预先读取请求参数的值，并利用反射机制封装到一个对象,即Model，所以需要implements接口并实现setModel方法,或者是封装到action的属性中，然后调用action的execute方法。本文的重点是记录我对数据回显的理解。struts2数据回显实现让我对taglib的原理产">
+<meta property="og:updated_time" content="2016-02-22T17:27:16.154Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="跟我学习Go语言(3)">
-<meta name="twitter:description" content="内存分配newnew(T)返回一个T的指针 指向一个零值T
-makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！
-复合声明复合声明&amp;amp;File{fd: fd, name: name}   从堆中分配。‘&amp;amp;’得到堆上分配到的内存地址。">
+<meta name="twitter:title" content="鑫的博客">
+<meta name="twitter:description" content="taglib工作原理在struts2中很重要的功能：数据封装、数据回显。数据封装的实现很好理解，即通过在过滤器预先读取请求参数的值，并利用反射机制封装到一个对象,即Model，所以需要implements接口并实现setModel方法,或者是封装到action的属性中，然后调用action的execute方法。本文的重点是记录我对数据回显的理解。struts2数据回显实现让我对taglib的原理产">
 <link rel="publisher" href="106161458455416050000">
 
     
@@ -87,14 +81,14 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/13/跟我学习Go语言-3/" title="跟我学习Go语言(3)" itemprop="url">跟我学习Go语言(3)</a>
+      <a href="/2015/09/01/jsp-tablib工作原理/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-13T12:20:45.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    <time datetime="2015-08-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-09-01</time>
     
   </p>
 </header>
@@ -103,97 +97,42 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内存分配"><span class="toc-number">1.</span> <span class="toc-text">内存分配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-number">1.1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#make"><span class="toc-number">1.2.</span> <span class="toc-text">make</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复合声明"><span class="toc-number">1.3.</span> <span class="toc-text">复合声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#type"><span class="toc-number">2.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构体（struct）"><span class="toc-number">3.</span> <span class="toc-text">结构体（struct）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">3.1.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义方法"><span class="toc-number">3.2.</span> <span class="toc-text">定义方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#转换"><span class="toc-number">4.</span> <span class="toc-text">转换</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#taglib工作原理"><span class="toc-number">1.</span> <span class="toc-text">taglib工作原理</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="内存分配">内存分配</h1><h2 id="new">new</h2><p>new(T)返回一个T的指针 指向一个零值T</p>
-<h2 id="make">make</h2><p>make(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！</p>
-<h2 id="复合声明">复合声明</h2><p>复合声明&amp;File{fd: fd, name: name}   从堆中分配。‘&amp;’得到堆上分配到的内存地址。<br><a id="more"></a></p>
-<h1 id="type">type</h1><p>用法：<br>type foo int<br>使foo与int一样 与c/c++中typedef一样（foo与int位置相反）</p>
-<h1 id="结构体（struct）">结构体（struct）</h1><p><em>注意：方法和成员变量命名以大小写确定是否可以导出（即大写开头为public 小写开头为pravite</em></p>
-<h2 id="用法">用法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> NameAge struct &#123;   //可以有匿名字段</span><br><span class="line">name string  //不导出</span><br><span class="line">age int  //不导出</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="定义方法">定义方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func (n1 *NameAge) func1(n2 int ) &#123; /* */ &#125;</span><br><span class="line">func (n1 NameAge) func2(n2 int ) &#123; /* */ &#125;</span><br></pre></td></tr></table></figure>
-<p>func1是&amp;NameAge上的方法，可以修改NameAge成员变量的值<br>func2是NameAge上的方法，不可以修改NameAge成员变量的值<br>Go语言里为了贯彻方便开发的原则，内部实现NameAge.func1(int)等价于(&amp;NameAge).func1(2)<br><em>注意：x.m()等价于(&amp;x).m()</em></p>
-<h1 id="转换">转换</h1><table>
-<thead>
-<tr>
-<th>From</th>
-<th>b []byte</th>
-<th>i []int</th>
-<th>r []rune</th>
-<th>s string</th>
-<th>f float32</th>
-<th>i int</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>To</strong></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]byte</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]byte(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]int</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]int(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>[]rune</td>
-<td></td>
-<td></td>
-<td></td>
-<td>[]rune(s)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>string</td>
-<td>string(b)</td>
-<td>string(i)</td>
-<td>string(r)</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>int</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>float32(i)</td>
-</tr>
-<tr>
-<td>float32</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>int(f)</td>
-</tr>
-</tbody>
-</table>
-<p>string(97)得到结果为“a”，如果是想将97转换成“97”，就要使用strconv包里的Itoa方法。strconv.Itoa(97)。另外strconv包里还有其他的转换方法，下篇会有介绍。</p>
+		<h1 id="taglib工作原理">taglib工作原理</h1><p>在struts2中很重要的功能：数据封装、数据回显。数据封装的实现很好理解，即通过在过滤器预先读取请求参数的值，并利用反射机制封装到一个对象,即Model，所以需要implements接口并实现setModel方法,或者是封装到action的属性中，然后调用action的execute方法。本文的重点是记录我对数据回显的理解。<br>struts2数据回显实现让我对taglib的原理产生了疑问，于是开始探索……..<br>jsp文件中允许使用自己定义的标签库，如struts2的标签库</p>
+<p>  &lt;%@ taglib prefix=”s” uri=”/struts-tags”%&gt;</p>
+<p><strong>那么，这些标签是怎么工作的呢？</strong><br><a id="more"></a><br>首先，看这个uri指向什么文件。在eclipse F3转到文件，可以发现是在struts2-core-*.jar中的一个struts-tags.tld文件，tld应该就是指 taglib description。文件中的内容大致如下:</p>
+<pre><code><span class="tag">&lt;<span class="title">display-name</span>&gt;</span>"Struts Tags"<span class="tag">&lt;/<span class="title">display-name</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">tlib-version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="title">tlib-version</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">short-name</span>&gt;</span>s<span class="tag">&lt;/<span class="title">short-name</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">uri</span>&gt;</span>/struts-tags<span class="tag">&lt;/<span class="title">uri</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">tag</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">description</span>&gt;</span><span class="cdata">&lt;![CDATA[Execute an action from within a view]]&gt;</span><span class="tag">&lt;/<span class="title">description</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">name</span>&gt;</span>action<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tag-class</span>&gt;</span>org.apache.struts2.views.jsp.ActionTag<span class="tag">&lt;/<span class="title">tag-class</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">body-content</span>&gt;</span>JSP<span class="tag">&lt;/<span class="title">body-content</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">attribute</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">description</span>&gt;</span><span class="cdata">&lt;![CDATA[Whether the result of this action (probably a view) should be executed/rendered]]&gt;</span><span class="tag">&lt;/<span class="title">description</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">name</span>&gt;</span>executeResult<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">required</span>&gt;</span>false<span class="tag">&lt;/<span class="title">required</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">rtexprvalue</span>&gt;</span>false<span class="tag">&lt;/<span class="title">rtexprvalue</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">attribute</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">attribute</span>&gt;</span>
+        ...
+    <span class="tag">&lt;/<span class="title">attribute</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">tag</span>&gt;</span>
+<span class="tag">&lt;<span class="title">tag</span>&gt;</span>
+...
+<span class="tag">&lt;/<span class="title">tag</span>&gt;</span>
+...
+<span class="tag">&lt;/<span class="title">taglib</span>&gt;</span>
+</code></pre><p>在每个tag中定义了一个标签，指定了一个处理该标签的java类，有关这些处理类的实现提供了</p>
+<ul>
+<li>一个接口——javax.servlet.jsp.tagext.Tag</li>
+<li>两个类——自关闭类型标签（TagSupport）；成对类型的标签（BodyTagSupport）<br>然后，重写方法setPageContext(),doStartTag(),doEndTag()，在这些方法中做一些操作。<br><strong>还有一个问题，jsp文件是怎么找到这些tld文件的？</strong><br>struts2-core-*.jar文件是放在WEB/lib目录下的，也就是在classpath中，tld文件就是通过搜索classpath目录及其子目录找到的。</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -201,13 +140,13 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
+  <a class="article-category-link" href="/categories/j2ee/">j2ee</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  <span></span> <a href="/tags/jsp/">jsp</a><a href="/tags/taglib/">taglib</a>
   </div>
 
 </div>
@@ -216,7 +155,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/08/13/跟我学习Go语言-3/" data-title="跟我学习Go语言(3) | 鑫的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/09/01/jsp-tablib工作原理/" data-title="鑫的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -230,18 +169,18 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/08/13/跟我学习Go语言-4/" title="跟我学习Go语言(4)">
+ <a href="/2015/09/01/wso2 identity server架构简述/" title="wso2 identity server架构简述">
   <strong>上一篇：</strong><br/>
   <span>
-  跟我学习Go语言(4)</span>
+  wso2 identity server架构简述</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/08/07/跟我学习Go语言-2/"  title="跟我学习Go语言(2)">
+<a href="/2015/08/14/jvm-垃圾收集算法/"  title="jvm-垃圾收集算法">
  <strong>下一篇：</strong><br/> 
- <span>跟我学习Go语言(2)
+ <span>jvm-垃圾收集算法
 </span>
 </a>
 </div>
@@ -250,7 +189,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/13/跟我学习Go语言-3/" data-title="跟我学习Go语言(3)" data-url="http://yoursite.com/2015/08/13/跟我学习Go语言-3/"></div>
+	<div class="ds-thread" data-thread-key="2015/09/01/jsp-tablib工作原理/" data-title="" data-url="http://yoursite.com/2015/09/01/jsp-tablib工作原理/"></div>
 </section>
 
 
@@ -266,7 +205,7 @@ makemake(T, args) 与new(T) 有着不同的功能。它只能创建slice，map�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内存分配"><span class="toc-number">1.</span> <span class="toc-text">内存分配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-number">1.1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#make"><span class="toc-number">1.2.</span> <span class="toc-text">make</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复合声明"><span class="toc-number">1.3.</span> <span class="toc-text">复合声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#type"><span class="toc-number">2.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构体（struct）"><span class="toc-number">3.</span> <span class="toc-text">结构体（struct）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">3.1.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义方法"><span class="toc-number">3.2.</span> <span class="toc-text">定义方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#转换"><span class="toc-number">4.</span> <span class="toc-text">转换</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#taglib工作原理"><span class="toc-number">1.</span> <span class="toc-text">taglib工作原理</span></a></li></ol>
  
   </div>
 
