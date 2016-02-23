@@ -82,6 +82,141 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/01/wso2 identity server架构简述/" title="wso2 identity server架构简述" itemprop="url">wso2 identity server架构简述</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-31T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>WSO2 Identity Server为企业WEB应用提供复杂的身份管理及安全认证服务。以下是wso2的架构图。一开始看这个架构图可能会有些困惑，箭头很杂乱，不知所云。为了方便理解，可以把以下架构图分为两部分来看。一部分是身份认证流程，另一部分是用户和访问权限管理框架。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/09/01/wso2 identity server架构简述/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/wso2is/">wso2is</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/wso2is/">wso2is</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/09/01/wso2 identity server架构简述/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/09/01/wso2 identity server架构简述/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/14/jvm-垃圾收集算法/" title="jvm-垃圾收集算法" itemprop="url">jvm-垃圾收集算法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-14T14:23:26.000Z" itemprop="datePublished"> 发表于 2015-08-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="标记_-_清除算法">标记 - 清除算法</h1><p><strong>垃圾回收算法的基础</strong><br>标记 - 清除算法是最基础的算法，如它的名字一样，算法分为标记和清除两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收掉所有被标记的对象。</p>
+<h2 id="标记过程（根搜索算法）">标记过程（根搜索算法）</h2><p>这个算法的基本思想就是通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链（Reference Chain），当一个对象到GC Roots没有任何引用链相连（用图论的话来说就是从GC Roots到这个对象不可达）时，则证明此对象是不可用的。<br>在Java语言里，可作为GC Roots的对象包括下面几种：</p>
+<ul>
+<li>虚拟机栈（栈帧中的本地变量表）中引用的对象</li>
+<li>方法区中的类静态属性引用的对象</li>
+<li>方法区中的常量引用的对象</li>
+<li>本地方法栈中JNI（Native方法）的引用对象</li>
+</ul>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/14/jvm-垃圾收集算法/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/jvm/">jvm</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/jvm/">jvm</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/14/jvm-垃圾收集算法/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/14/jvm-垃圾收集算法/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/13/jvm-垃圾收集器总结/" title="jvm-垃圾收集器总结" itemprop="url">jvm-垃圾收集器总结</a>
   </h1>
   <p class="article-author">By
@@ -270,136 +405,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/13/跟我学习Go语言-3/" title="跟我学习Go语言(3)" itemprop="url">跟我学习Go语言(3)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-13T12:20:45.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="内存分配">内存分配</h1><h2 id="new">new</h2><p>new(T)返回一个T的指针 指向一个零值T</p>
-<h2 id="make">make</h2><p>make(T, args) 与new(T) 有着不同的功能。它只能创建slice，map和channel，并且返回一个有初始值（非零）的T 类型，而不是*T（返回的是引用，不是指针）。已完成初始化！</p>
-<h2 id="复合声明">复合声明</h2><p>复合声明&amp;File{fd: fd, name: name}   从堆中分配。‘&amp;’得到堆上分配到的内存地址。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/13/跟我学习Go语言-3/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/13/跟我学习Go语言-3/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/13/跟我学习Go语言-3/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/07/跟我学习Go语言-2/" title="跟我学习Go语言(2)" itemprop="url">跟我学习Go语言(2)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-07T13:20:33.000Z" itemprop="datePublished"> 发表于 2015-08-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="函数">函数</h1><h2 id="普通函数的定义">普通函数的定义</h2><p>func 函数名(参数) (返回值)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func <span class="keyword">do</span>(a int, b <span class="built_in">float</span>64) bool&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/07/跟我学习Go语言-2/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Go/">Go</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Go语言/">Go语言</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/07/跟我学习Go语言-2/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/07/跟我学习Go语言-2/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
@@ -426,7 +431,7 @@
 		  
 		
 		  
-			<li><a href="/categories/java/" title="java">java<sup>1</sup></a></li>
+			<li><a href="/categories/java/" title="java">java<sup>2</sup></a></li>
 		  
 		
 		  
@@ -438,7 +443,7 @@
 		  
 		
 		  
-			<li><a href="/categories/云计算/" title="云计算">云计算<sup>5</sup></a></li>
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>7</sup></a></li>
 		  
 		
 		</ul>
@@ -451,15 +456,15 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/docker/" title="docker">docker<sup>7</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Go语言/" title="Go语言">Go语言<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/docker/" title="docker">docker<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/容器云/" title="容器云">容器云<sup>3</sup></a></li>
+				<li><a href="/tags/容器云/" title="容器云">容器云<sup>4</sup></a></li>
 			
 		
 			
@@ -467,11 +472,15 @@
 			
 		
 			
-				<li><a href="/tags/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/jsp/" title="jsp">jsp<sup>1</sup></a></li>
+				<li><a href="/tags/PaaS/" title="PaaS">PaaS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/服务发现/" title="服务发现">服务发现<sup>1</sup></a></li>
 			
 		
 			
@@ -479,7 +488,7 @@
 			
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+				<li><a href="/tags/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
 			
 		
 			
@@ -488,6 +497,10 @@
 		
 			
 				<li><a href="/tags/web-services/" title="web services">web services<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jsp/" title="jsp">jsp<sup>1</sup></a></li>
 			
 		
 		</ul>

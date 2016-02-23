@@ -4,23 +4,44 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Docker创建镜像文件 | 鑫的博客</title>
+    <title>java日常小笔记 | 鑫的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="HuangXin">
     
 
     
-    <meta name="description" content="Docker创建镜像文件容器是通过images启动的，如何自己创建images就是一个很重要问题。Docker中创建images包括两种方法。一种是利用base images，在一个镜像的基础上创建，另一种是使用dockerfile，基于描述文件创建。以下内容分别进行描述。">
+    <meta name="description" content="java language
+变量修饰符：static(类级变量or实例级变量)、final、volatile(可见并发性，强制从主内存读写)、transient(可否序列化)
+方法修饰符：static final synchronized native strictfp abstract
+static块在类被初始化的时候，仅仅调用一次。
+方法重写：
+
+
+抛出的异常可以减少或删除，一定不能抛出新的或">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker创建镜像文件">
-<meta property="og:url" content="http://yoursite.com/2015/11/23/Docker创建镜像文件/index.html">
+<meta property="og:title" content="java日常小笔记">
+<meta property="og:url" content="http://yoursite.com/2015/08/01/java日常小笔记/index.html">
 <meta property="og:site_name" content="鑫的博客">
-<meta property="og:description" content="Docker创建镜像文件容器是通过images启动的，如何自己创建images就是一个很重要问题。Docker中创建images包括两种方法。一种是利用base images，在一个镜像的基础上创建，另一种是使用dockerfile，基于描述文件创建。以下内容分别进行描述。">
-<meta property="og:updated_time" content="2016-02-23T07:00:51.130Z">
+<meta property="og:description" content="java language
+变量修饰符：static(类级变量or实例级变量)、final、volatile(可见并发性，强制从主内存读写)、transient(可否序列化)
+方法修饰符：static final synchronized native strictfp abstract
+static块在类被初始化的时候，仅仅调用一次。
+方法重写：
+
+
+抛出的异常可以减少或删除，一定不能抛出新的或">
+<meta property="og:updated_time" content="2016-02-23T08:51:51.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker创建镜像文件">
-<meta name="twitter:description" content="Docker创建镜像文件容器是通过images启动的，如何自己创建images就是一个很重要问题。Docker中创建images包括两种方法。一种是利用base images，在一个镜像的基础上创建，另一种是使用dockerfile，基于描述文件创建。以下内容分别进行描述。">
+<meta name="twitter:title" content="java日常小笔记">
+<meta name="twitter:description" content="java language
+变量修饰符：static(类级变量or实例级变量)、final、volatile(可见并发性，强制从主内存读写)、transient(可否序列化)
+方法修饰符：static final synchronized native strictfp abstract
+static块在类被初始化的时候，仅仅调用一次。
+方法重写：
+
+
+抛出的异常可以减少或删除，一定不能抛出新的或">
 <link rel="publisher" href="106161458455416050000">
 
     
@@ -81,14 +102,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/11/23/Docker创建镜像文件/" title="Docker创建镜像文件" itemprop="url">Docker创建镜像文件</a>
+      <a href="/2015/08/01/java日常小笔记/" title="java日常小笔记" itemprop="url">java日常小笔记</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
 		
   <p class="article-time">
-    <time datetime="2015-11-22T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-11-23</time>
+    <time datetime="2015-08-01T15:21:38.000Z" itemprop="datePublished"> 发表于 2015-08-01</time>
     
   </p>
 </header>
@@ -97,14 +118,41 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker创建镜像文件"><span class="toc-number">1.</span> <span class="toc-text">Docker创建镜像文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用base_image"><span class="toc-number">1.1.</span> <span class="toc-text">利用base image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dockerfile"><span class="toc-number">1.2.</span> <span class="toc-text">dockerfile</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java_language"><span class="toc-number">1.</span> <span class="toc-text">java language</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JDK"><span class="toc-number">2.</span> <span class="toc-text">JDK</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">2.1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO"><span class="toc-number">2.2.</span> <span class="toc-text">IO</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="Docker创建镜像文件">Docker创建镜像文件</h1><p>容器是通过images启动的，如何自己创建images就是一个很重要问题。Docker中创建images包括两种方法。一种是利用base images，在一个镜像的基础上创建，另一种是使用dockerfile，基于描述文件创建。以下内容分别进行描述。<br><a id="more"></a></p>
-<h2 id="利用base_image">利用base image</h2><p>这种方式是在原有的base image基础上改造，大概步骤包括由base image启动一个实例，然后，在实例中执行一些更新操作，最后保存为新的镜像文件。<br>首先下载好一个 base image，比如一个ubuntu的base image，每次在这个image中执行一次相关的操作，其对应的版本号就会更新一次，相应的镜像也会更新，将更新好的镜像存起来，可以上传到docker hub中以实现共享，这里可以采用commit命令。<br>docker commit 命令后面-m参数表示这次提交修改的信息 就像是提交了一个新的版本一样 这个与git很像了 比如-m=”Add json”；-a 参数用来指明作者的信息 是谁提交了这次的修改操作。<br>先要把docker containr容器改变成一个images 用下面的语句：<br><code>docker commit -m=&quot;add apt-get&quot; -a=&quot;xin&quot; a3debc1 huangxin/test:V2</code><br>之后再使用 docker images查看镜像 就有了我们所添加进去的那个镜像了</p>
-<h2 id="dockerfile">dockerfile</h2><p>我们可以使用docker build的方式来扩展一个镜像，命令如下：<br>sudo docker build -t=”ouruser/sinatra:v2” Dockerfile文件的路径<br>-t参数表示的是新生成的镜像属于用户ouruser 这个用户的仓库名是sinatra tag标记的V2 若是已经到了Docker文件的目录下 直接用一个 . 来表示Dockerfile文件所在的路径为当前路径，或者你也可以自动进行检测。<br>以下是一个dockerfile文件中的内容示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is a comment</span></span><br><span class="line">FROM ubuntu:<span class="number">14.04</span></span><br><span class="line">MAINTAINER Huang X<span class="keyword">in</span> &lt;xin@example.com&gt;</span><br><span class="line">RUN apt-get -qq update</span><br><span class="line">RUN apt-get -qqy install ruby ruby-dev</span><br></pre></td></tr></table></figure></p>
-<p>之后再用docker images命令 就可以查看到我们新生成的镜像了。dockerfile文件第一行“#”符号后为注释内容。本文之前介绍过docker的镜像是一个层叠式文件系统，第二行FROM语句指定的就是所要创建镜像的基础镜像。MAINTAINER添加一些作者信息。RUN就是在基础镜像中执行的命令，这里需要注意，每加一行RUN，就会多生成一层镜像，最后这些镜像加起来就组成了最终的镜像。另外EXPOSE也是经常使用的dockerfile命令，用来指定容器在运行期间要暴露的端口和映射到主机的端口。ENTRYPOINT表示每次在镜像初始化的时候需要执行的命令，一般只设置一个，要是有多个命令的话，彼此之间需要用&amp;&amp;来隔离开。</p>
+		<h1 id="java_language">java language</h1><ol>
+<li>变量修饰符：static(类级变量or实例级变量)、final、volatile(可见并发性，强制从主内存读写)、transient(可否序列化)</li>
+<li>方法修饰符：static final synchronized native strictfp abstract</li>
+<li>static块在类被初始化的时候，仅仅调用一次。</li>
+<li>方法重写：</li>
+</ol>
+<ul>
+<li>抛出的异常可以减少或删除，一定不能抛出新的或者更广的异常。</li>
+<li>声明为final的方法不能被重写。</li>
+<li>声明为static的方法不能被重写，但是能够被再次声明。</li>
+<li>访问权限不能比父类中被重写的方法的访问权限更严格。例如：如果父类的一个方法被声明为public，那么在子类中重写该方法就不能声明为protected。</li>
+</ul>
+<ol>
+<li>java.lang.Cloneable接口是一个空的接口，没有申明任何属性与方法。该接口只是告诉JVM，该接口的实现类需要开放“克隆”功能。 </li>
+<li>java函数传参是浅拷贝。=赋值也相当于浅拷贝，例如 ArrayList<string> list1 = list2  就只是赋于引用值，ArrayList<string> list1 = new ArrayList<string>(list2) 才是拷贝数值</string></string></string></li>
+<li>继承：实际上,private,public,protected和继承没有关系,他们对成员函数和变量的限制只是在成员的可见性上。</li>
+</ol>
+<ul>
+<li>public允许来自任何类的访问;</li>
+<li>private只允许来自改类内部的方法访问,不允许任何来自该类外部的访问;</li>
+<li>protected允许来自同一包中的任何类以及改类的任何地方的任何子类的方法访问.<br>而关于成员变量的继承,父类的任何成员变量都是会被子类继承下去的,这些继承下来的私有成员虽对子类来说不可见,但子类仍然可以用父类的函数操作他们.<br>这样的设计有何意义呢?我们可以用这个方法将我们的成员保护得更好,让子类的设计者也只能通过父类指定的方法修改父类的私有成员,这样将能把类保护得更好,这对一个完整的继承体系是尤为可贵的. jdk源码就有这样的例子,java.util.Observable就是这样设计的.<h1 id="JDK">JDK</h1><h2 id="使用">使用</h2>64位JDK管理大内存，需要考虑以下问题：</li>
+</ul>
+<ol>
+<li>内存回收导致的长时间停顿</li>
+<li>现阶段，64位JDK的性能测试结果普遍低于32位JDK</li>
+<li>需要保证程序足够稳定，因为这种应用要是产生堆溢出几乎就无法产生堆转储快照（因为要产生十几GB乃至更大的文件），哪怕产生了快照也几乎无法进行分析。</li>
+<li>相同的程序在64位JKD中消耗的内存一般比32位JDK大，这是由指针膨胀及数据类型对齐补白等因素导致。<h2 id="IO">IO</h2>InputStream类——available()方法返回输入流的大小。<br>使用：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fis = new FileInputStream(<span class="string">"E:\\1.txt"</span>);</span><br><span class="line">byte[] b= new byte[fis.available()];//定义一个刚刚好的数组</span><br><span class="line">fis.read(b);//全部读完</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>InputStream类及子类(包括 FileInputStream BufferedInputStream)处理的都是字节流。OutputStream与之对应<br>Reader类及子类(包括FileReader BufferedReader)处理的都是字符流，构造函数需传入InputStream。Writer类与之对应<br>BufferedInputStream是包装类，必须传入要包装的InputStream。BufferedOutputStream与之对应<br>BufferedReader是包装类，必须传入要包装的Reader。BufferedWriter与之对应</p>
+<p>InputStreamReader可以指定字符集，FileReader是使用系统默认字符集。OutputStreamWriter与之对应。例子：<br><code>BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(&quot;E:\\笔记1.txt&quot;),&quot;GBK&quot;));</code></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -112,13 +160,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/云计算/">云计算</a>
+  <a class="article-category-link" href="/categories/java/">java</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/docker/">docker</a><a href="/tags/容器云/">容器云</a>
+  <span></span> <a href="/tags/java/">java</a>
   </div>
 
 </div>
@@ -127,7 +175,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/11/23/Docker创建镜像文件/" data-title="Docker创建镜像文件 | 鑫的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/08/01/java日常小笔记/" data-title="java日常小笔记 | 鑫的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -141,27 +189,19 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/11/26/PaaS与容器化/" title="PaaS与容器化">
+ <a href="/2015/08/06/初识go语言小节/" title="初识Go语言小节">
   <strong>上一篇：</strong><br/>
   <span>
-  PaaS与容器化</span>
+  初识Go语言小节</span>
 </a>
 </div>
 
-
-<div class="next">
-<a href="/2015/11/23/SOA与Web Services/"  title="SOA与Web Services">
- <strong>下一篇：</strong><br/> 
- <span>SOA与Web Services
-</span>
-</a>
-</div>
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/11/23/Docker创建镜像文件/" data-title="Docker创建镜像文件" data-url="http://yoursite.com/2015/11/23/Docker创建镜像文件/"></div>
+	<div class="ds-thread" data-thread-key="2015/08/01/java日常小笔记/" data-title="java日常小笔记" data-url="http://yoursite.com/2015/08/01/java日常小笔记/"></div>
 </section>
 
 
@@ -177,7 +217,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker创建镜像文件"><span class="toc-number">1.</span> <span class="toc-text">Docker创建镜像文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用base_image"><span class="toc-number">1.1.</span> <span class="toc-text">利用base image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dockerfile"><span class="toc-number">1.2.</span> <span class="toc-text">dockerfile</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java_language"><span class="toc-number">1.</span> <span class="toc-text">java language</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JDK"><span class="toc-number">2.</span> <span class="toc-text">JDK</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">2.1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO"><span class="toc-number">2.2.</span> <span class="toc-text">IO</span></a></li></ol></li></ol>
  
   </div>
 
