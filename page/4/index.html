@@ -373,12 +373,14 @@
 <li>protected允许来自同一包中的任何类以及改类的任何地方的任何子类的方法访问.<br>而关于成员变量的继承,父类的任何成员变量都是会被子类继承下去的,这些继承下来的私有成员虽对子类来说不可见,但子类仍然可以用父类的函数操作他们.<br>这样的设计有何意义呢?我们可以用这个方法将我们的成员保护得更好,让子类的设计者也只能通过父类指定的方法修改父类的私有成员,这样将能把类保护得更好,这对一个完整的继承体系是尤为可贵的. jdk源码就有这样的例子,java.util.Observable就是这样设计的.<h1 id="JDK">JDK</h1><h2 id="使用">使用</h2>64位JDK管理大内存，需要考虑以下问题：</li>
 </ul>
 </li>
+</ol>
+<ul>
 <li>内存回收导致的长时间停顿</li>
 <li>现阶段，64位JDK的性能测试结果普遍低于32位JDK</li>
 <li>需要保证程序足够稳定，因为这种应用要是产生堆溢出几乎就无法产生堆转储快照（因为要产生十几GB乃至更大的文件），哪怕产生了快照也几乎无法进行分析。</li>
 <li>相同的程序在64位JKD中消耗的内存一般比32位JDK大，这是由指针膨胀及数据类型对齐补白等因素导致。<h2 id="IO">IO</h2>InputStream类——available()方法返回输入流的大小。<br>使用：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fis = new FileInputStream(<span class="string">"E:\\1.txt"</span>);</span><br><span class="line">byte[] b= new byte[fis.available()];//定义一个刚刚好的数组</span><br><span class="line">fis.read(b);//全部读完</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+</ul>
 <p>InputStream类及子类(包括 FileInputStream BufferedInputStream)处理的都是字节流。OutputStream与之对应<br>Reader类及子类(包括FileReader BufferedReader)处理的都是字符流，构造函数需传入InputStream。Writer类与之对应<br>BufferedInputStream是包装类，必须传入要包装的InputStream。BufferedOutputStream与之对应<br>BufferedReader是包装类，必须传入要包装的Reader。BufferedWriter与之对应</p>
 <p>InputStreamReader可以指定字符集，FileReader是使用系统默认字符集。OutputStreamWriter与之对应。例子：<br><code>BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(&quot;E:\\笔记1.txt&quot;),&quot;GBK&quot;));</code></p>
 
@@ -567,7 +569,7 @@
 		<a href="http://weibo.com/2411360485" target="_blank" class="icon-weibo" title="微博"></a>
 		
 		
-		<a href="https://github.com/https://github.com/hsinko" target="_blank" class="icon-github" title="github"></a>
+		<a href="https://github.com/hsinko" target="_blank" class="icon-github" title="github"></a>
 		
 		
 		
