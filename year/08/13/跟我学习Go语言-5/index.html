@@ -1,0 +1,626 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>跟我学习Go语言(5) | hsinko&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="HuangXin">
+    
+
+    
+    <meta name="description" content="接口(interface)接口(interface)在Go语言有着至关重要的地位。如果说goroutine和channel 是支撑起Go语言的并发模型的基石，让Go语言在如今集群化与多核化的时代，成为一道极为亮丽的风景；那么接口(interface)是Go语言整个类型系统(type system)的基石，让Go语言在基础编程哲学的探索上，达到史无先例的高度。Go 语言的接口(interface)不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跟我学习Go语言(5)">
+<meta property="og:url" content="http://huangtxin.github.io/year/08/13/跟我学习Go语言-5/index.html">
+<meta property="og:site_name" content="hsinko's blog">
+<meta property="og:description" content="接口(interface)接口(interface)在Go语言有着至关重要的地位。如果说goroutine和channel 是支撑起Go语言的并发模型的基石，让Go语言在如今集群化与多核化的时代，成为一道极为亮丽的风景；那么接口(interface)是Go语言整个类型系统(type system)的基石，让Go语言在基础编程哲学的探索上，达到史无先例的高度。Go 语言的接口(interface)不">
+<meta property="og:updated_time" content="2015-08-16T09:02:31.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跟我学习Go语言(5)">
+<meta name="twitter:description" content="接口(interface)接口(interface)在Go语言有着至关重要的地位。如果说goroutine和channel 是支撑起Go语言的并发模型的基石，让Go语言在如今集群化与多核化的时代，成为一道极为亮丽的风景；那么接口(interface)是Go语言整个类型系统(type system)的基石，让Go语言在基础编程哲学的探索上，达到史无先例的高度。Go 语言的接口(interface)不">
+<link rel="publisher" href="106161458455416050000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="hsinko&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="hsinko&#39;s blog" title="hsinko&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="hsinko&#39;s blog">hsinko&#39;s blog</a></h1>
+				<h2 class="blog-motto">成就源于创造价值。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:huangtxin.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/year/08/13/跟我学习Go语言-5/" title="跟我学习Go语言(5)" itemprop="url">跟我学习Go语言(5)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-13T14:25:05.000Z" itemprop="datePublished"> 发表于 2015-08-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#接口(interface)"><span class="toc-number">1.</span> <span class="toc-text">接口(interface)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#其他语言(C++/Java/C#)的接口"><span class="toc-number">1.1.</span> <span class="toc-text">其他语言(C++/Java/C#)的接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非侵入式接口"><span class="toc-number">1.2.</span> <span class="toc-text">非侵入式接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口赋值"><span class="toc-number">1.3.</span> <span class="toc-text">接口赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口查询"><span class="toc-number">1.4.</span> <span class="toc-text">接口查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型查询"><span class="toc-number">1.5.</span> <span class="toc-text">类型查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Any类型"><span class="toc-number">1.6.</span> <span class="toc-text">Any类型</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="接口(interface)">接口(interface)</h1><p>接口(interface)在Go语言有着至关重要的地位。如果说goroutine和channel 是支撑起Go语言的并发模型的基石，让Go语言在如今集群化与多核化的时代，成为一道极为亮丽的风景；那么接口(interface)是Go语言整个类型系统(type system)的基石，让Go语言在基础编程哲学的探索上，达到史无先例的高度。<br>Go 语言的接口(interface)不单单只是接口。<br><a id="more"></a><br>为什么这么说？让我们细细道来。</p>
+<h2 id="其他语言(C++/Java/C#)的接口">其他语言(C++/Java/C#)的接口</h2><p>Go语言的接口，并不是你之前在其他语言(C++/Java/C#等)中接触到的接口。<br>在Go语言之前的接口(interface)，主要作为不同组件之间的契约存在。对契约的实现是强制的，你必须声明你的确实现了该接口。为了实现一个接口，你需要从该接口继承：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">interface IFoo &#123;</span><br><span class="line">    void Bar();</span><br><span class="line">&#125;</span><br><span class="line">class Foo implements IFoo &#123; // Java 文法</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">class Foo : public IFoo &#123; // C++ 文法</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">IFoo* foo = new Foo;</span><br></pre></td></tr></table></figure></p>
+<p>哪怕另外存在一个一模一样的接口，只是名字不同叫IFoo2（名字一样但是在不同的名字空间下，也是名字不同），上面的类Foo只实现了IFoo，但没有实现IFoo2。<br>这类接口(interface)，我们称之为侵入式的接口。“侵入式”的主要表现在于实现类需要明确声明自己实现了某个接口。<br>这种强制性的接口继承，是面向对象编程（OOP）思想发展过程中的一个重大失误。我之所以这样讲，是因为它从根本上是违背事物的因果关系的。<br>让我们从契约的形成过程谈起。设想我们现在要实现一个简单搜索引擎（SE）。该搜索引擎需要依赖两个模块，一个是哈希表（HT），一个是HTML分析器（HtmlParser）。<br>搜索引擎的实现者认为，SE对哈希表（HT）的依赖是确定性的，所以他不并认为需要在SE和HT之间定义接口，而是直接import（或者include）的方式使用了HT；而模块SE对HtmlParser的依赖是不确定的，未来可能需要有WordParser、PdfParser等模块来替代HtmlParser，以达到不同的业务要求。为此，他定义了SE和HtmlParser之间的接口，在模块SE中通过接口调用方式间接引用模块HtmlParser。<br>应当注意到，接口(interface)的需求方是搜索引擎（SE）。只有SE才知道接口应该定义成什么样子才比更为合理。但是接口的实现方是HtmlParser。基于模块设计的单向依赖原则，模块HtmlParser实现自身的业务时，不应该关心某个具体使用方的要求。HtmlParser在实现的时候，甚至还不知道未来有一天SE会用上它。 要求模块HtmlParser知道所有它的需求方需要的接口，并提前声明实现了这些接口是不合理的。同样的道理发生在搜索引擎（SE）自己身上。SE并不能够预计未来会有哪些需求方需要用到自己，并且实现他们所要求的接口。<br>这个问题在标准库的提供来说，变得更加突出。比如我们实现了File类（这里我们用Go语言的文法来描述要实现的方法，请忽略文法上的细节），它有这些方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Read(buf []byte) (n int, err error)</span><br><span class="line">Write(buf []byte) (n int, err error)</span><br><span class="line">Seek(off int64, <span class="built_in">whence</span> int) (pos int64, err error)</span><br><span class="line">Close() error</span><br></pre></td></tr></table></figure></p>
+<p>那么，到底是应该定义一个IFile接口，还是应该定义一系列的IReader, IWriter, ISeeker, ICloser接口，然后让File从他们继承好呢？脱离了实际的用户场景，讨论这两个设计哪个更好并无意义。问题在于，实现File类的时候，我怎么知道外部会如何用它呢？<br>正因为这种不合理的设计，使得Java、C# 的类库每个类实现的时候都需要纠结：</p>
+<ul>
+<li>问题1：我提供哪些接口好呢？</li>
+<li>问题2：如果两个类实现了相同的接口，应该把接口放到哪个包好呢？<h2 id="非侵入式接口">非侵入式接口</h2>在Go语言中，一个类只需要实现了接口要求的所有函数，那么我们就说这个类实现了该接口。例如：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> File struct &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (f *File) Read(buf []byte) (n int, err error)</span><br><span class="line">func (f *File) Write(buf []byte) (n int, err error)</span><br><span class="line">func (f *File) Seek(off int64, <span class="built_in">whence</span> int) (pos int64, err error)</span><br><span class="line">func (f *File) Close() error</span><br><span class="line">这里我们定义了一个File类，并实现有Read，Write，Seek，Close等方法。设想我们有如下接口：</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span> IFile interface &#123;</span><br><span class="line">    Read(buf []byte) (n int, err error)</span><br><span class="line">    Write(buf []byte) (n int, err error)</span><br><span class="line">    Seek(off int64, <span class="built_in">whence</span> int) (pos int64, err error)</span><br><span class="line">    Close() error</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span> IReader interface &#123;</span><br><span class="line">    Read(buf []byte) (n int, err error)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span> IWriter interface &#123;</span><br><span class="line">    Write(buf []byte) (n int, err error)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span> ICloser interface &#123;</span><br><span class="line">    Close() error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>尽管File类并没有从这些接口继承，甚至可以不知道这些接口的存在，但是File类实现了这些接口，可以进行赋值：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var file1 IFile = new(File)</span><br><span class="line">var file2 IReader = new(File)</span><br><span class="line">var file3 IWriter = new(File)</span><br><span class="line">var file4 ICloser = new(File)</span><br></pre></td></tr></table></figure></p>
+<p>Go语言的非侵入式接口，看似只是做了很小的文法调整，但实则影响深远。</p>
+<ul>
+<li>其一，Go语言的标准库，再也不需要绘制类库的继承树图。你一定见过不少C++、Java、C# 类库的继承树图。这里给个<a href="http://docs.oracle.com/javase/7/docs/api/overview-tree.html" target="_blank" rel="external">Java继承树图</a>：<br><a href="http://docs.oracle.com/javase/7/docs/api/overview-tree.html" target="_blank" rel="external">http://docs.oracle.com/javase/7/docs/api/overview-tree.html</a><br>在Go中，类的继承树并无意义。你只需要知道这个类实现了哪些方法，每个方法是啥含义就足够了。</li>
+<li>其二，实现类的时候，只需要关心自己应该提供哪些方法。不用再纠结接口需要拆得多细才合理。接口是由使用方按需定义，而不用事前规划。</li>
+<li>其三，不用为了实现一个接口而import一个包，目的仅仅是引用其中的某个interface的定义，这是不被推荐的。因为多引用一个外部的package，就意味着更多的耦合。接口由使用方按自身需求来定义，使用方无需关心是否有其他模块定义过类似的接口。<h2 id="接口赋值">接口赋值</h2>接口(interface)的赋值在Go语言中分为如下2种情况讨论：</li>
+</ul>
+<ol>
+<li>将对象实例赋值给接口</li>
+<li>将接口赋值给另一个接口<br>先讨论将某种类型的对象实例赋值给接口。这要求该对象实例实现了接口要求的所有方法。例如，在之前我们有实现过一个Integer类型，如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> Integer int</span><br><span class="line"></span><br><span class="line">func (a Integer) Less(b Integer) bool &#123;</span><br><span class="line">    <span class="built_in">return</span> a &lt; b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (a *Integer) Add(b Integer) &#123;</span><br><span class="line">    *a += b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>相应地，我们定义接口LessAdder，如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> LessAdder interface &#123;</span><br><span class="line">    Less(b Integer) bool</span><br><span class="line">    Add(b Integer)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在有个问题：假设我们定义一个Integer类型的对象实例，怎么其赋值给LessAdder接口呢？应该用下面的语句(1)，还是语句(2)呢？<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a Integer = <span class="number">1</span></span><br><span class="line">var b LessAdder = &amp;a     ... (<span class="number">1</span>)</span><br><span class="line">var b LessAdder = a      ... (<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>答案是应该用语句(1)。原因在于，Go语言可以根据<br>func (a Integer) Less(b Integer) bool<br>这个函数自动生成一个新的Less方法：<br>func (a <em>Integer) Less(b Integer) bool {<br>    return (</em>a).Less(b)<br>}<br>这样，类型 <em>Integer就既存在Less方法，也存在Add方法，满足LessAdder接口。而从另一方面来说，根据<br>func (a </em>Integer) Add(b Integer)<br>这个函数无法自动生成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func (a Integer) Add(b Integer) &#123;</span><br><span class="line">    (&amp;a).Add(b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为 (&amp;a).Add改变的只是函数参数a，对外部实际要操作的对象并无影响，这不符合用户的预期。故此，Go语言不会自动为其生成该函数。因此，类型Integer只存在Less方法，缺少Add方法，不满足LessAdder接口，故此上面的语句(2)不能赋值。<br>为了进一步证明以上的推理，我们不妨再定义一个Lesser接口，如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> Lesser interface &#123;</span><br><span class="line">    Less(b Integer) bool</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后我们定义一个Integer类型的对象实例，将其赋值给Lesser接口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a Integer = <span class="number">1</span></span><br><span class="line">var b1 Lesser = &amp;a     ... (<span class="number">1</span>)</span><br><span class="line">var b2 Lesser = a      ... (<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>正如如我们所料的那样，语句(1)和语句(2)均可以编译通过。<br>我们再来讨论另一种情形：将接口赋值给另一个接口。在Go语言中，只要两个接口拥有相同的方法列表（次序不同不要紧），那么他们就是等同的，可以相互赋值。例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package one</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span> ReadWriter interface &#123;</span><br><span class="line">    Read(buf []byte) (n int, err error)</span><br><span class="line">    Write(buf []byte) (n int, err error)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package two</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span> IStream interface &#123;</span><br><span class="line">    Write(buf []byte) (n int, err error)</span><br><span class="line">    Read(buf []byte) (n int, err error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里我们定义了两个接口，一个叫 one.ReadWriter，一个叫 two.IStream。两者都定义了Read、Write方法，只是定义的次序相反。one.ReadWriter先定义了Read再定义Write，而two.IStream反之。<br>在Go语言中，这两个接口实际上并无区别。因为：</p>
+<ul>
+<li>任何实现了one.ReadWriter接口的类，均实现了two.IStream。</li>
+<li>任何one.ReadWriter接口对象可赋值给two.IStream，反之亦然。</li>
+<li>在任何地方使用one.ReadWriter接口，和使用two.IStream并无差异。<br>以下这些代码可编译通过：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var file1 two.IStream = new(File)</span><br><span class="line">var file2 one.ReadWriter = file1</span><br><span class="line">var file3 two.IStream = file2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>接口赋并不要求两个接口必须等价。如果接口A方法列表是接口B方法列表的子集，那么接口B可以赋值给接口A。例如假设我们有Writer接口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> Writer interface &#123;</span><br><span class="line">    Write(buf []byte) (n int, err error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以将上面的one.ReadWriter、two.IStream接口的实例赋值给Writer接口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var file1 two.IStream = new(File)</span><br><span class="line">var file4 Writer = file1</span><br></pre></td></tr></table></figure></p>
+<p>但是反过来并不成立：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var file1 Writer = new(File)</span><br><span class="line">var file5 two.IStream = file1 // 编译不能通过！</span><br></pre></td></tr></table></figure></p>
+<p>这段代码无法编译通过。原因是显然的：file1并没有Read方法。</p>
+<h2 id="接口查询">接口查询</h2><p>有办法让上面Writer接口转换为two.IStream接口么？有。那就是我们即将讨论的接口查询语法。代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var file1 Writer = ...</span><br><span class="line"><span class="keyword">if</span> file5, ok := file1.(two.IStream); ok &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个if语句的含义是：file1接口指向的对象实例是否实现了two.IStream接口呢？如果实现了，则… 接口查询是否成功，要在运行期才能够确定。它不像接口赋值，编译器只需要通过静态类型检查即可判断赋值是否可行。<br>在Windows下做过开发的人，通常都接触过COM，知道COM也有一个接口查询(QueryInterface)。是的，Go语言的接口查询和COM的接口查询(QueryInterface)非常类似，都可以通过对象（组件）的某个接口来查询对象实现的其他接口。当然Go语言的接口查询优雅很多。在Go语言中，对象是否满足某个接口、通过某个接口查询其他接口，这一切都是完全自动完成的。<br>让语言内置接口查询，这是一件非常了不起的事情。在COM中实现QueryInterface的过程非常繁复，但QueryInterface是COM体系的根本。COM书籍对QueryInterface的介绍，往往从类似下面这样一段问话开始，它在Go语言中同样适用：</p>
+<pre><code><span class="blockquote">&gt; 你会飞吗？    // IFly</span>
+<span class="blockquote">&gt; 不会。</span>
+<span class="blockquote">&gt; 你会游泳吗？    // ISwim</span>
+<span class="blockquote">&gt; 会。</span>
+<span class="blockquote">&gt; 你会叫么？    // IShout</span>
+<span class="blockquote">&gt; 会。</span>
+<span class="blockquote">&gt; ...</span>
+</code></pre><p>随着问题深入，你从开始对对象（组件）一无所知（在Go语言中是interface{}，在COM中是IUnknown），到逐步有了深入的了解。<br>但是你最终能够完全了解对象么？COM说不能，你只能无限逼近，但永远不能完全了解一个组件。Go语言说：你能。<br>在Go语言中，你可以向接口询问，它指向的对象是否是某个类型，例子如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var file1 Writer = ...</span><br><span class="line"><span class="keyword">if</span> file6, ok := file1.(*File); ok &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个if语句的含义是：file1接口指向的对象实例是否是 *File 类型呢？如果是的，则…<br>你可以认为查询接口所指向的对象是否是某个类型，只是接口查询的一个特例。接口是对一组类型的公共特性的抽象。所以查询接口与查询具体类型的区别，好比是下面这两句问话的区别：</p>
+<pre><code><span class="blockquote">&gt; 你是医生吗？</span>
+<span class="blockquote">&gt; 是。</span>
+<span class="blockquote">&gt; 你是某某某？</span>
+<span class="blockquote">&gt; 是。</span>
+</code></pre><p>第一句问话查的是一个群体，是查询接口；而第二句问话已经到了具体的个体，是查询具体类型。<br>在C++/Java/C# 等语言中，也有一些类似的动态查询能力，比如查询一个对象的类型是否是继承自某个类型（基类查询），或者是否实现了某个接口（接口派生查询）。但是他们的动态查询与Go的动态查询很不一样。</p>
+<pre><code><span class="blockquote">&gt; 你是医生吗？</span>
+</code></pre><p>对于这个问题，基类查询看起来像是在这么问：“你老爸是医生吗？”；接口派生查询则看起来像是这么问：“你有医师执照吗？”；在Go语言中，则是先确定满足什么样的条件才是医生，比如技能要求有哪些，然后才是按条件一一拷问，确认是否满足条件，只要满足了你就是医生，不关心你是否有医师执照，或者是小国执照不被天朝承认。</p>
+<h2 id="类型查询">类型查询</h2><p>在Go语言中，你还可以更加直接了当地询问接口指向的对象实例的类型。例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var v1 interface&#123;&#125; = ...</span><br><span class="line">switch v := v1.(<span class="built_in">type</span>) &#123;</span><br><span class="line"><span class="keyword">case</span> int: // 现在v的类型是int</span><br><span class="line"><span class="keyword">case</span> string: // 现在v的类型是string</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>就像现实生活中物种多得数不清一样，语言中的类型也多的数不清。所以类型查询并不经常被使用。它更多看起来是个补充，需要配合接口查询使用。例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> Stringer interface &#123;</span><br><span class="line">    String() string</span><br><span class="line">&#125;</span><br><span class="line">func Println(args ...interface&#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">for</span> _, arg := range args &#123; </span><br><span class="line">    switch v := arg.(<span class="built_in">type</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> int: // 现在v的类型是int</span><br><span class="line">    <span class="keyword">case</span> string: // 现在v的类型是string</span><br><span class="line">default:</span><br><span class="line">        <span class="keyword">if</span> v, ok := arg.(Stringer); ok &#123; // 现在v的类型是Stringer</span><br><span class="line">            val := v.String()</span><br><span class="line">            ...</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Go语言标准库的Println当然比这个例子要复杂很多。我们这里摘取其中的关键部分进行分析。对于内置类型，Println采用穷举法来，针对每个类型分别转换为字符串进行打印。对于更一般的情况，首先确定该类型是否实现了String()方法，如果实现了则用<strong>String()方法</strong>转换为字符串进行打印（自定义的结构体可以实现一个String()函数来限定打印格式）。否则，Println利用反射(reflect)遍历对象的所有成员变量进行打印。<br>是的，利用反射(reflect)也可以进行类型查询，详细可参阅reflect.TypeOf方法相关文档。。</p>
+<h2 id="Any类型">Any类型</h2><p>由于Go语言中任何对象实例都满足空接口interface{}，故此interface{}看起来像是可以指向任何对象的Any类型。如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var v1 interface&#123;&#125; = <span class="number">1</span>      // 将int类型赋值给interface&#123;&#125;</span><br><span class="line">var v2 interface&#123;&#125; = <span class="string">"abc"</span>    // 将string类型赋值给interface&#123;&#125;</span><br><span class="line">var v3 interface&#123;&#125; = &amp;v2    // 将*interface&#123;&#125;类型赋值给interface&#123;&#125;</span><br><span class="line">var v4 interface&#123;&#125; = struct&#123; X int &#125;&#123;<span class="number">1</span>&#125;</span><br><span class="line">var v5 interface&#123;&#125; = &amp;struct&#123; X int &#125;&#123;<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当一个函数可以接受任意的对象实例时，我们会将其声明为interface{}。最典型的例子是标准库fmt中PrintXXX系列的函数。例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func Printf(fmt string, args ...interface&#123;&#125;)</span><br><span class="line">func Println(args ...interface&#123;&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>前面我们已经简单分析过Println的实现，也已经展示过interface{}的用法。总结来说，interface{} 类似于COM中的IUnknown，我们刚开始对其一无所知，但我们可以通过接口查询和类型查询逐步了解它。<br>总结<br>我们说，Go 语言的接口(interface)不单单只是接口。在其他语言中，接口仅仅作为组件间的契约存在。从这个层面讲，Go语言接口的重要突破是，其接口是非侵入式的，把其他语言接口的副作用消除了。<br>但是Go语言的接口不仅仅是契约作用。它是Go语言类型系统(type system)的纲。这表现在：</p>
+<ul>
+<li>接口查询：通过接口你可以查询接口所指向的对象是否实现了另外的接口。</li>
+<li>类型查询：通过接口你可以查询接口所指向的对象的具体类型。</li>
+<li>Any类型：在Go语言中interface{}可指向任意的对象实例。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Go/">Go</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Go语言/">Go语言</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://huangtxin.github.io/year/08/13/跟我学习Go语言-5/" data-title="跟我学习Go语言(5) | hsinko&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/year/08/13/jvm-垃圾收集器总结/" title="jvm-垃圾收集器总结">
+  <strong>上一篇：</strong><br/>
+  <span>
+  jvm-垃圾收集器总结</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/year/08/13/跟我学习Go语言-4/"  title="跟我学习Go语言(4)">
+ <strong>下一篇：</strong><br/> 
+ <span>跟我学习Go语言(4)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="year/08/13/跟我学习Go语言-5/" data-title="跟我学习Go语言(5)" data-url="http://huangtxin.github.io/year/08/13/跟我学习Go语言-5/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#接口(interface)"><span class="toc-number">1.</span> <span class="toc-text">接口(interface)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#其他语言(C++/Java/C#)的接口"><span class="toc-number">1.1.</span> <span class="toc-text">其他语言(C++/Java/C#)的接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非侵入式接口"><span class="toc-number">1.2.</span> <span class="toc-text">非侵入式接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口赋值"><span class="toc-number">1.3.</span> <span class="toc-text">接口赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口查询"><span class="toc-number">1.4.</span> <span class="toc-text">接口查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型查询"><span class="toc-number">1.5.</span> <span class="toc-text">类型查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Any类型"><span class="toc-number">1.6.</span> <span class="toc-text">Any类型</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Go/" title="Go">Go<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/j2ee/" title="j2ee">j2ee<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jvm/" title="jvm">jvm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>7</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Go语言/" title="Go语言">Go语言<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/容器云/" title="容器云">容器云<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jvm/" title="jvm">jvm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PaaS/" title="PaaS">PaaS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/服务发现/" title="服务发现">服务发现<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/taglib/" title="taglib">taglib<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/soa/" title="soa">soa<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web-services/" title="web services">web services<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jsp/" title="jsp">jsp<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/hsinko" target="_blank" title="我的GitHub">我的GitHub</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2411360485" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/hsinko" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/106161458455416050000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="HuangXin">HuangXin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"xin"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'xin';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F5480422c3b8ea490cbfc63c58c903bae' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
