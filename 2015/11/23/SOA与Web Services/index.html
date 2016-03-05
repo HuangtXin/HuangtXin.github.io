@@ -1,0 +1,578 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>SOA与Web Services | hsinko&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="HuangXin">
+    
+
+    
+    <meta name="description" content="SOA与Web Services大多数企业经过多年发展，都会在软件系统开发和维护方面投入大量资金，例如一些企业使用传统的信息系统来存储大量的重要数据。当业务发生变化或者有所增加时，直接废弃现有的系统是不切实际的，但是对现有系统进行改进和完善又要付出更大的代价。针对这种情况，SOA(Service Oriented Architecture)被提出来，提供了一个较为划算的解决方案。1996年，Gar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SOA与Web Services">
+<meta property="og:url" content="http://huangtxin.github.io/2015/11/23/SOA与Web Services/index.html">
+<meta property="og:site_name" content="hsinko's blog">
+<meta property="og:description" content="SOA与Web Services大多数企业经过多年发展，都会在软件系统开发和维护方面投入大量资金，例如一些企业使用传统的信息系统来存储大量的重要数据。当业务发生变化或者有所增加时，直接废弃现有的系统是不切实际的，但是对现有系统进行改进和完善又要付出更大的代价。针对这种情况，SOA(Service Oriented Architecture)被提出来，提供了一个较为划算的解决方案。1996年，Gar">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/soa.jpg">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/jws_wsdl.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/output.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/axis2_public.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/axis2_To_Stub.png">
+<meta property="og:image" content="http://7xl58j.com1.z0.glb.clouddn.com/axis2_test.png">
+<meta property="og:updated_time" content="2016-03-05T13:26:54.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SOA与Web Services">
+<meta name="twitter:description" content="SOA与Web Services大多数企业经过多年发展，都会在软件系统开发和维护方面投入大量资金，例如一些企业使用传统的信息系统来存储大量的重要数据。当业务发生变化或者有所增加时，直接废弃现有的系统是不切实际的，但是对现有系统进行改进和完善又要付出更大的代价。针对这种情况，SOA(Service Oriented Architecture)被提出来，提供了一个较为划算的解决方案。1996年，Gar">
+<link rel="publisher" href="106161458455416050000">
+
+    
+    <link rel="alternative" href="/atom.xml" title="hsinko&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="hsinko&#39;s blog" title="hsinko&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="hsinko&#39;s blog">hsinko&#39;s blog</a></h1>
+				<h2 class="blog-motto">成就源于创造价值。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:huangtxin.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/11/23/SOA与Web Services/" title="SOA与Web Services" itemprop="url">SOA与Web Services</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/106161458455416050000?rel=author" title="HuangXin" target="_blank" itemprop="author">HuangXin</a>
+		
+  <p class="article-time">
+    <time datetime="2015-11-22T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-11-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SOA与Web_Services"><span class="toc-number">1.</span> <span class="toc-text">SOA与Web Services</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解SOA"><span class="toc-number">1.1.</span> <span class="toc-text">理解SOA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SOA是个架构模型"><span class="toc-number">1.2.</span> <span class="toc-text">SOA是个架构模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web_Services是SOA的一种实现"><span class="toc-number">1.3.</span> <span class="toc-text">Web Services是SOA的一种实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web_Services开发工具:JWS、Axis2、XFire、CXF"><span class="toc-number">1.4.</span> <span class="toc-text">Web Services开发工具:JWS、Axis2、XFire、CXF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用JWS怎么发布和调用Web_Services"><span class="toc-number">1.5.</span> <span class="toc-text">使用JWS怎么发布和调用Web Services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Axis2怎么发布和调用Web_Services"><span class="toc-number">1.6.</span> <span class="toc-text">使用Axis2怎么发布和调用Web Services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高Web_Services性能：Web_service_的QoS需求"><span class="toc-number">1.7.</span> <span class="toc-text">提高Web Services性能：Web service 的QoS需求</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="SOA与Web_Services">SOA与Web Services</h1><p>大多数企业经过多年发展，都会在软件系统开发和维护方面投入大量资金，例如一些企业使用传统的信息系统来存储大量的重要数据。当业务发生变化或者有所增加时，直接废弃现有的系统是不切实际的，但是对现有系统进行改进和完善又要付出更大的代价。针对这种情况，SOA(Service Oriented Architecture)被提出来，提供了一个较为划算的解决方案。<br>1996年，Gartner最早提出SOA的概念，目的是让企业业务更加敏捷，软件系统变得更有弹性，使企业能快速响应需求的变化，而对于企业已经普遍存在的遗留系统来说，这无疑是办不到的，不但办不到，而且遗留系统本身还存在信息孤岛问题。从资源利用的角度，企业为实现利益最大化，遗留系统的问题需要解决，新建系统的弹性更需要解决，就在这样的环境下SOA被提出来。<br>从SOA概念的提出到企业实用，只有短短几年时间，这段时期，在厂商、研究人员和标准化组织的共同努力下，已经制定出一大批SOA标准和规范，发展十分迅速。最初基于SOA思想的实现原则、架构模型、参考模型等等，发展至今已经成为一种编程模型。<br><a id="more"></a></p>
+<h2 id="理解SOA">理解SOA</h2><p>引用一下IBM网站上对SOA的定义：面向服务的体系结构（service-oriented architecture）是一个组件模型，它将应用程序的不同功能单元（称为服务）通过这些服务之间定义良好的接口和契约联系起来。接口是采用中立的方式进行定义的，它应该独立于实现服务的硬件平台、操作系统和编程语言。这使得构建在各种这样的系统中的服务可以以一种统一和通用的方式进行交互。<br>SOA是一种体系架构风格，是一种粗粒度、松耦合服务架构，服务之间通过简单、精确定义接口进行通讯，不涉及底层编程接口和通讯模型，可以根据需求通过网络对松散耦合的粗粒度应用组件进行分布式部署、组合和使用。服务层是SOA的基础，可以直接被应用调用，从而有效控制系统中与软件代理交互的人为依赖性。<br>简单来说，SOA就是以服务为基本元素来组建企业IT架构。在技术层面上，SOA是一种抽象的、松散耦合的粗粒度软件架构；在业务层面上，SOA的核心概念是重用和互操作，它将企业的IT资源整合成可操作的、基于标准的服务，使其能被重新组合和应用。<br>从（分布式）软件发展的趋势来看，可以理解为由C/S架构到B/S架构再到SOA，模块之间的耦合度由紧密到松散，松散的耦合度具有更大的灵活性，软件系统就会有更大的弹性来应对业务的变化。经常被提到的设计模式，其中大部分目的也是为了降低类之间的耦合度。所以SOA的核心思想还是改善软件的可重用能力和应用程序一起工作并共享信息的互操作的能力。</p>
+<h2 id="SOA是个架构模型">SOA是个架构模型</h2><p>在SOA模型中，应用基于服务的形式进行构建，一个服务是一个明确的业务功能的实现，而且这种服务可以被其他应用调用，或者说可以被其他业务流程调用。这种思想也就是SOA的核心概念，即软件的重用和互操作。而SOA提供这种灵活性的前提是：</p>
+<ol>
+<li>服务是实现了定义明确的接口的软件组件。SOA中很重要的设计就是服务接口(what)与实现(how)的分离， 这样服务被调用的时候就不需要知道服务具体是怎么执行的。</li>
+<li>服务自身是独立的、松耦合的。</li>
+<li>综合性的服务可以由其他服务功能的组合来实现。<br>图 1是SOA的体系结构示例，在这种结构中，服务提供者在服务注册中心发布他们的服务，调用者可以在这个注册中心按一定标准查找服务，然后与该服务的提供者绑定，并调用服务。如果要在注册中心发布服务，那么需要给调用者提供服务描述（或者称为服务契约）以及服务的入口地址。<br>基于SOA的应用架构是一些分布式的、多层的应用程序，这些应用有自己的业务逻辑和持久层，服务是构建SOA应用架构的基本元素，任何功能都可以做成一个服务，但是服务接口的抽象级别难以掌控。SOA中的服务应该是粗粒度的，也就是说，SOA中的服务不需要暴露过多的实现细节，抽象出了较多的模型对应现实的业务逻辑。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/soa.jpg" alt="SOA"><br>基于SOA的应用架构是一些分布式的、多层的应用程序，这些应用有自己的业务逻辑和持久层，服务是构建SOA应用架构的基本元素，任何功能都可以做成一个服务，但是服务接口的抽象级别难以掌控。SOA中的服务应该是粗粒度的，也就是说，SOA中的服务不需要暴露过多的实现细节，抽象出了较多的模型对应现实的业务逻辑。<h2 id="Web_Services是SOA的一种实现">Web Services是SOA的一种实现</h2>SOA与Web Services是两种不同的概念，SOA在开始的很长时间里只是个方法，并且致力于解决业务敏捷性，所以SOA极力寻找一种技术中立的实现，直到Web Services协议栈标准开始形成，并且基于被各大厂商认为会成为理想消息协议的XML，所以Web Services曾被认为就是SOA，然而Web Services基于标准的集成方案并不能达成SOA业务敏捷性目标。所以Web Services只是目前最适合实现SOA的技术。而SOA却不是Web Services。Web Services基于标准的应用编程接口，缺乏SOA的松耦合、位置透明等特征，更不能实现业务敏捷性，并且Web Services服务难以管理。然而，重点是Web Services仍是目前最适合实现SOA的技术。<br>SOA是一个比较抽象的概念，例如它只提出定义一些接口和协议，那么这些服务接口具体应该怎样定义呢，Web Services就将它们具体化了：Web服务使用的协议都是基于XML的；SOA只说应该有三种角色，而Web Services里这三种角色都有具体的实现方式。<br>WSDL，UDDI和SOAP是Web Services的基础协议。WSDL用来描述服务；UDDI用来注册和查找服务；而SOAP，作为传输层，用来在服务调用者和服务提供者之间传送消息。SOAP是Web Services的默认机制，其他的技术可以为服务实现其他类型的绑定。一个服务调用者可以在UDDI注册表（registry）中查找服务，取得服务的WSDL描述，然后通过SOAP来调用服务。这就是Web Services的基本实现流程。这些协议的作用在图 1的SOA体系结构中都有对应定义（可以翻看图 1查看）。<h2 id="Web_Services开发工具:JWS、Axis2、XFire、CXF">Web Services开发工具:JWS、Axis2、XFire、CXF</h2>JWS是Java语言对Web Services的一种实现，用来开发和发布服务(JDK6自带JWS)。同时支持基于SOAP的Web Services和REST风格的Web Services。<br>XFire项目经过改造之后形成了CXF框架，就像目前的Struts2来自WebWork一样。可以看出XFire的命运会和WebWork的命运一样，只会慢慢落败，下面就不做过多讨论。<br>Axis2和CXF都是Apache下面的Web Services开源开发工具。这两个框架 都是从已有的开源项目发展起来的。Axis2是从Axis1.x系列发展而来。CXF则是XFire和Celtix项目的结合产品。Axis2是从底层全部重新实现，使用了新的扩展性更好模块架构。CXF也重新的深化了XFire和Celtix这两个开发工具。这两个框架都有商业公司提供服务，WSO2提供Axis2的支持，Iona提供CXF的支持，这两个公司都有很活跃的开发者社区。它们都是Web Services / SOAP / WSDL的引擎，是重量级的Web Services框架。<br>CXF更注重开发人员的工效（ergonomics）和嵌入能力（embeddability）。大多数配置都可以API来完成，替代了比较繁琐的XML配置文件； CXF支持Spring，CXF的API和Spring的配置文件可以非常好的对应；CXF强调代码优先的设计方式，使用了简单的API使得从现有的应用开发服务变得方便。另外，CXF实现了ESB, CXF不但是一个优秀的Web Services / SOAP / WSDL 引擎，也是一个不错的ESB总线，为SOA的实施提供了一种选择方案。<br>Axis2支持多语言，除了Java，还支持C/C++版本；Axis2允许自己作为独立的应用来发布Web Services，并提供了大量的功能和一个很好的模型，这个模型可以通过它本身的架构不断添加新的功能。这也导致了Axis2的复杂性，Axis2的打包、部署和发布都比较麻烦。<h2 id="使用JWS怎么发布和调用Web_Services">使用JWS怎么发布和调用Web Services</h2>在使用JDK6自带的Web Services特性之前，项目中接口开发有用到Axis2、XFire、CXF等Web Services框架发布通过获取相关的wsdl文件即可实现远程通讯数据交互。JDK6自带的JWS大大简化了服务部署，真正的轻量级，可以使开发者集中精力解决服务端的相关功能设计与实现。<br><strong>发布Web Services</strong><br>下面展示一个使用JDK6自带的JWS发布Web Services的例子。<br>定义接口类：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package org.zju.xin.service;</span><br><span class="line"></span><br><span class="line">import javax.jws.WebService;</span><br><span class="line"></span><br><span class="line">@WebService</span><br><span class="line">public interface TestService &#123;</span><br><span class="line">	 public String <span class="built_in">test</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>实现类：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package org.zju.xin.service;</span><br><span class="line"></span><br><span class="line">import javax.jws.WebService;</span><br><span class="line">import javax.xml.ws.Endpoint;</span><br><span class="line"></span><br><span class="line">@WebService(endpointInterface=<span class="string">"org.zju.xin.service.TestService"</span>) </span><br><span class="line">public class TestServicesImpl implements TestService&#123;</span><br><span class="line">    public String <span class="function"><span class="title">test</span></span>() &#123; </span><br><span class="line">        <span class="built_in">return</span> <span class="string">"test"</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        public static void main(String[] args) &#123; </span><br><span class="line">        	Endpoint.publish(<span class="string">"http://localhost:8090/Test"</span>, new TestServicesImpl()); </span><br><span class="line">       &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在浏览器输入 <a href="http://localhost:8090/Test?wsdl就可以查看wsdl文件。如下图所示：" target="_blank" rel="external">http://localhost:8090/Test?wsdl就可以查看wsdl文件。如下图所示：</a><br><img src="http://7xl58j.com1.z0.glb.clouddn.com/jws_wsdl.png" alt="wsdl"><br><a href="http://localhost:8090/Test是发布服务地址，" target="_blank" rel="external">http://localhost:8090/Test是发布服务地址，</a> TestServicesImpl是服务的功能实现类，负责业务处理。当然，实际项目中，服务地址可以写在配置文件中，增加灵活性。<br><strong>调用web Services</strong><br>实现client类：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package org.zju.xin.service;</span><br><span class="line"></span><br><span class="line">import java.net.MalformedURLException;</span><br><span class="line">import java.net.URL;</span><br><span class="line">import javax.xml.namespace.QName;</span><br><span class="line">import javax.xml.ws.Service;</span><br><span class="line">public class TestClient &#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		 try &#123;</span><br><span class="line">			URL url = new URL(<span class="string">"http://localhost:8090/Test?wsdl"</span>);</span><br><span class="line">			 QName sname= new QName(<span class="string">"http://service.xin.zju.org/"</span>,<span class="string">"TestServicesImplService"</span>);</span><br><span class="line">			 Service service = Service.create(url,sname);</span><br><span class="line">			 TestService ms =service.getPort(TestService.class);</span><br><span class="line">			 System.out.println(<span class="string">"client test:"</span>+ms.test());</span><br><span class="line">		&#125; catch (MalformedURLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出结果如下图：<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/output.png" alt="Output"></p>
+<h2 id="使用Axis2怎么发布和调用Web_Services">使用Axis2怎么发布和调用Web Services</h2><p><strong>Axis2发布Web Services</strong><br>编写一个java类，用来提供服务，并编译成class文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package org.zju.xin.axis2.service;</span><br><span class="line"></span><br><span class="line">public class Axis2Test &#123;</span><br><span class="line">	public String <span class="built_in">test</span>(String something) &#123;</span><br><span class="line">		<span class="built_in">return</span> <span class="string">"Axis2 Demo: "</span> + something;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以使用axis2 的eclipse插件完成发布。<br>New —&gt; Other —&gt; Axis2 —&gt; wizards —&gt; Axis2 Services Archiver ，按照向导选择之前编译后的 class 文件,如下图所示。<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/axis2_public.png" alt="发布WebServices"><br><strong>Axis2调用Web Services</strong><br>利用axis2的eclipse插件将wsdl文件转换为stub类。<br>New —&gt; Web Services —&gt; Web Service Client<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/axis2_To_Stub.png" alt="生成stub类"><br>测试代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package org.zju.xin.axis2.service;</span><br><span class="line">import java.net.URL;</span><br><span class="line">import org.junit.Test;</span><br><span class="line">public class TestService &#123;</span><br><span class="line">	@Test</span><br><span class="line">	public void <span class="function"><span class="title">test</span></span>()&#123;</span><br><span class="line">		Axis2TestSoap11BindingStub stub;</span><br><span class="line">		try &#123;</span><br><span class="line">			stub = new Axis2TestSoap11BindingStub(new URL(<span class="string">"http://localhost:8080/axis2/services/Axis2Test"</span>),null);</span><br><span class="line">			System.out.println(stub.test(<span class="string">"Test from client"</span>));</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果如下图所示：<br><img src="http://7xl58j.com1.z0.glb.clouddn.com/axis2_test.png" alt="测试结果"><br>本节内容只对Axis2调用Web Services做简要介绍。<br>通常客户端的设计会涉及到stub类和DTO类。stub类是调用服务的类，可以利用工具通过WSDL文件转换得到stub类。DTO类是数据传输对象(Data Transfer Object)，定义传输数据的结构或者说是属性，DTO类的存在只是方便数据的定义的传输。<br>另外，HttpTransportProperties.Authenticator是Axis2中很重要的类，用于验证用户名和密码，是否有权限调用服务。为stub对象添加验证信息，如下示例:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">client = stub._getServiceClient();</span><br><span class="line">Options option = client.getOptions();</span><br><span class="line">HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();</span><br><span class="line">auth.setUsername(accessUsername);</span><br><span class="line">auth.setPassword(accessPassword);</span><br><span class="line">auth.setPreemptiveAuthentication(<span class="literal">true</span>);</span><br><span class="line">option.setProperty(org.apache.axis2.transport.http.HTTPConstants.AUTHENTICATE, auth);</span><br><span class="line">option.setManageSession(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure></p>
+<p>stud调用service的时候会验证用户和密码，若密码错误或用户没有权限就会报RemoteExceptrion。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">		bean =  stub.getCaptcha();</span><br><span class="line">	&#125; catch (RemoteException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然，JWS发布的服务，同样可以在客户端利用Axis2调用，它们只是Web Services的不同实现，遵循同样的协议。</p>
+<h2 id="提高Web_Services性能：Web_service_的QoS需求">提高Web Services性能：Web service 的QoS需求</h2><p>对于一个企业的关键性业务系统，就要解决一些高级需求，例如安全性、可靠性以及事务。当一个企业采用SOA开发和部署应用的时候，基本的web services规范，包括WSDL、SOAP以及UDDI就不能满足这些高级需求，这些需求也称为QoS（Quality of Service）。下面的内容介绍一些QoS相关的标准。<br>WS-Security是一种为Web Services上应用提供安全的网络传输协议，协议包含了关于如何在Web Services消息上保证完整性和机密性的规约，包括SAML、Kerberos和认证证书格式（如X.509）的使用的详细信息。WS-Security将安全特性放入一个SOAP消息的消息头中，在应用层处理。这样协议保证了端到端的安全。<br>WS-Reliability是一个基于SOAP的协议，一个用来解决消息可靠性问题的标准，已经被WS-ReliableMessaging所取代。WS-ReliableMessaging使用SOAP和WSDL的可扩展性模型，在出现软件组件，系统或网络故障时，使得SOAP消息能够在分布式应用间能够可靠传送。<br>服务提供者有时候会要求服务消费者与某种策略通信。比如，服务提供商可能会要求消费者提供Kerberos安全标示，才能取得某项服务。这些要求被定义为策略断言（policy assertions）。一项策略可能会包含多个断言。WS-Policy用来标准化服务消费者和服务提供者之间的策略通信。<br>随着企业服务的增长，所使用的服务和业务进程的数量也随之增加，一个用来让系统管理员管理所有运行在多相环境下的服务的管理系统就显得尤为重要。WSDM（Web Services for Distributed Management）规定了任何根据WSDM实现的服务都可以由一个WSDM适应（WSDM-compliant）的管理方案来管理。<br>其它的qos特性，比如合作方之间的沟通和通讯，多个服务之间的事务处理，都在WS-Coordination 和 WS-Transaction 标准中描述。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/soa/">soa</a><a href="/tags/web-services/">web services</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://huangtxin.github.io/2015/11/23/SOA与Web Services/" data-title="SOA与Web Services | hsinko&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/11/23/Docker创建镜像文件/" title="Docker创建镜像文件">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Docker创建镜像文件</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/11/22/Docker典型API/"  title="Docker典型API">
+ <strong>下一篇：</strong><br/> 
+ <span>Docker典型API
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/11/23/SOA与Web Services/" data-title="SOA与Web Services" data-url="http://huangtxin.github.io/2015/11/23/SOA与Web Services/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SOA与Web_Services"><span class="toc-number">1.</span> <span class="toc-text">SOA与Web Services</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解SOA"><span class="toc-number">1.1.</span> <span class="toc-text">理解SOA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SOA是个架构模型"><span class="toc-number">1.2.</span> <span class="toc-text">SOA是个架构模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web_Services是SOA的一种实现"><span class="toc-number">1.3.</span> <span class="toc-text">Web Services是SOA的一种实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web_Services开发工具:JWS、Axis2、XFire、CXF"><span class="toc-number">1.4.</span> <span class="toc-text">Web Services开发工具:JWS、Axis2、XFire、CXF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用JWS怎么发布和调用Web_Services"><span class="toc-number">1.5.</span> <span class="toc-text">使用JWS怎么发布和调用Web Services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Axis2怎么发布和调用Web_Services"><span class="toc-number">1.6.</span> <span class="toc-text">使用Axis2怎么发布和调用Web Services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高Web_Services性能：Web_service_的QoS需求"><span class="toc-number">1.7.</span> <span class="toc-text">提高Web Services性能：Web service 的QoS需求</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Go/" title="Go">Go<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/j2ee/" title="j2ee">j2ee<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java/" title="java">java<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jvm/" title="jvm">jvm<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/云计算/" title="云计算">云计算<sup>7</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/docker/" title="docker">docker<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Go语言/" title="Go语言">Go语言<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/容器云/" title="容器云">容器云<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jvm/" title="jvm">jvm<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java/" title="java">java<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PaaS/" title="PaaS">PaaS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/服务发现/" title="服务发现">服务发现<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/taglib/" title="taglib">taglib<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/wso2is/" title="wso2is">wso2is<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/soa/" title="soa">soa<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web-services/" title="web services">web services<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jsp/" title="jsp">jsp<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/hsinko" target="_blank" title="我的GitHub">我的GitHub</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2411360485" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/hsinko" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/106161458455416050000?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="HuangXin">HuangXin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"xin"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'xin';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F5480422c3b8ea490cbfc63c58c903bae' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
